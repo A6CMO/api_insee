@@ -6,8 +6,8 @@ class Periodic(Base):
         self.criteria_list = criteria
         self.operator = operator
 
-    def toURLParams(self):
+    def to_url_params(self):
         fields = (" " + self.operator + " ").join(
-            [ct.toURLParams() for ct in self.criteria_list]
+            [ct.to_url_params() for ct in self.criteria_list]
         )
         return f"periode({fields})"

@@ -5,11 +5,11 @@ class Base:
     def validate(self):
         return True
 
-    def toURLParams(self):
+    def to_url_params(self) -> str:
         return ""
 
     def __str__(self) -> str:
-        return self.toURLParams()
+        return self.to_url_params()
 
     def __neg__(self):
         self.negative = not self.negative
@@ -32,5 +32,5 @@ class TreeCriteria(Base):
         self.operator = operator
         self.right = right
 
-    def toURLParams(self):
+    def to_url_params(self):
         return f"{self.left} {self.operator} {self.right}"

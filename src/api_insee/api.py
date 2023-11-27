@@ -19,15 +19,6 @@ class ApiInsee:
             self.auth = AuthService(key=key, secret=secret)
         self.format = format
 
-    def use(self, serviceName, requestService):
-        def wrap(*args, **kwargs):
-            service = requestService(*args, **kwargs)
-            service.format = self.format
-            service.useToken(self.auth.token)
-            return service
-
-        setattr(self, serviceName, wrap)
-
     def siret(self, *args: Any, **kwargs: Any) -> RequestEntrepriseServiceSiret:
         return self._wrap(RequestEntrepriseServiceSiret, *args, **kwargs)
 
@@ -49,6 +40,6 @@ class ApiInsee:
     ) -> T:
         service = request_service(*args, **kwargs)
         service.format = self.format
-        service.useToken(self.auth.token)
+        service.use_token(self.auth.token)
 
         return service

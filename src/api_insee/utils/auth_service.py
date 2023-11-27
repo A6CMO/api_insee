@@ -8,9 +8,9 @@ class AuthService:
 
     def __init__(self, key=False, secret=False):
         self.credentials = ClientCredentials(key=key, secret=secret)
-        self.generateToken()
+        self.generate_token()
 
-    def generateToken(self):
+    def generate_token(self) -> None:
         data = RequestTokenService(self.credentials).get()
         self.token = ClientToken(**data)
 

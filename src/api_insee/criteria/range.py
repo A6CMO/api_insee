@@ -13,7 +13,7 @@ class Range(Base):
         self.right = right
         self.exclude = exclude
 
-    def toURLParams(self):
+    def to_url_params(self):
         return (
             f"{self.name}:{self.left_symbol}{self.left}"
             f" TO {self.right}{self.right_symbol}"

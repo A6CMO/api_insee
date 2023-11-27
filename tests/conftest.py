@@ -9,8 +9,7 @@ from typing import Any
 
 import pytest
 
-from src.api_insee import ApiInsee
-
+from api_insee import ApiInsee
 
 #
 #  Import API Insee Module

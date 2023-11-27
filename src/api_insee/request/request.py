@@ -3,10 +3,15 @@ import ssl
 import urllib.error as ue
 import urllib.parse as up
 import urllib.request as ur
+from http.client import HTTPResponse
+from typing import Any, Literal
+from urllib.error import HTTPError
 
 from api_insee import criteria
-from api_insee.exeptions.request_exeption import RequestExeption
+from api_insee.exeptions.request_error import UrlError
 from api_insee.utils.client_token import ClientToken
+
+AvailableFormat = Literal["csv", "json"]
 
 
 class RequestService:
@@ -29,7 +34,7 @@ class RequestService:
     def init_criteria_from_criteria(self, *args):
         self.criteria = criteria.List(*args)
 
-    def useToken(self, token):
+    def use_token(self, token: ClientToken) -> None:
         self.token = token
 
     def get(self, format=None, method="get"):
@@ -41,40 +46,42 @@ class RequestService:
             raise ValueError(msg)
 
         try:
-            request = self.getRequest() if method == "get" else self.postRequest()
+            request = self.get_request() if method == "get" else self.post_request()
             gcontext = ssl.SSLContext()
             response = ur.urlopen(request, context=gcontext)
 
-            return self.formatResponse(response)
+            return self.format_response(response)
         except ue.HTTPError as EX:
-            self.catchHTTPError(EX)
+            self.catch_http_error(EX)
         except Exception:
             raise Exception(self.url_encoded)
 
-    def getRequest(self):
+    def get_request(self) -> ur.Request:
         return ur.Request(self.url_encoded, data=self.data, headers=self.header)
 
-    def postRequest(self):
+    def post_request(self) -> ur.Request:
         header = self.header
         header.update({"Content-Type": "application/x-www-form-urlencoded"})
         data = up.urlencode(self._url_params).encode("utf-8")
 
         return ur.Request(self.url_path, data=data, headers=header)
 
-    def formatResponse(self, response):
+    def format_response(self, response: HTTPResponse) -> str | dict[str, Any]:
         if self.format == "json":
-            return self.formatResponseJson(response)
+            return self.format_response_json(response)
 
         if self.format == "csv":
-            return self.formatResponseCsv(response)
+            return self.format_response_csv(response)
 
-    def formatResponseJson(self, response):
+    def format_response_json(self, response: HTTPResponse) -> dict[str, Any]:
         raw = response.read().decode("utf-8")
         parsed = json.loads(raw)
+
         return parsed
 
-    def formatResponseCsv(self, response):
+    def format_response_csv(self, response: HTTPResponse) -> str:
         raw = response.read().decode("utf-8")
+
         return raw
 
     @property
@@ -109,18 +116,18 @@ class RequestService:
         if isinstance(value, dict):
             criteria_ = criteria.List(
                 *[criteria.Field(key, value) for (key, value) in value.items()]
-            ).toURLParams()
+            ).to_url_params()
 
         elif isinstance(value, list) or isinstance(value, tuple):
-            criteria_ = criteria.List(*value).toURLParams()
+            criteria_ = criteria.List(*value).to_url_params()
 
         elif (
             isinstance(value, str) or isinstance(value, int) or isinstance(value, float)
         ):
-            criteria_ = criteria.Raw(str(value)).toURLParams()
+            criteria_ = criteria.Raw(str(value)).to_url_params()
 
         elif isinstance(value, criteria.Base):
-            criteria_ = value.toURLParams()
+            criteria_ = value.to_url_params()
 
         else:
             raise Exception
@@ -143,22 +150,22 @@ class RequestService:
         }
 
     @property
-    def format(self):
+    def format(self) -> AvailableFormat:
         if self._accept_format == "application/json":
             return "json"
         if self._accept_format == "text/csv":
             return "csv"
 
     @format.setter
-    def format(self, value):
+    def format(self, value: AvailableFormat) -> None:
         if value == "csv":
             self._accept_format = "text/csv"
         if value == "json":
             self._accept_format = "application/json"
 
-    def catchHTTPError(self, error):
+    def catch_http_error(self, error: HTTPError) -> None:
         if error.code == 400:
-            raise RequestExeption(self).badRequest()
+            raise UrlError(self)
 
         else:
             raise error

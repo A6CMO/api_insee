@@ -8,5 +8,5 @@ class Raw(Base):
     def validate(self):
         return True
 
-    def toURLParams(self):
+    def to_url_params(self):
         return self.value

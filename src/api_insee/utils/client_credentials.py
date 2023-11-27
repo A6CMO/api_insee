@@ -1,6 +1,6 @@
 import base64
 
-from api_insee.exeptions.auth_exeption import AuthExeption
+from api_insee.exeptions.authentication_error import InvalidCredentialsError
 
 
 class ClientCredentials:
@@ -9,11 +9,11 @@ class ClientCredentials:
         self.secret = secret
 
         if not self.key or not self.secret:
-            raise AuthExeption(self).invalidkeyAndSecret()
+            raise InvalidCredentialsError(self)
 
-        self.encoded = self.getEncodedCredential()
+        self.encoded = self.get_encoded_credentials()
 
-    def getEncodedCredential(self):
+    def get_encoded_credentials(self) -> str:
         blike = f"{self.key}:{self.secret}".encode("utf-8")
         encoded = base64.b64encode(blike).decode("utf-8")
 

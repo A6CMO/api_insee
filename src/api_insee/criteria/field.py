@@ -6,7 +6,7 @@ class Field(Base):
         self.name = name
         self.value = value
 
-    def toURLParams(self):
+    def to_url_params(self):
         query = self.representation
 
         if self.negative:

@@ -1,5 +1,5 @@
 from api_insee.conf import API_VERSION
-from api_insee.exeptions.auth_exeption import AuthExeption
+from api_insee.exeptions.authentication_error import InvalidCredentialsError
 from .request import RequestService
 
 
@@ -19,8 +19,8 @@ class RequestTokenService(RequestService):
     def header(self):
         return {"Authorization": f"Basic {self.credentials.encoded}"}
 
-    def catchHTTPError(self, error):
+    def catch_http_error(self, error):
         if error.code == 401:
-            raise AuthExeption(self.credentials).unauthorized(error.reason)
+            raise InvalidCredentialsError(self.credentials)
 
-        return super().catchHTTPError(error)
+        return super().catch_http_error(error)

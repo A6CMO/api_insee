@@ -1,5 +1,5 @@
 from api_insee.conf import API_VERSION
-from api_insee.exeptions.request_exeption import RequestExeption
+from api_insee.exeptions.request_error import RequestError
 from .request import RequestService
 
 
@@ -34,7 +34,7 @@ class RequestEntrepriseService(RequestService):
 
     def pages(self, nombre=100):
         if self.format == "csv":
-            raise RequestExeption("You cannot use csv format with cursor")
+            raise RequestError("You cannot use csv format with cursor")
 
         cursor = False
         next_cursor = "*"

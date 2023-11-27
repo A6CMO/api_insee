@@ -5,11 +5,10 @@ import csv
 
 import pytest
 
-from api_insee import criteria
 import conftest as conf
-from api_insee import ApiInsee
+from api_insee import ApiInsee, criteria
 from api_insee.conf import API_VERSION
-from api_insee.exeptions.request_exeption import RequestExeption
+from api_insee.exeptions.request_error import RequestError
 
 __author__ = "Lenselle Nicolas"
 __copyright__ = "Lenselle Nicolas"
@@ -75,5 +74,5 @@ def test_request_csv_fail_with_cursor(api):
 
     assert request.header["Accept"] == "text/csv"
 
-    with pytest.raises(RequestExeption):
+    with pytest.raises(RequestError):
         next(request.pages())

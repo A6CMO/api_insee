@@ -146,7 +146,7 @@ class RequestService(object):
         if value == "csv":
             self._accept_format = "text/csv"
         if value == "json":
-            self._accept_format == "application/json"
+            self._accept_format = "application/json"
 
     def catchHTTPError(self, error):
         if error.code == 400:

@@ -3,17 +3,16 @@ from .request import RequestService
 
 
 class RequestTokenService(RequestService):
-
     def __init__(self, credentials):
         self.credentials = credentials
 
     @property
     def url_path(self):
-        return API_VERSION['url'] + API_VERSION['path_token']
+        return API_VERSION["url"] + API_VERSION["path_token"]
 
     @property
     def data(self):
-        return "grant_type=client_credentials".encode('ascii')
+        return "grant_type=client_credentials".encode("ascii")
 
     @property
     def header(self):

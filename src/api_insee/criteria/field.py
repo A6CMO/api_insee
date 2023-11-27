@@ -2,7 +2,6 @@ from .base import Base
 
 
 class Field(Base):
-
     def __init__(self, name, value, *args, **kwargs):
         self.name = name
         self.value = value
@@ -11,7 +10,7 @@ class Field(Base):
         query = self.representation
 
         if self.negative:
-            query = '-' + query
+            query = "-" + query
 
         return query
 

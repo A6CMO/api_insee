@@ -1,7 +1,4 @@
-
-
 class AuthExeption(Exception):
-
     credential = None
 
     def __init__(self, credential):

@@ -7,10 +7,7 @@ class AuthService:
     token = None
 
     def __init__(self, key=False, secret=False):
-        self.credentials = ClientCredentials(
-            key=key,
-            secret=secret
-        )
+        self.credentials = ClientCredentials(key=key, secret=secret)
         self.generateToken()
 
     def generateToken(self):
@@ -19,11 +16,10 @@ class AuthService:
 
 
 class MockAuth(AuthService):
-
     def __init__(self):
         self.token = ClientToken(
-            token_type='Bearer',
+            token_type="Bearer",
             expires_in=100000,
-            access_token='No Auth',
-            scope='No Scope'
+            access_token="No Auth",
+            scope="No Scope",
         )

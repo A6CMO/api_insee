@@ -20,7 +20,7 @@ def test_missing_credentials():
 def test_unauthorized_credentials():
     with pytest.raises(AuthExeption):
         api = ApiInsee(
-            key='wrong api key',
+            key="wrong api key",
             secret=conf.SIRENE_API_CONSUMER_SECRET,
         )
 

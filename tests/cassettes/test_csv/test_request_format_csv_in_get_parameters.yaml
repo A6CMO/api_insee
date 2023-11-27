@@ -1,0 +1,338 @@
+interactions:
+- request:
+    body: grant_type=client_credentials
+    headers:
+      Connection:
+      - close
+      Content-Length:
+      - '29'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Host:
+      - api.insee.fr
+      User-Agent:
+      - Python-urllib/3.11
+    method: POST
+    uri: https://api.insee.fr/token
+  response:
+    body:
+      string: '{"access_token":"00000000-0000-0000-0000-000000000000","scope":"am_application_scope
+        default","token_type":"Bearer","expires_in":597751}'
+    headers:
+      Cache-Control:
+      - no-store
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 27 Nov 2023 10:26:50 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=100000; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - DENY
+      X-XSS-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: q=codeCommuneEtablissement%3A92046+AND+unitePurgeeUniteLegale%3ATrue
+    headers:
+      Accept:
+      - text/csv
+      Connection:
+      - close
+      Content-Length:
+      - '68'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Host:
+      - api.insee.fr
+      User-Agent:
+      - Python-urllib/3.11
+    method: POST
+    uri: https://api.insee.fr/entreprises/sirene/V3/siret
+  response:
+    body:
+      string: 'siren,nic,siret,statutDiffusionEtablissement,dateCreationEtablissement,trancheEffectifsEtablissement,anneeEffectifsEtablissement,activitePrincipaleRegistreMetiersEtablissement,dateDernierTraitementEtablissement,etablissementSiege,nombrePeriodesEtablissement,etatAdministratifUniteLegale,statutDiffusionUniteLegale,unitePurgeeUniteLegale,dateCreationUniteLegale,categorieJuridiqueUniteLegale,denominationUniteLegale,sigleUniteLegale,denominationUsuelle1UniteLegale,denominationUsuelle2UniteLegale,denominationUsuelle3UniteLegale,sexeUniteLegale,nomUniteLegale,nomUsageUniteLegale,prenom1UniteLegale,prenom2UniteLegale,prenom3UniteLegale,prenom4UniteLegale,prenomUsuelUniteLegale,pseudonymeUniteLegale,activitePrincipaleUniteLegale,nomenclatureActivitePrincipaleUniteLegale,identifiantAssociationUniteLegale,economieSocialeSolidaireUniteLegale,societeMissionUniteLegale,caractereEmployeurUniteLegale,trancheEffectifsUniteLegale,anneeEffectifsUniteLegale,nicSiegeUniteLegale,dateDernierTraitementUniteLegale,categorieEntreprise,anneeCategorieEntreprise,complementAdresseEtablissement,numeroVoieEtablissement,indiceRepetitionEtablissement,typeVoieEtablissement,libelleVoieEtablissement,codePostalEtablissement,libelleCommuneEtablissement,libelleCommuneEtrangerEtablissement,distributionSpecialeEtablissement,codeCommuneEtablissement,codeCedexEtablissement,libelleCedexEtablissement,codePaysEtrangerEtablissement,libellePaysEtrangerEtablissement,complementAdresse2Etablissement,numeroVoie2Etablissement,indiceRepetition2Etablissement,typeVoie2Etablissement,libelleVoie2Etablissement,codePostal2Etablissement,libelleCommune2Etablissement,libelleCommuneEtranger2Etablissement,distributionSpeciale2Etablissement,codeCommune2Etablissement,codeCedex2Etablissement,libelleCedex2Etablissement,codePaysEtranger2Etablissement,libellePaysEtranger2Etablissement,dateFin,dateDebut,etatAdministratifEtablissement,enseigne1Etablissement,enseigne2Etablissement,enseigne3Etablissement,denominationUsuelleEtablissement,activitePrincipaleEtablissement,nomenclatureActivitePrincipaleEtablissement,caractereEmployeurEtablissement
+
+        038794988,00014,03879498800014,O,,,,,null,true,1,C,O,true,1997-12-25,9110,ROSSIGNOL
+        FELIX,,,,,,,,,,,,,,70.3C,NAFRev1,,,,N,,,00014,null,,,,58,,RUE,VOLTAIRE,92240,MALAKOFF,,,92046,,,,,,,,,,,,,,,,,,,,1997-12-25,F,,,,,70.3C,NAF1993,N
+
+        038795068,00014,03879506800014,O,,,,,null,true,1,C,O,true,1997-12-25,9110,SYNDICAT
+        DE COPRPROPRIETE LOUIS GIRARD,,,,,,,,,,,,,,70.3C,NAFRev1,,,,N,,,00014,null,,,,3,,RUE,LOUIS
+        GIRARD,92240,MALAKOFF,,,92046,,,,,,,,,,,,,,,,,,,,1997-12-25,F,,,,,70.3C,NAF1993,N
+
+        038795175,00017,03879517500017,O,,,,,null,true,1,C,O,true,1997-12-25,9110,SYNDICAT
+        DE COPROPRIETE LEDRU ROLLIN,,,,,,,,,,,,,,70.3C,NAFRev1,,,,N,,,00017,null,,,,11,,RUE,LEDRU
+        ROLLIN,92240,MALAKOFF,,,92046,,,,,,,,,,,,,,,,,,,,1997-12-25,F,,,,,70.3C,NAF1993,N
+
+        038850103,00011,03885010300011,O,,,,,null,true,1,C,O,true,1997-12-25,9110,SYNDICAT
+        COPROPRIETE RES. ST FERDINAND,,,,,,,,,,,,,,70.3C,NAFRev1,,,,N,,,00011,null,,,,24,,PAS,DU
+        PIERRIER,92240,MALAKOFF,,,92046,,,,,,,,,,,,,,,,,,,,1997-12-25,F,,,,,70.3C,NAF1993,N
+
+        038850624,00016,03885062400016,O,,,,,null,true,1,C,O,true,1997-12-25,9110,SYNDICAT
+        DE COPROPRIETE FRANCOIS COPPE,,,,,,,,,,,,,,70.3C,NAFRev1,,,,N,,,00016,null,,,,12,,RUE,FRANCOIS
+        COPPEE,92240,MALAKOFF,,,92046,,,,,,,,,,,,,,,,,,,,1997-12-25,F,,,,,70.3C,NAF1993,N
+
+        038893780,00015,03889378000015,O,,,,,null,true,1,C,O,true,1997-12-25,9110,SYNDICAT
+        DE COPROPRIETE JULES FERRY,,,,,,,,,,,,,,70.3C,NAFRev1,,,,N,,,00015,null,,,,24,,AV,JULES
+        FERRY,92240,MALAKOFF,,,92046,,,,,,,,,,,,,,,,,,,,1997-12-25,F,,,,,70.3C,NAF1993,N
+
+        038903662,00013,03890366200013,O,,,,,null,true,1,C,O,true,1997-12-25,9110,MALMONTET
+        CYPRIEN,,,,,,,,,,,,,,70.3C,NAFRev1,,,,N,,,00013,null,,,,31,,BD,CAMELINAT,92240,MALAKOFF,,,92046,,,,,,,,,,,,,,,,,,,,1997-12-25,F,,,,,70.3C,NAF1993,N
+
+        038938288,00016,03893828800016,O,,,,,null,true,1,C,O,true,1997-12-25,9110,SYNDICAT
+        COPROPRIETE VINCENT MORRIS,,,,,,,,,,,,,,70.3C,NAFRev1,,,,N,,,00016,null,,,,28,,RUE,VINCENT
+        MORIS,92240,MALAKOFF,,,92046,,,,,,,,,,,,,,,,,,,,1997-12-25,F,,,,,70.3C,NAF1993,N
+
+        038950838,00011,03895083800011,O,,,,,null,true,1,C,O,true,1997-12-25,9110,S.C.
+        IMMO PIERRE BROSSOLETTE,,,,,,,,,,,,,,70.3C,NAFRev1,,,,N,,,00011,null,,,,40,,AV,PIERRE
+        BROSSOLETTE,92240,MALAKOFF,,,92046,,,,,,,,,,,,,,,,,,,,1997-12-25,F,,,,,70.3C,NAF1993,N
+
+        039153358,00013,03915335800013,O,,,,,null,true,1,C,O,true,1997-12-25,9110,SYNDICAT
+        COPROPRIETE P V CIUTURIER,,,,,,,,,,,,,,70.3C,NAFRev1,,,,N,,,00013,null,,,,135,,RUE,PAUL
+        VAILLANT COUTURIER,92240,MALAKOFF,,,92046,,,,,,,,,,,,,,,,,,,,1997-12-25,F,,,,,70.3C,NAF1993,N
+
+        039156559,00013,03915655900013,O,,,,,null,true,1,C,O,true,1997-12-25,9110,SYNDICAT
+        DE COPROPRIETE P.V. COUTURIER,,,,,,,,,,,,,,70.3C,NAFRev1,,,,N,,,00013,null,,,,137,,RUE,PAUL
+        VAILLANT COUTURIER,92240,MALAKOFF,,,92046,,,,,,,,,,,,,,,,,,,,1997-12-25,F,,,,,70.3C,NAF1993,N
+
+        039186903,00017,03918690300017,O,,,,,null,true,1,C,O,true,1997-12-25,9110,SYNDICAT
+        DE COPROPRIETE P. V. COUTURIER,,,,,,,,,,,,,,70.3C,NAFRev1,,,,N,,,00017,null,,,,22,,RUE,PAUL
+        VAILLANT COUTURIER,92240,MALAKOFF,,,92046,,,,,,,,,,,,,,,,,,,,1997-12-25,F,,,,,70.3C,NAF1993,N
+
+        043846195,00014,04384619500014,O,,,,,null,true,1,C,O,true,1997-12-25,9110,BARBE
+        FRANCOISE DALESME,,,,,,,,,,,,,,70.3C,NAFRev1,,,,N,,,00014,null,,,,19,,RUE,PASTEUR,92240,MALAKOFF,,,92046,,,,,,,,,,,,,,,,,,,,1997-12-25,F,,,,,70.3C,NAF1993,N
+
+        086750130,00022,08675013000022,O,,NN,,,null,true,1,C,O,true,1967-12-25,5599,SOC
+        PHARMASYNTHESE,,,,,,,,,,,,,,17.24,NAP,,,,N,,,00022,null,,,,54,,RUE,PIERRE
+        VALETTE,92240,MALAKOFF,,,92046,,,,,,,,,,,,,,,,,,,,1988-12-25,F,,,,,17.24,NAP,N
+
+        130050081,00020,13005008100020,O,,NN,,,null,true,1,C,O,true,1900-01-01,7130,SCE
+        DE L''AUDIOVISUEL ET DES EXPOSITIONS,,,,,,,,,,,,,,75.01,NAP,,,,N,,,00020,null,,,,136,,RUE,PAUL
+        VAILLANT COUTURIER,92240,MALAKOFF,,,92046,,,,,,,,,,,,,,,,,,,,1991-01-01,F,,,,,75.01,NAP,N
+
+        300069010,00019,30006901000019,O,,,,,null,true,1,C,O,true,1900-01-01,5400,SOC
+        CONSEIL FABR ART GRAP,,,,,,,,,,,,,,51.11,NAP,,,,N,,,00019,null,,,,,,RUE,CHAUVELOT,92240,MALAKOFF,,,92046,,,,,,,,,,,,,,,,,,,,1984-12-25,F,,,,,51.11,NAP,N
+
+        300069044,00018,30006904400018,O,,NN,,,null,true,1,C,O,true,1900-01-01,5499,CARRELAGE
+        REVETEMENT ARTISTIQUE,,,,,,,,,,,,,,55.73,NAP,,,,N,,,00018,null,,,,16,,RUE,ANDRE
+        SABATIER,92240,MALAKOFF,,,92046,,,,,,,,,,,,,,,,,,,,,F,,,,,55.73,NAP,N
+
+        300083672,00018,30008367200018,O,,,,,null,true,1,C,O,true,1900-01-01,1000,,,,,,M,BONNEAU,,RAYMOND,,,,RAYMOND,,67.01,NAP,,,,N,,,00018,null,,,,82,,AV,PIERRE
+        LAROUSSE,92240,MALAKOFF,,,92046,,,,,,,,,,,,,,,,,,,,1991-10-30,F,,,,,67.01,NAP,N
+
+        300083714,00018,30008371400018,O,,,,,null,true,1,C,O,true,1900-01-01,1000,,,,,,M,SEGUY,,EDMOND,,,,EDMOND,,51.11,NAP,,,,N,,,00018,null,,,,36,,RUE,HOCHE,92240,MALAKOFF,,,92046,,,,,,,,,,,,,,,,,,,,1989-03-31,F,,,,,51.11,NAP,N
+
+        300498151,00012,30049815100012,O,,,,,null,true,1,C,O,true,1900-01-01,1000,,,,,,F,PIAUMIER,,ALIETTE,,,,ALIETTE,,64.45,NAP,,,,N,,,00012,null,,,,12,,RUE,BERANGER,92240,MALAKOFF,,,92046,,,,,,,,,,,,,,,,,,,,1986-12-25,F,,,,,64.45,NAP,N
+
+        '
+    headers:
+      Access-Control-Allow-Headers:
+      - authorization,Access-Control-Allow-Origin,Content-Type,SOAPAction
+      Access-Control-Allow-Methods:
+      - POST,GET
+      Access-Control-Allow-Origin:
+      - '*'
+      Cache-Control:
+      - no-cache
+      Connection:
+      - close
+      Content-Type:
+      - text/csv;charset=utf-8
+      Date:
+      - Mon, 27 Nov 2023 10:26:50 GMT
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      Link:
+      - <https://api.insee.fr/entreprises/sirene/siret?debut=0&nombre=20>; rel="first"
+      - <https://api.insee.fr/entreprises/sirene/siret?debut=20&nombre=20>; rel="next"
+      - <https://api.insee.fr/entreprises/sirene/siret?debut=2040&nombre=17>; rel="last"
+      Strict-Transport-Security:
+      - max-age=100000; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      X-Total-Count:
+      - '2057'
+    status:
+      code: 200
+      message: ''
+- request:
+    body: grant_type=client_credentials
+    headers:
+      Connection:
+      - close
+      Content-Length:
+      - '29'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Host:
+      - api.insee.fr
+      User-Agent:
+      - Python-urllib/3.11
+    method: POST
+    uri: https://api.insee.fr/token
+  response:
+    body:
+      string: '{"access_token":"00000000-0000-0000-0000-000000000000","scope":"am_application_scope
+        default","token_type":"Bearer","expires_in":597535}'
+    headers:
+      Cache-Control:
+      - no-store
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 27 Nov 2023 10:30:26 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=100000; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - DENY
+      X-XSS-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: q=codeCommuneEtablissement%3A92046+AND+unitePurgeeUniteLegale%3ATrue
+    headers:
+      Accept:
+      - text/csv
+      Connection:
+      - close
+      Content-Length:
+      - '68'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Host:
+      - api.insee.fr
+      User-Agent:
+      - Python-urllib/3.11
+    method: POST
+    uri: https://api.insee.fr/entreprises/sirene/V3/siret
+  response:
+    body:
+      string: 'siren,nic,siret,statutDiffusionEtablissement,dateCreationEtablissement,trancheEffectifsEtablissement,anneeEffectifsEtablissement,activitePrincipaleRegistreMetiersEtablissement,dateDernierTraitementEtablissement,etablissementSiege,nombrePeriodesEtablissement,etatAdministratifUniteLegale,statutDiffusionUniteLegale,unitePurgeeUniteLegale,dateCreationUniteLegale,categorieJuridiqueUniteLegale,denominationUniteLegale,sigleUniteLegale,denominationUsuelle1UniteLegale,denominationUsuelle2UniteLegale,denominationUsuelle3UniteLegale,sexeUniteLegale,nomUniteLegale,nomUsageUniteLegale,prenom1UniteLegale,prenom2UniteLegale,prenom3UniteLegale,prenom4UniteLegale,prenomUsuelUniteLegale,pseudonymeUniteLegale,activitePrincipaleUniteLegale,nomenclatureActivitePrincipaleUniteLegale,identifiantAssociationUniteLegale,economieSocialeSolidaireUniteLegale,societeMissionUniteLegale,caractereEmployeurUniteLegale,trancheEffectifsUniteLegale,anneeEffectifsUniteLegale,nicSiegeUniteLegale,dateDernierTraitementUniteLegale,categorieEntreprise,anneeCategorieEntreprise,complementAdresseEtablissement,numeroVoieEtablissement,indiceRepetitionEtablissement,typeVoieEtablissement,libelleVoieEtablissement,codePostalEtablissement,libelleCommuneEtablissement,libelleCommuneEtrangerEtablissement,distributionSpecialeEtablissement,codeCommuneEtablissement,codeCedexEtablissement,libelleCedexEtablissement,codePaysEtrangerEtablissement,libellePaysEtrangerEtablissement,complementAdresse2Etablissement,numeroVoie2Etablissement,indiceRepetition2Etablissement,typeVoie2Etablissement,libelleVoie2Etablissement,codePostal2Etablissement,libelleCommune2Etablissement,libelleCommuneEtranger2Etablissement,distributionSpeciale2Etablissement,codeCommune2Etablissement,codeCedex2Etablissement,libelleCedex2Etablissement,codePaysEtranger2Etablissement,libellePaysEtranger2Etablissement,dateFin,dateDebut,etatAdministratifEtablissement,enseigne1Etablissement,enseigne2Etablissement,enseigne3Etablissement,denominationUsuelleEtablissement,activitePrincipaleEtablissement,nomenclatureActivitePrincipaleEtablissement,caractereEmployeurEtablissement
+
+        038794988,00014,03879498800014,O,,,,,null,true,1,C,O,true,1997-12-25,9110,ROSSIGNOL
+        FELIX,,,,,,,,,,,,,,70.3C,NAFRev1,,,,N,,,00014,null,,,,58,,RUE,VOLTAIRE,92240,MALAKOFF,,,92046,,,,,,,,,,,,,,,,,,,,1997-12-25,F,,,,,70.3C,NAF1993,N
+
+        038795068,00014,03879506800014,O,,,,,null,true,1,C,O,true,1997-12-25,9110,SYNDICAT
+        DE COPRPROPRIETE LOUIS GIRARD,,,,,,,,,,,,,,70.3C,NAFRev1,,,,N,,,00014,null,,,,3,,RUE,LOUIS
+        GIRARD,92240,MALAKOFF,,,92046,,,,,,,,,,,,,,,,,,,,1997-12-25,F,,,,,70.3C,NAF1993,N
+
+        038795175,00017,03879517500017,O,,,,,null,true,1,C,O,true,1997-12-25,9110,SYNDICAT
+        DE COPROPRIETE LEDRU ROLLIN,,,,,,,,,,,,,,70.3C,NAFRev1,,,,N,,,00017,null,,,,11,,RUE,LEDRU
+        ROLLIN,92240,MALAKOFF,,,92046,,,,,,,,,,,,,,,,,,,,1997-12-25,F,,,,,70.3C,NAF1993,N
+
+        038850103,00011,03885010300011,O,,,,,null,true,1,C,O,true,1997-12-25,9110,SYNDICAT
+        COPROPRIETE RES. ST FERDINAND,,,,,,,,,,,,,,70.3C,NAFRev1,,,,N,,,00011,null,,,,24,,PAS,DU
+        PIERRIER,92240,MALAKOFF,,,92046,,,,,,,,,,,,,,,,,,,,1997-12-25,F,,,,,70.3C,NAF1993,N
+
+        038850624,00016,03885062400016,O,,,,,null,true,1,C,O,true,1997-12-25,9110,SYNDICAT
+        DE COPROPRIETE FRANCOIS COPPE,,,,,,,,,,,,,,70.3C,NAFRev1,,,,N,,,00016,null,,,,12,,RUE,FRANCOIS
+        COPPEE,92240,MALAKOFF,,,92046,,,,,,,,,,,,,,,,,,,,1997-12-25,F,,,,,70.3C,NAF1993,N
+
+        038893780,00015,03889378000015,O,,,,,null,true,1,C,O,true,1997-12-25,9110,SYNDICAT
+        DE COPROPRIETE JULES FERRY,,,,,,,,,,,,,,70.3C,NAFRev1,,,,N,,,00015,null,,,,24,,AV,JULES
+        FERRY,92240,MALAKOFF,,,92046,,,,,,,,,,,,,,,,,,,,1997-12-25,F,,,,,70.3C,NAF1993,N
+
+        038903662,00013,03890366200013,O,,,,,null,true,1,C,O,true,1997-12-25,9110,MALMONTET
+        CYPRIEN,,,,,,,,,,,,,,70.3C,NAFRev1,,,,N,,,00013,null,,,,31,,BD,CAMELINAT,92240,MALAKOFF,,,92046,,,,,,,,,,,,,,,,,,,,1997-12-25,F,,,,,70.3C,NAF1993,N
+
+        038938288,00016,03893828800016,O,,,,,null,true,1,C,O,true,1997-12-25,9110,SYNDICAT
+        COPROPRIETE VINCENT MORRIS,,,,,,,,,,,,,,70.3C,NAFRev1,,,,N,,,00016,null,,,,28,,RUE,VINCENT
+        MORIS,92240,MALAKOFF,,,92046,,,,,,,,,,,,,,,,,,,,1997-12-25,F,,,,,70.3C,NAF1993,N
+
+        038950838,00011,03895083800011,O,,,,,null,true,1,C,O,true,1997-12-25,9110,S.C.
+        IMMO PIERRE BROSSOLETTE,,,,,,,,,,,,,,70.3C,NAFRev1,,,,N,,,00011,null,,,,40,,AV,PIERRE
+        BROSSOLETTE,92240,MALAKOFF,,,92046,,,,,,,,,,,,,,,,,,,,1997-12-25,F,,,,,70.3C,NAF1993,N
+
+        039153358,00013,03915335800013,O,,,,,null,true,1,C,O,true,1997-12-25,9110,SYNDICAT
+        COPROPRIETE P V CIUTURIER,,,,,,,,,,,,,,70.3C,NAFRev1,,,,N,,,00013,null,,,,135,,RUE,PAUL
+        VAILLANT COUTURIER,92240,MALAKOFF,,,92046,,,,,,,,,,,,,,,,,,,,1997-12-25,F,,,,,70.3C,NAF1993,N
+
+        039156559,00013,03915655900013,O,,,,,null,true,1,C,O,true,1997-12-25,9110,SYNDICAT
+        DE COPROPRIETE P.V. COUTURIER,,,,,,,,,,,,,,70.3C,NAFRev1,,,,N,,,00013,null,,,,137,,RUE,PAUL
+        VAILLANT COUTURIER,92240,MALAKOFF,,,92046,,,,,,,,,,,,,,,,,,,,1997-12-25,F,,,,,70.3C,NAF1993,N
+
+        039186903,00017,03918690300017,O,,,,,null,true,1,C,O,true,1997-12-25,9110,SYNDICAT
+        DE COPROPRIETE P. V. COUTURIER,,,,,,,,,,,,,,70.3C,NAFRev1,,,,N,,,00017,null,,,,22,,RUE,PAUL
+        VAILLANT COUTURIER,92240,MALAKOFF,,,92046,,,,,,,,,,,,,,,,,,,,1997-12-25,F,,,,,70.3C,NAF1993,N
+
+        043846195,00014,04384619500014,O,,,,,null,true,1,C,O,true,1997-12-25,9110,BARBE
+        FRANCOISE DALESME,,,,,,,,,,,,,,70.3C,NAFRev1,,,,N,,,00014,null,,,,19,,RUE,PASTEUR,92240,MALAKOFF,,,92046,,,,,,,,,,,,,,,,,,,,1997-12-25,F,,,,,70.3C,NAF1993,N
+
+        086750130,00022,08675013000022,O,,NN,,,null,true,1,C,O,true,1967-12-25,5599,SOC
+        PHARMASYNTHESE,,,,,,,,,,,,,,17.24,NAP,,,,N,,,00022,null,,,,54,,RUE,PIERRE
+        VALETTE,92240,MALAKOFF,,,92046,,,,,,,,,,,,,,,,,,,,1988-12-25,F,,,,,17.24,NAP,N
+
+        130050081,00020,13005008100020,O,,NN,,,null,true,1,C,O,true,1900-01-01,7130,SCE
+        DE L''AUDIOVISUEL ET DES EXPOSITIONS,,,,,,,,,,,,,,75.01,NAP,,,,N,,,00020,null,,,,136,,RUE,PAUL
+        VAILLANT COUTURIER,92240,MALAKOFF,,,92046,,,,,,,,,,,,,,,,,,,,1991-01-01,F,,,,,75.01,NAP,N
+
+        300069010,00019,30006901000019,O,,,,,null,true,1,C,O,true,1900-01-01,5400,SOC
+        CONSEIL FABR ART GRAP,,,,,,,,,,,,,,51.11,NAP,,,,N,,,00019,null,,,,,,RUE,CHAUVELOT,92240,MALAKOFF,,,92046,,,,,,,,,,,,,,,,,,,,1984-12-25,F,,,,,51.11,NAP,N
+
+        300069044,00018,30006904400018,O,,NN,,,null,true,1,C,O,true,1900-01-01,5499,CARRELAGE
+        REVETEMENT ARTISTIQUE,,,,,,,,,,,,,,55.73,NAP,,,,N,,,00018,null,,,,16,,RUE,ANDRE
+        SABATIER,92240,MALAKOFF,,,92046,,,,,,,,,,,,,,,,,,,,,F,,,,,55.73,NAP,N
+
+        300083672,00018,30008367200018,O,,,,,null,true,1,C,O,true,1900-01-01,1000,,,,,,M,BONNEAU,,RAYMOND,,,,RAYMOND,,67.01,NAP,,,,N,,,00018,null,,,,82,,AV,PIERRE
+        LAROUSSE,92240,MALAKOFF,,,92046,,,,,,,,,,,,,,,,,,,,1991-10-30,F,,,,,67.01,NAP,N
+
+        300083714,00018,30008371400018,O,,,,,null,true,1,C,O,true,1900-01-01,1000,,,,,,M,SEGUY,,EDMOND,,,,EDMOND,,51.11,NAP,,,,N,,,00018,null,,,,36,,RUE,HOCHE,92240,MALAKOFF,,,92046,,,,,,,,,,,,,,,,,,,,1989-03-31,F,,,,,51.11,NAP,N
+
+        300498151,00012,30049815100012,O,,,,,null,true,1,C,O,true,1900-01-01,1000,,,,,,F,PIAUMIER,,ALIETTE,,,,ALIETTE,,64.45,NAP,,,,N,,,00012,null,,,,12,,RUE,BERANGER,92240,MALAKOFF,,,92046,,,,,,,,,,,,,,,,,,,,1986-12-25,F,,,,,64.45,NAP,N
+
+        '
+    headers:
+      Access-Control-Allow-Headers:
+      - authorization,Access-Control-Allow-Origin,Content-Type,SOAPAction
+      Access-Control-Allow-Methods:
+      - POST,GET
+      Access-Control-Allow-Origin:
+      - '*'
+      Cache-Control:
+      - no-cache
+      Connection:
+      - close
+      Content-Type:
+      - text/csv;charset=utf-8
+      Date:
+      - Mon, 27 Nov 2023 10:30:26 GMT
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      Link:
+      - <https://api.insee.fr/entreprises/sirene/siret?debut=0&nombre=20>; rel="first"
+      - <https://api.insee.fr/entreprises/sirene/siret?debut=20&nombre=20>; rel="next"
+      - <https://api.insee.fr/entreprises/sirene/siret?debut=2040&nombre=17>; rel="last"
+      Strict-Transport-Security:
+      - max-age=100000; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      X-Total-Count:
+      - '2057'
+    status:
+      code: 200
+      message: ''
+version: 1

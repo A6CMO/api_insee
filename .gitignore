@@ -54,9 +54,5 @@ MANIFEST
 venv/
 
 # Configuration
-./tests/conftest.py
-
-tests/conftest.py
-
 env/
 .env

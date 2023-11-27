@@ -1,0 +1,284 @@
+interactions:
+- request:
+    body: grant_type=client_credentials
+    headers:
+      Connection:
+      - close
+      Content-Length:
+      - '29'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Host:
+      - api.insee.fr
+      User-Agent:
+      - Python-urllib/3.11
+    method: POST
+    uri: https://api.insee.fr/token
+  response:
+    body:
+      string: '{"access_token":"00000000-0000-0000-0000-000000000000","scope":"am_application_scope
+        default","token_type":"Bearer","expires_in":597748}'
+    headers:
+      Cache-Control:
+      - no-store
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 27 Nov 2023 10:26:53 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=100000; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - DENY
+      X-XSS-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Connection:
+      - close
+      Host:
+      - api.insee.fr
+      User-Agent:
+      - Python-urllib/3.11
+    method: GET
+    uri: https://api.insee.fr/entreprises/sirene/V3/siret/liensSuccession?q=siretEtablissementPredecesseur%3A39860733300042
+  response:
+    body:
+      string: '{"header":{"statut":200,"message":"OK","total":1,"debut":0,"nombre":1},"liensSuccession":[{"siretEtablissementPredecesseur":"39860733300042","siretEtablissementSuccesseur":"39860733300059","dateLienSuccession":"2015-01-09","transfertSiege":true,"continuiteEconomique":true,"dateDernierTraitementLienSuccession":"2014-12-02T06:33:11"}]}'
+    headers:
+      Access-Control-Allow-Headers:
+      - authorization,Access-Control-Allow-Origin,Content-Type,SOAPAction
+      Access-Control-Allow-Methods:
+      - GET
+      Access-Control-Allow-Origin:
+      - '*'
+      Cache-Control:
+      - no-cache
+      Connection:
+      - close
+      Content-Type:
+      - application/json;charset=utf-8
+      Date:
+      - Mon, 27 Nov 2023 10:26:53 GMT
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      Link:
+      - <https://api.insee.fr/entreprises/sirene/siret/liensSuccession?q=siretEtablissementPredecesseur%3A39860733300042&debut=0&nombre=1>;
+        rel="first"
+      - <https://api.insee.fr/entreprises/sirene/siret/liensSuccession?q=siretEtablissementPredecesseur%3A39860733300042&debut=0&nombre=1>;
+        rel="last"
+      Strict-Transport-Security:
+      - max-age=100000; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      X-Total-Count:
+      - '1'
+    status:
+      code: 200
+      message: ''
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Connection:
+      - close
+      Host:
+      - api.insee.fr
+      User-Agent:
+      - Python-urllib/3.11
+    method: GET
+    uri: https://api.insee.fr/entreprises/sirene/V3/siret/liensSuccession?q=siretEtablissementPredecesseur%3A00555008200027+AND+dateLienSuccession%3A2004-04-01
+  response:
+    body:
+      string: '{"header":{"statut":200,"message":"OK","total":2,"debut":0,"nombre":2},"liensSuccession":[{"siretEtablissementPredecesseur":"00555008200027","siretEtablissementSuccesseur":"00605009000031","dateLienSuccession":"2004-04-01","transfertSiege":false,"continuiteEconomique":false,"dateDernierTraitementLienSuccession":"2005-11-26T11:54:04"},{"siretEtablissementPredecesseur":"00555008200027","siretEtablissementSuccesseur":"00605009000049","dateLienSuccession":"2004-04-01","transfertSiege":false,"continuiteEconomique":false,"dateDernierTraitementLienSuccession":"2005-11-26T11:54:04"}]}'
+    headers:
+      Access-Control-Allow-Headers:
+      - authorization,Access-Control-Allow-Origin,Content-Type,SOAPAction
+      Access-Control-Allow-Methods:
+      - GET
+      Access-Control-Allow-Origin:
+      - '*'
+      Cache-Control:
+      - no-cache
+      Connection:
+      - close
+      Content-Type:
+      - application/json;charset=utf-8
+      Date:
+      - Mon, 27 Nov 2023 10:26:54 GMT
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      Link:
+      - <https://api.insee.fr/entreprises/sirene/siret/liensSuccession?q=siretEtablissementPredecesseur%3A00555008200027+AND+dateLienSuccession%3A2004-04-01&debut=0&nombre=2>;
+        rel="first"
+      - <https://api.insee.fr/entreprises/sirene/siret/liensSuccession?q=siretEtablissementPredecesseur%3A00555008200027+AND+dateLienSuccession%3A2004-04-01&debut=0&nombre=2>;
+        rel="last"
+      Strict-Transport-Security:
+      - max-age=100000; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      X-Total-Count:
+      - '2'
+    status:
+      code: 200
+      message: ''
+- request:
+    body: grant_type=client_credentials
+    headers:
+      Connection:
+      - close
+      Content-Length:
+      - '29'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Host:
+      - api.insee.fr
+      User-Agent:
+      - Python-urllib/3.11
+    method: POST
+    uri: https://api.insee.fr/token
+  response:
+    body:
+      string: '{"access_token":"00000000-0000-0000-0000-000000000000","scope":"am_application_scope
+        default","token_type":"Bearer","expires_in":597531}'
+    headers:
+      Cache-Control:
+      - no-store
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 27 Nov 2023 10:30:29 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=100000; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - DENY
+      X-XSS-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Connection:
+      - close
+      Host:
+      - api.insee.fr
+      User-Agent:
+      - Python-urllib/3.11
+    method: GET
+    uri: https://api.insee.fr/entreprises/sirene/V3/siret/liensSuccession?q=siretEtablissementPredecesseur%3A39860733300042
+  response:
+    body:
+      string: '{"header":{"statut":200,"message":"OK","total":1,"debut":0,"nombre":1},"liensSuccession":[{"siretEtablissementPredecesseur":"39860733300042","siretEtablissementSuccesseur":"39860733300059","dateLienSuccession":"2015-01-09","transfertSiege":true,"continuiteEconomique":true,"dateDernierTraitementLienSuccession":"2014-12-02T06:33:11"}]}'
+    headers:
+      Access-Control-Allow-Headers:
+      - authorization,Access-Control-Allow-Origin,Content-Type,SOAPAction
+      Access-Control-Allow-Methods:
+      - GET
+      Access-Control-Allow-Origin:
+      - '*'
+      Cache-Control:
+      - no-cache
+      Connection:
+      - close
+      Content-Type:
+      - application/json;charset=utf-8
+      Date:
+      - Mon, 27 Nov 2023 10:30:29 GMT
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      Link:
+      - <https://api.insee.fr/entreprises/sirene/siret/liensSuccession?q=siretEtablissementPredecesseur%3A39860733300042&debut=0&nombre=1>;
+        rel="first"
+      - <https://api.insee.fr/entreprises/sirene/siret/liensSuccession?q=siretEtablissementPredecesseur%3A39860733300042&debut=0&nombre=1>;
+        rel="last"
+      Strict-Transport-Security:
+      - max-age=100000; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      X-Total-Count:
+      - '1'
+    status:
+      code: 200
+      message: ''
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Connection:
+      - close
+      Host:
+      - api.insee.fr
+      User-Agent:
+      - Python-urllib/3.11
+    method: GET
+    uri: https://api.insee.fr/entreprises/sirene/V3/siret/liensSuccession?q=siretEtablissementPredecesseur%3A00555008200027+AND+dateLienSuccession%3A2004-04-01
+  response:
+    body:
+      string: '{"header":{"statut":200,"message":"OK","total":2,"debut":0,"nombre":2},"liensSuccession":[{"siretEtablissementPredecesseur":"00555008200027","siretEtablissementSuccesseur":"00605009000049","dateLienSuccession":"2004-04-01","transfertSiege":false,"continuiteEconomique":false,"dateDernierTraitementLienSuccession":"2005-11-26T11:54:04"},{"siretEtablissementPredecesseur":"00555008200027","siretEtablissementSuccesseur":"00605009000031","dateLienSuccession":"2004-04-01","transfertSiege":false,"continuiteEconomique":false,"dateDernierTraitementLienSuccession":"2005-11-26T11:54:04"}]}'
+    headers:
+      Access-Control-Allow-Headers:
+      - authorization,Access-Control-Allow-Origin,Content-Type,SOAPAction
+      Access-Control-Allow-Methods:
+      - GET
+      Access-Control-Allow-Origin:
+      - '*'
+      Cache-Control:
+      - no-cache
+      Connection:
+      - close
+      Content-Type:
+      - application/json;charset=utf-8
+      Date:
+      - Mon, 27 Nov 2023 10:30:29 GMT
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      Link:
+      - <https://api.insee.fr/entreprises/sirene/siret/liensSuccession?q=siretEtablissementPredecesseur%3A00555008200027+AND+dateLienSuccession%3A2004-04-01&debut=0&nombre=2>;
+        rel="first"
+      - <https://api.insee.fr/entreprises/sirene/siret/liensSuccession?q=siretEtablissementPredecesseur%3A00555008200027+AND+dateLienSuccession%3A2004-04-01&debut=0&nombre=2>;
+        rel="last"
+      Strict-Transport-Security:
+      - max-age=100000; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      X-Total-Count:
+      - '2'
+    status:
+      code: 200
+      message: ''
+version: 1

@@ -14,7 +14,7 @@ __license__ = "mit"
 base_siret_url = API_VERSION['url'] + API_VERSION['path_siret']
 
 
-def test_liens_succession_search(api, execute_request):
+def test_liens_succession_search(api):
     request = api.liens_succession(q=Criteria.Field('siretEtablissementPredecesseur', 39860733300042))
     assert request.url == base_siret_url + '/liensSuccession?q=siretEtablissementPredecesseur:39860733300042'
 
@@ -24,8 +24,8 @@ def test_liens_succession_search(api, execute_request):
     ))
     assert request.url == base_siret_url +  '/liensSuccession?q=siretEtablissementPredecesseur:00555008200027 AND dateLienSuccession:2004-04-01'
 
-@pytest.mark.http
-def test_liens_succession_search_request(api, execute_request):
+@pytest.mark.vcr
+def test_liens_succession_search_request(api):
 
     request = api.liens_succession(q=Criteria.Field('siretEtablissementPredecesseur', 39860733300042))
     data = request.get()

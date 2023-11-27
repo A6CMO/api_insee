@@ -16,8 +16,8 @@ __license__ = "mit"
 
 base_siren_url = API_VERSION['url'] + API_VERSION['path_siren']
 
-@pytest.mark.http
-def test_request_first_pages(api, execute_request):
+@pytest.mark.vcr
+def test_request_first_pages(api):
 
     request = api.siren(
         Criteria.Raw('*')
@@ -33,8 +33,8 @@ def test_request_first_pages(api, execute_request):
     assert first['header']['curseurSuivant']
 
 
-@pytest.mark.http
-def test_request_iterate_on_pages(api, execute_request):
+@pytest.mark.vcr
+def test_request_iterate_on_pages(api):
 
     request = api.siren(
         Criteria.Raw('*')

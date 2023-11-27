@@ -1,0 +1,190 @@
+interactions:
+- request:
+    body: grant_type=client_credentials
+    headers:
+      Connection:
+      - close
+      Content-Length:
+      - '29'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Host:
+      - api.insee.fr
+      User-Agent:
+      - Python-urllib/3.11
+    method: POST
+    uri: https://api.insee.fr/token
+  response:
+    body:
+      string: '{"access_token":"00000000-0000-0000-0000-000000000000","scope":"am_application_scope
+        default","token_type":"Bearer","expires_in":597733}'
+    headers:
+      Cache-Control:
+      - no-store
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 27 Nov 2023 10:27:07 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=100000; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - DENY
+      X-XSS-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Connection:
+      - close
+      Host:
+      - api.insee.fr
+      User-Agent:
+      - Python-urllib/3.11
+    method: GET
+    uri: https://api.insee.fr/entreprises/sirene/V3/siret/39860733300059
+  response:
+    body:
+      string: '{"header":{"statut":200,"message":"ok"},"etablissement":{"siren":"398607333","nic":"00059","siret":"39860733300059","statutDiffusionEtablissement":"O","dateCreationEtablissement":"2015-01-09","trancheEffectifsEtablissement":"NN","anneeEffectifsEtablissement":null,"activitePrincipaleRegistreMetiersEtablissement":"5610CR","dateDernierTraitementEtablissement":"2019-11-14T14:01:06","etablissementSiege":false,"nombrePeriodesEtablissement":4,"uniteLegale":{"etatAdministratifUniteLegale":"C","statutDiffusionUniteLegale":"O","dateCreationUniteLegale":"1994-10-10","categorieJuridiqueUniteLegale":"1000","denominationUniteLegale":null,"sigleUniteLegale":null,"denominationUsuelle1UniteLegale":null,"denominationUsuelle2UniteLegale":null,"denominationUsuelle3UniteLegale":null,"sexeUniteLegale":"M","nomUniteLegale":"GRONDIN","nomUsageUniteLegale":null,"prenom1UniteLegale":"BERTRAND","prenom2UniteLegale":"CHARLES","prenom3UniteLegale":null,"prenom4UniteLegale":null,"prenomUsuelUniteLegale":"BERTRAND","pseudonymeUniteLegale":null,"activitePrincipaleUniteLegale":"47.81Z","nomenclatureActivitePrincipaleUniteLegale":"NAFRev2","identifiantAssociationUniteLegale":null,"economieSocialeSolidaireUniteLegale":null,"societeMissionUniteLegale":null,"caractereEmployeurUniteLegale":"O","trancheEffectifsUniteLegale":"NN","anneeEffectifsUniteLegale":null,"nicSiegeUniteLegale":"00075","dateDernierTraitementUniteLegale":"2018-09-29T12:24:50","categorieEntreprise":null,"anneeCategorieEntreprise":null},"adresseEtablissement":{"complementAdresseEtablissement":null,"numeroVoieEtablissement":"44","indiceRepetitionEtablissement":null,"typeVoieEtablissement":"RUE","libelleVoieEtablissement":"NANTIER
+        DIDIEE","codePostalEtablissement":"97490","libelleCommuneEtablissement":"SAINT-DENIS","libelleCommuneEtrangerEtablissement":null,"distributionSpecialeEtablissement":null,"codeCommuneEtablissement":"97411","codeCedexEtablissement":null,"libelleCedexEtablissement":null,"codePaysEtrangerEtablissement":null,"libellePaysEtrangerEtablissement":null},"adresse2Etablissement":{"complementAdresse2Etablissement":null,"numeroVoie2Etablissement":null,"indiceRepetition2Etablissement":null,"typeVoie2Etablissement":null,"libelleVoie2Etablissement":null,"codePostal2Etablissement":null,"libelleCommune2Etablissement":null,"libelleCommuneEtranger2Etablissement":null,"distributionSpeciale2Etablissement":null,"codeCommune2Etablissement":null,"codeCedex2Etablissement":null,"libelleCedex2Etablissement":null,"codePaysEtranger2Etablissement":null,"libellePaysEtranger2Etablissement":null},"periodesEtablissement":[{"dateFin":null,"dateDebut":"2016-04-01","etatAdministratifEtablissement":"F","changementEtatAdministratifEtablissement":true,"enseigne1Etablissement":"MON
+        CHINOIS PREFERE","enseigne2Etablissement":null,"enseigne3Etablissement":null,"changementEnseigneEtablissement":false,"denominationUsuelleEtablissement":"CHAPO
+        LA PAILLE","changementDenominationUsuelleEtablissement":false,"activitePrincipaleEtablissement":"56.10C","nomenclatureActivitePrincipaleEtablissement":"NAFRev2","changementActivitePrincipaleEtablissement":false,"caractereEmployeurEtablissement":"N","changementCaractereEmployeurEtablissement":false},{"dateFin":"2016-03-31","dateDebut":"2016-02-16","etatAdministratifEtablissement":"A","changementEtatAdministratifEtablissement":false,"enseigne1Etablissement":"MON
+        CHINOIS PREFERE","enseigne2Etablissement":null,"enseigne3Etablissement":null,"changementEnseigneEtablissement":true,"denominationUsuelleEtablissement":"CHAPO
+        LA PAILLE","changementDenominationUsuelleEtablissement":false,"activitePrincipaleEtablissement":"56.10C","nomenclatureActivitePrincipaleEtablissement":"NAFRev2","changementActivitePrincipaleEtablissement":true,"caractereEmployeurEtablissement":"N","changementCaractereEmployeurEtablissement":false},{"dateFin":"2016-02-15","dateDebut":"2015-04-27","etatAdministratifEtablissement":"A","changementEtatAdministratifEtablissement":false,"enseigne1Etablissement":"CHAPO
+        LA PAILLE","enseigne2Etablissement":null,"enseigne3Etablissement":null,"changementEnseigneEtablissement":false,"denominationUsuelleEtablissement":"CHAPO
+        LA PAILLE","changementDenominationUsuelleEtablissement":false,"activitePrincipaleEtablissement":"47.81Z","nomenclatureActivitePrincipaleEtablissement":"NAFRev2","changementActivitePrincipaleEtablissement":false,"caractereEmployeurEtablissement":"N","changementCaractereEmployeurEtablissement":true},{"dateFin":"2015-04-26","dateDebut":"2015-01-09","etatAdministratifEtablissement":"A","changementEtatAdministratifEtablissement":false,"enseigne1Etablissement":"CHAPO
+        LA PAILLE","enseigne2Etablissement":null,"enseigne3Etablissement":null,"changementEnseigneEtablissement":false,"denominationUsuelleEtablissement":"CHAPO
+        LA PAILLE","changementDenominationUsuelleEtablissement":false,"activitePrincipaleEtablissement":"47.81Z","nomenclatureActivitePrincipaleEtablissement":"NAFRev2","changementActivitePrincipaleEtablissement":false,"caractereEmployeurEtablissement":"O","changementCaractereEmployeurEtablissement":false}]}}'
+    headers:
+      Access-Control-Allow-Headers:
+      - authorization,Access-Control-Allow-Origin,Content-Type,SOAPAction
+      Access-Control-Allow-Methods:
+      - GET
+      Access-Control-Allow-Origin:
+      - '*'
+      Cache-Control:
+      - no-cache
+      Connection:
+      - close
+      Content-Type:
+      - application/json;charset=utf-8
+      Date:
+      - Mon, 27 Nov 2023 10:27:07 GMT
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      Strict-Transport-Security:
+      - max-age=100000; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+    status:
+      code: 200
+      message: ''
+- request:
+    body: grant_type=client_credentials
+    headers:
+      Connection:
+      - close
+      Content-Length:
+      - '29'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Host:
+      - api.insee.fr
+      User-Agent:
+      - Python-urllib/3.11
+    method: POST
+    uri: https://api.insee.fr/token
+  response:
+    body:
+      string: '{"access_token":"00000000-0000-0000-0000-000000000000","scope":"am_application_scope
+        default","token_type":"Bearer","expires_in":597516}'
+    headers:
+      Cache-Control:
+      - no-store
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 27 Nov 2023 10:30:44 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=100000; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - DENY
+      X-XSS-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Connection:
+      - close
+      Host:
+      - api.insee.fr
+      User-Agent:
+      - Python-urllib/3.11
+    method: GET
+    uri: https://api.insee.fr/entreprises/sirene/V3/siret/39860733300059
+  response:
+    body:
+      string: '{"header":{"statut":200,"message":"ok"},"etablissement":{"siren":"398607333","nic":"00059","siret":"39860733300059","statutDiffusionEtablissement":"O","dateCreationEtablissement":"2015-01-09","trancheEffectifsEtablissement":"NN","anneeEffectifsEtablissement":null,"activitePrincipaleRegistreMetiersEtablissement":"5610CR","dateDernierTraitementEtablissement":"2019-11-14T14:01:06","etablissementSiege":false,"nombrePeriodesEtablissement":4,"uniteLegale":{"etatAdministratifUniteLegale":"C","statutDiffusionUniteLegale":"O","dateCreationUniteLegale":"1994-10-10","categorieJuridiqueUniteLegale":"1000","denominationUniteLegale":null,"sigleUniteLegale":null,"denominationUsuelle1UniteLegale":null,"denominationUsuelle2UniteLegale":null,"denominationUsuelle3UniteLegale":null,"sexeUniteLegale":"M","nomUniteLegale":"GRONDIN","nomUsageUniteLegale":null,"prenom1UniteLegale":"BERTRAND","prenom2UniteLegale":"CHARLES","prenom3UniteLegale":null,"prenom4UniteLegale":null,"prenomUsuelUniteLegale":"BERTRAND","pseudonymeUniteLegale":null,"activitePrincipaleUniteLegale":"47.81Z","nomenclatureActivitePrincipaleUniteLegale":"NAFRev2","identifiantAssociationUniteLegale":null,"economieSocialeSolidaireUniteLegale":null,"societeMissionUniteLegale":null,"caractereEmployeurUniteLegale":"O","trancheEffectifsUniteLegale":"NN","anneeEffectifsUniteLegale":null,"nicSiegeUniteLegale":"00075","dateDernierTraitementUniteLegale":"2018-09-29T12:24:50","categorieEntreprise":null,"anneeCategorieEntreprise":null},"adresseEtablissement":{"complementAdresseEtablissement":null,"numeroVoieEtablissement":"44","indiceRepetitionEtablissement":null,"typeVoieEtablissement":"RUE","libelleVoieEtablissement":"NANTIER
+        DIDIEE","codePostalEtablissement":"97490","libelleCommuneEtablissement":"SAINT-DENIS","libelleCommuneEtrangerEtablissement":null,"distributionSpecialeEtablissement":null,"codeCommuneEtablissement":"97411","codeCedexEtablissement":null,"libelleCedexEtablissement":null,"codePaysEtrangerEtablissement":null,"libellePaysEtrangerEtablissement":null},"adresse2Etablissement":{"complementAdresse2Etablissement":null,"numeroVoie2Etablissement":null,"indiceRepetition2Etablissement":null,"typeVoie2Etablissement":null,"libelleVoie2Etablissement":null,"codePostal2Etablissement":null,"libelleCommune2Etablissement":null,"libelleCommuneEtranger2Etablissement":null,"distributionSpeciale2Etablissement":null,"codeCommune2Etablissement":null,"codeCedex2Etablissement":null,"libelleCedex2Etablissement":null,"codePaysEtranger2Etablissement":null,"libellePaysEtranger2Etablissement":null},"periodesEtablissement":[{"dateFin":null,"dateDebut":"2016-04-01","etatAdministratifEtablissement":"F","changementEtatAdministratifEtablissement":true,"enseigne1Etablissement":"MON
+        CHINOIS PREFERE","enseigne2Etablissement":null,"enseigne3Etablissement":null,"changementEnseigneEtablissement":false,"denominationUsuelleEtablissement":"CHAPO
+        LA PAILLE","changementDenominationUsuelleEtablissement":false,"activitePrincipaleEtablissement":"56.10C","nomenclatureActivitePrincipaleEtablissement":"NAFRev2","changementActivitePrincipaleEtablissement":false,"caractereEmployeurEtablissement":"N","changementCaractereEmployeurEtablissement":false},{"dateFin":"2016-03-31","dateDebut":"2016-02-16","etatAdministratifEtablissement":"A","changementEtatAdministratifEtablissement":false,"enseigne1Etablissement":"MON
+        CHINOIS PREFERE","enseigne2Etablissement":null,"enseigne3Etablissement":null,"changementEnseigneEtablissement":true,"denominationUsuelleEtablissement":"CHAPO
+        LA PAILLE","changementDenominationUsuelleEtablissement":false,"activitePrincipaleEtablissement":"56.10C","nomenclatureActivitePrincipaleEtablissement":"NAFRev2","changementActivitePrincipaleEtablissement":true,"caractereEmployeurEtablissement":"N","changementCaractereEmployeurEtablissement":false},{"dateFin":"2016-02-15","dateDebut":"2015-04-27","etatAdministratifEtablissement":"A","changementEtatAdministratifEtablissement":false,"enseigne1Etablissement":"CHAPO
+        LA PAILLE","enseigne2Etablissement":null,"enseigne3Etablissement":null,"changementEnseigneEtablissement":false,"denominationUsuelleEtablissement":"CHAPO
+        LA PAILLE","changementDenominationUsuelleEtablissement":false,"activitePrincipaleEtablissement":"47.81Z","nomenclatureActivitePrincipaleEtablissement":"NAFRev2","changementActivitePrincipaleEtablissement":false,"caractereEmployeurEtablissement":"N","changementCaractereEmployeurEtablissement":true},{"dateFin":"2015-04-26","dateDebut":"2015-01-09","etatAdministratifEtablissement":"A","changementEtatAdministratifEtablissement":false,"enseigne1Etablissement":"CHAPO
+        LA PAILLE","enseigne2Etablissement":null,"enseigne3Etablissement":null,"changementEnseigneEtablissement":false,"denominationUsuelleEtablissement":"CHAPO
+        LA PAILLE","changementDenominationUsuelleEtablissement":false,"activitePrincipaleEtablissement":"47.81Z","nomenclatureActivitePrincipaleEtablissement":"NAFRev2","changementActivitePrincipaleEtablissement":false,"caractereEmployeurEtablissement":"O","changementCaractereEmployeurEtablissement":false}]}}'
+    headers:
+      Access-Control-Allow-Headers:
+      - authorization,Access-Control-Allow-Origin,Content-Type,SOAPAction
+      Access-Control-Allow-Methods:
+      - GET
+      Access-Control-Allow-Origin:
+      - '*'
+      Cache-Control:
+      - no-cache
+      Connection:
+      - close
+      Content-Type:
+      - application/json;charset=utf-8
+      Date:
+      - Mon, 27 Nov 2023 10:30:45 GMT
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      Strict-Transport-Security:
+      - max-age=100000; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+    status:
+      code: 200
+      message: ''
+version: 1

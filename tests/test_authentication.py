@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
 import pytest
 import conftest as conf
 
@@ -11,21 +10,22 @@ __author__ = "Lenselle Nicolas"
 __copyright__ = "Lenselle Nicolas"
 __license__ = "mit"
 
+
 def test_missing_credentials():
 
     with pytest.raises(AuthExeption):
         api = ApiInsee(False, False)
 
-@pytest.mark.http
+@pytest.mark.vcr
 def test_unauthorized_credentials():
 
     with pytest.raises(AuthExeption):
         api = ApiInsee(
-            key   = conf.SIRENE_API_CONSUMER_KEY+'wrongly',
+            key   = 'wrong api key',
             secret= conf.SIRENE_API_CONSUMER_SECRET
         )
 
-@pytest.mark.http
+@pytest.mark.vcr
 def test_generate_token():
 
     api = ApiInsee(

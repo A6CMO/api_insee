@@ -13,13 +13,13 @@ __license__ = "mit"
 
 def test_missing_credentials():
     with pytest.raises(AuthExeption):
-        api = ApiInsee(False, False)
+        ApiInsee(False, False)
 
 
 @pytest.mark.vcr
 def test_unauthorized_credentials():
     with pytest.raises(AuthExeption):
-        api = ApiInsee(
+        ApiInsee(
             key="wrong api key",
             secret=conf.SIRENE_API_CONSUMER_SECRET,
         )

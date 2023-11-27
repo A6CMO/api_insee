@@ -16,10 +16,10 @@ class Base:
         return self
 
     def __and__(self, criteria):
-        return TreeCriteria(self, 'AND', criteria)
+        return TreeCriteria(self, "AND", criteria)
 
     def __or__(self, criteria):
-        return TreeCriteria(self, 'OR', criteria)
+        return TreeCriteria(self, "OR", criteria)
 
 
 class TreeCriteria(Base):
@@ -36,5 +36,5 @@ class TreeCriteria(Base):
         return "%s %s %s" % (
             self.left.toURLParams(),
             self.operator,
-            self.right.toURLParams()
+            self.right.toURLParams(),
         )

@@ -76,5 +76,4 @@ def test_request_csv_fail_with_cursor(api):
     assert request.header["Accept"] == "text/csv"
 
     with pytest.raises(RequestExeption):
-        pages = request.pages()
-        first = next(pages)
+        next(request.pages())

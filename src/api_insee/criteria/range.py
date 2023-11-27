@@ -21,10 +21,8 @@ class Range(Base):
 
     @property
     def left_symbol(self):
-        # `%7B` -> {
         return "{" if self.exclude else "["
 
     @property
     def right_symbol(self):
-        # `%7D` -> }
         return "}" if self.exclude else "]"

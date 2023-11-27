@@ -15,10 +15,8 @@ class Range(Base):
 
     def toURLParams(self):
         return (
-            self.name + ':'
-            + self.left_symbol + self.left
-            + ' TO '
-            + self.right + self.right_symbol
+            f"{self.name}:{self.left_symbol}{self.left}"
+            f" TO {self.right}{self.right_symbol}"
         )
 
     @property

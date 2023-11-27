@@ -10,4 +10,4 @@ class Periodic(Base):
         fields = (" " + self.operator + " ").join(
             [ct.toURLParams() for ct in self.criteria_list]
         )
-        return "periode(%s)" % fields
+        return f"periode({fields})"

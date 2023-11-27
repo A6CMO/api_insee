@@ -14,6 +14,7 @@ class ClientCredentials:
         self.encoded = self.getEncodedCredential()
 
     def getEncodedCredential(self):
-        blike = (self.key + ":" + self.secret).encode("utf-8")
+        blike = f"{self.key}:{self.secret}".encode("utf-8")
         encoded = base64.b64encode(blike).decode("utf-8")
+
         return encoded

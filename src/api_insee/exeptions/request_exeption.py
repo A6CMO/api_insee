@@ -3,7 +3,8 @@ class RequestExeption(Exception):
         self.request = request
 
     def badRequest(self):
-        self.message = "bad request url : %s" % self.request.url
+        self.message = f"bad request url : {self.request.url}"
+
         return self
 
     def __str__(self):

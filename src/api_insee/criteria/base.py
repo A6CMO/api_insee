@@ -11,6 +11,9 @@ class Base:
     def toURLParams(self):
         return ""
 
+    def __str__(self) -> str:
+        return self.toURLParams()
+
     def __neg__(self):
         self.negative = not self.negative
         return self
@@ -33,8 +36,4 @@ class TreeCriteria(Base):
         self.right = right
 
     def toURLParams(self):
-        return "%s %s %s" % (
-            self.left.toURLParams(),
-            self.operator,
-            self.right.toURLParams(),
-        )
+        return f"{self.left} {self.operator} {self.right}"

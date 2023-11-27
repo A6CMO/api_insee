@@ -28,12 +28,9 @@ class RequestEntrepriseService(RequestService):
 
     @property
     def url_path(self):
+        reference = f"/{self.reference}" if self.reference else ""
 
-        return (
-            API_VERSION['url']
-            + self.path
-            + ('/%s' % self.reference if self.reference else '')
-        )
+        return f'{API_VERSION["url"]}{self.path}{reference}'
 
     def pages(self, nombre=100):
         if self.format == "csv":

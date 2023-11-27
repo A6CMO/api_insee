@@ -131,7 +131,7 @@ class RequestService(object):
     def header(self):
         return {
             "Accept": self._accept_format,
-            "Authorization": "Bearer %s" % self.token.access_token,
+            "Authorization": f"Bearer {self.token.access_token}",
         }
 
     @property

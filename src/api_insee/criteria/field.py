@@ -16,4 +16,4 @@ class Field(Base):
 
     @property
     def representation(self):
-        return '%s:%s' % (self.name, str(self.value))
+        return f"{self.name}:{self.value}"

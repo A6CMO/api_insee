@@ -7,8 +7,10 @@ class ParamsExeption(Exception):
         self.value = value
 
     def wrongFormat(self, paramFormat):
-        self.message = "Wrong format for %s : %s." % (self.name, self.value)
-        self.message += "Exepted format %s " % paramFormat
+        self.message = (
+            f"Wrong format for {self.name}: {self.value}. Excepted format {paramFormat}"
+        )
+
         return self
 
     def __str__(self):

@@ -5,6 +5,7 @@ from .request import RequestService
 
 class RequestTokenService(RequestService):
     def __init__(self, credentials):
+        super().__init__()
         self.credentials = credentials
 
     @property

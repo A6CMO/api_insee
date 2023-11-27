@@ -15,11 +15,10 @@ AvailableFormat = Literal["csv", "json"]
 
 
 class RequestService:
-    _url_params = {}
     _accept_format = "application/json"
 
     def __init__(self, *args, **kwargs):
-        self._url_params = {}
+        self._url_params: dict[str, Any] = {}
         self.token: ClientToken | None = None
         self.criteria: criteria.Base | None = None
 

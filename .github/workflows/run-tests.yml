@@ -1,0 +1,36 @@
+name: run-tests
+on:
+  workflow_dispatch:
+  push:
+  pull_request:
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - pytest_job: py39
+            python: "3.9"
+            os_version: "ubuntu-latest"
+          - pytest_job: py310
+            python: "3.10"
+            os_version: "ubuntu-latest"
+          - pytest_job: py311
+            python: "3.11"
+            os_version: "ubuntu-latest"
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+            fetch-depth: 1
+
+      - uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python }}
+
+      - run: pip install -r requirements-dev.txt
+      - run: cp .env.sample .env
+
+      - name: Run ${{ matrix.pytest_job }} pytest job
+        run: pytest

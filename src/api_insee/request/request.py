@@ -10,7 +10,6 @@ from api_insee.exeptions.request_exeption import RequestExeption
 
 
 class RequestService(object):
-
     _url_params = {}
     _accept_format = 'application/json'
 
@@ -56,8 +55,8 @@ class RequestService(object):
 
         return ur.Request(
             self.url_encoded,
-            data    = self.data,
-            headers = self.header
+            data=self.data,
+            headers=self.header
         )
 
     def postRequest(self):
@@ -71,7 +70,7 @@ class RequestService(object):
         return ur.Request(
             self.url_path,
             data=data,
-            headers = header
+            headers=header
         )
 
     def formatResponse(self, response):
@@ -125,16 +124,16 @@ class RequestService(object):
         if isinstance(value, dict):
             criteria = Criteria.List(*[
                 Criteria.Field(key, value)
-               for (key, value) in value.items()
-           ]).toURLParams()
+                for (key, value) in value.items()
+            ]).toURLParams()
 
         elif isinstance(value, list) or \
-             isinstance(value, tuple):
+                isinstance(value, tuple):
             criteria = Criteria.List(*value).toURLParams()
 
         elif isinstance(value, str) or \
-             isinstance(value, int) or \
-             isinstance(value, float):
+                isinstance(value, int) or \
+                isinstance(value, float):
             criteria = Criteria.Raw(str(value)).toURLParams()
 
         elif isinstance(value, Criteria.Base):
@@ -152,8 +151,8 @@ class RequestService(object):
     @property
     def header(self):
         return {
-            'Accept' : self._accept_format,
-            'Authorization' : 'Bearer %s' % (self.token.access_token)
+            'Accept': self._accept_format,
+            'Authorization': 'Bearer %s' % (self.token.access_token)
         }
 
     @property

@@ -1,5 +1,4 @@
 class Base():
-
     format_description = " "
     negative = False
 
@@ -22,8 +21,8 @@ class Base():
     def __or__(self, criteria):
         return TreeCriteria(self, 'OR', criteria)
 
-class TreeCriteria(Base):
 
+class TreeCriteria(Base):
     left = None
     operator = None
     right = None

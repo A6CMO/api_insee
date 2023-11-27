@@ -4,7 +4,6 @@ from .request import RequestService
 
 
 class RequestEntrepriseService(RequestService):
-
     path = ""
 
     def __init__(self, *args, **kwargs):
@@ -12,7 +11,7 @@ class RequestEntrepriseService(RequestService):
         champs = kwargs.get('champs', False)
         if champs and isinstance(champs, list):
             kwargs.update({
-                'champs' : ",".join(champs)
+                'champs': ",".join(champs)
             })
 
         self.reference = False
@@ -36,8 +35,8 @@ class RequestEntrepriseService(RequestService):
 
         return (
             API_VERSION['url']
-          + self.path
-          + ('/%s' % self.reference if self.reference else '')
+            + self.path
+            + ('/%s' % self.reference if self.reference else '')
         )
 
     def pages(self, nombre=100):
@@ -61,15 +60,13 @@ class RequestEntrepriseService(RequestService):
             next_cursor = page['header']['curseurSuivant']
 
 
-
 class RequestEntrepriseServiceSiren(RequestEntrepriseService):
     path = API_VERSION['path_siren']
 
     def __init__(self, *args, **kwargs):
-
         if len(args) and isinstance(args[0], list):
             kwargs.update({
-                'q' : " OR ".join([ 'siren:'+siren for siren in args[0] ])
+                'q': " OR ".join(['siren:' + siren for siren in args[0]])
             })
 
         super(RequestEntrepriseServiceSiren, self).__init__(*args, **kwargs)
@@ -79,10 +76,9 @@ class RequestEntrepriseServiceSiret(RequestEntrepriseService):
     path = API_VERSION['path_siret']
 
     def __init__(self, *args, **kwargs):
-
         if len(args) and isinstance(args[0], list):
             kwargs.update({
-                'q' : " OR ".join([ 'siret:'+siret for siret in args[0] ])
+                'q': " OR ".join(['siret:' + siret for siret in args[0]])
             })
 
         super(RequestEntrepriseServiceSiret, self).__init__(*args, **kwargs)

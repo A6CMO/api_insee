@@ -4,14 +4,12 @@ from api_insee.utils.client_token import ClientToken
 
 
 class AuthService():
-
     token = None
 
     def __init__(self, key=False, secret=False):
-
         self.credentials = ClientCredentials(
-            key    = key,
-            secret = secret
+            key=key,
+            secret=secret
         )
         self.generateToken()
 

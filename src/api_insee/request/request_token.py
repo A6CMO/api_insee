@@ -1,6 +1,7 @@
 from api_insee.conf import API_VERSION
 from .request import RequestService
 
+
 class RequestTokenService(RequestService):
 
     def __init__(self, credentials):
@@ -17,5 +18,5 @@ class RequestTokenService(RequestService):
     @property
     def header(self):
         return {
-            'Authorization' : 'Basic %s' % (self.credentials.encoded)
+            'Authorization': 'Basic %s' % (self.credentials.encoded)
         }

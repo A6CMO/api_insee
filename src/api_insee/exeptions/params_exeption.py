@@ -1,12 +1,9 @@
-
-
 class ParamsExeption(Exception):
-
-    name  = None
+    name = None
     value = None
 
     def __init__(self, name, value):
-        self.name  = name
+        self.name = name
         self.value = value
 
     def wrongFormat(self, paramFormat):

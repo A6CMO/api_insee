@@ -21,11 +21,11 @@ def test_liens_succession_search(api):
         Criteria.Field('siretEtablissementPredecesseur', '00555008200027') &
         Criteria.Field('dateLienSuccession', '2004-04-01')
     ))
-    assert request.url == base_siret_url +  '/liensSuccession?q=siretEtablissementPredecesseur:00555008200027 AND dateLienSuccession:2004-04-01'
+    assert request.url == base_siret_url + '/liensSuccession?q=siretEtablissementPredecesseur:00555008200027 AND dateLienSuccession:2004-04-01'
+
 
 @pytest.mark.vcr
 def test_liens_succession_search_request(api):
-
     request = api.liens_succession(q=Criteria.Field('siretEtablissementPredecesseur', 39860733300042))
     data = request.get()
     assert data['liensSuccession'][0]['siretEtablissementPredecesseur'] == '39860733300042'

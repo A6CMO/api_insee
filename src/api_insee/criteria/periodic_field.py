@@ -1,5 +1,6 @@
 from .field import Field
 
+
 class PeriodicField(Field):
 
     @property

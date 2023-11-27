@@ -12,8 +12,8 @@ class ApiInsee():
             self.auth = MockAuth()
         else:
             self.auth = AuthService(
-                key = key,
-                secret = secret
+                key=key,
+                secret=secret
             )
         self.format = format
 

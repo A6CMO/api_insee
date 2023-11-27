@@ -1,5 +1,6 @@
 from .field import Field
 
+
 class FieldExact(Field):
 
     @property

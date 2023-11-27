@@ -1,16 +1,16 @@
 from .base import Base
 
-class Range(Base):
 
-    name    = None
-    left    = None
-    right   = None
+class Range(Base):
+    name = None
+    left = None
+    right = None
     exclude = False
 
     def __init__(self, name, left, right, exclude=False):
-        self.name    = name
-        self.left    = left
-        self.right   = right
+        self.name = name
+        self.left = left
+        self.right = right
         self.exclude = exclude
 
     def toURLParams(self):

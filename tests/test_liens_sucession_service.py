@@ -3,7 +3,7 @@
 
 import pytest
 
-import api_insee.criteria as Criteria
+from api_insee import criteria
 from api_insee.conf import API_VERSION
 
 __author__ = "Lenselle Nicolas"
@@ -15,7 +15,7 @@ base_siret_url = API_VERSION["url"] + API_VERSION["path_siret"]
 
 def test_liens_succession_search(api):
     request = api.liens_succession(
-        q=Criteria.Field("siretEtablissementPredecesseur", 39860733300042)
+        q=criteria.Field("siretEtablissementPredecesseur", 39860733300042)
     )
     assert (
         request.url
@@ -25,8 +25,8 @@ def test_liens_succession_search(api):
 
     request = api.liens_succession(
         q=(
-            Criteria.Field("siretEtablissementPredecesseur", "00555008200027")
-            & Criteria.Field("dateLienSuccession", "2004-04-01")
+            criteria.Field("siretEtablissementPredecesseur", "00555008200027")
+            & criteria.Field("dateLienSuccession", "2004-04-01")
         )
     )
     assert (
@@ -39,7 +39,7 @@ def test_liens_succession_search(api):
 @pytest.mark.vcr
 def test_liens_succession_search_request(api):
     request = api.liens_succession(
-        q=Criteria.Field("siretEtablissementPredecesseur", 39860733300042)
+        q=criteria.Field("siretEtablissementPredecesseur", 39860733300042)
     )
     data = request.get()
     siret_predecesseur = data["liensSuccession"][0]["siretEtablissementPredecesseur"]
@@ -48,8 +48,8 @@ def test_liens_succession_search_request(api):
 
     request = api.liens_succession(
         q=(
-            Criteria.Field("siretEtablissementPredecesseur", "00555008200027")
-            & Criteria.Field("dateLienSuccession", "2004-04-01")
+            criteria.Field("siretEtablissementPredecesseur", "00555008200027")
+            & criteria.Field("dateLienSuccession", "2004-04-01")
         )
     )
     data = request.get()

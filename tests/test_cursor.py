@@ -3,7 +3,7 @@
 
 import pytest
 
-import api_insee.criteria as Criteria
+from api_insee import criteria
 from api_insee.conf import API_VERSION
 
 __author__ = "Lenselle Nicolas"
@@ -15,7 +15,7 @@ base_siren_url = API_VERSION["url"] + API_VERSION["path_siren"]
 
 @pytest.mark.vcr
 def test_request_first_pages(api):
-    request = api.siren(Criteria.Raw("*"))
+    request = api.siren(criteria.Raw("*"))
 
     pages = request.pages()
     first = next(pages)
@@ -29,7 +29,7 @@ def test_request_first_pages(api):
 
 @pytest.mark.vcr
 def test_request_iterate_on_pages(api):
-    request = api.siren(Criteria.Raw("*"))
+    request = api.siren(criteria.Raw("*"))
 
     cursors = []
 

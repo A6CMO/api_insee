@@ -1,4 +1,5 @@
 from api_insee.conf import API_VERSION
+from api_insee.exeptions.auth_exeption import AuthExeption
 from .request import RequestService
 
 
@@ -17,3 +18,9 @@ class RequestTokenService(RequestService):
     @property
     def header(self):
         return {"Authorization": f"Basic {self.credentials.encoded}"}
+
+    def catchHTTPError(self, error):
+        if error.code == 401:
+            raise AuthExeption(self.credentials).unauthorized(error.reason)
+
+        return super().catchHTTPError(error)

@@ -4,28 +4,30 @@ import urllib.error as ue
 import urllib.parse as up
 import urllib.request as ur
 
-import api_insee.criteria as Criteria
-from api_insee.exeptions.auth_exeption import AuthExeption
+from api_insee import criteria
 from api_insee.exeptions.request_exeption import RequestExeption
+from api_insee.utils.client_token import ClientToken
 
 
-class RequestService(object):
+class RequestService:
     _url_params = {}
     _accept_format = "application/json"
 
     def __init__(self, *args, **kwargs):
         self._url_params = {}
+        self.token: ClientToken | None = None
+        self.criteria: criteria.Base | None = None
 
         for key, value in kwargs.items():
             self.set_url_params(key, value)
 
     def init_criteria_from_dictionnary(self, dictionnary):
-        self.criteria = Criteria.List(
-            *[Criteria.Field(key, value) for (key, value) in dictionnary.items()]
+        self.criteria = criteria.List(
+            *[criteria.Field(key, value) for (key, value) in dictionnary.items()]
         )
 
     def init_criteria_from_criteria(self, *args):
-        self.criteria = Criteria.List(*args)
+        self.criteria = criteria.List(*args)
 
     def useToken(self, token):
         self.token = token
@@ -34,13 +36,15 @@ class RequestService(object):
         if format:
             self.format = format
 
+        if method not in {"get", "post"}:
+            msg = f'method parameter must be "get" or "post"'
+            raise ValueError(msg)
+
         try:
-            if method == "get":
-                request = self.getRequest()
-            elif method == "post":
-                request = self.postRequest()
+            request = self.getRequest() if method == "get" else self.postRequest()
             gcontext = ssl.SSLContext()
             response = ur.urlopen(request, context=gcontext)
+
             return self.formatResponse(response)
         except ue.HTTPError as EX:
             self.catchHTTPError(EX)
@@ -103,25 +107,25 @@ class RequestService(object):
 
     def set_url_params(self, name, value):
         if isinstance(value, dict):
-            criteria = Criteria.List(
-                *[Criteria.Field(key, value) for (key, value) in value.items()]
+            criteria_ = criteria.List(
+                *[criteria.Field(key, value) for (key, value) in value.items()]
             ).toURLParams()
 
         elif isinstance(value, list) or isinstance(value, tuple):
-            criteria = Criteria.List(*value).toURLParams()
+            criteria_ = criteria.List(*value).toURLParams()
 
         elif (
             isinstance(value, str) or isinstance(value, int) or isinstance(value, float)
         ):
-            criteria = Criteria.Raw(str(value)).toURLParams()
+            criteria_ = criteria.Raw(str(value)).toURLParams()
 
-        elif isinstance(value, Criteria.Base):
-            criteria = value.toURLParams()
+        elif isinstance(value, criteria.Base):
+            criteria_ = value.toURLParams()
 
         else:
             raise Exception
 
-        self._url_params[name] = criteria
+        self._url_params[name] = criteria_
 
     @property
     def data(self):
@@ -129,6 +133,10 @@ class RequestService(object):
 
     @property
     def header(self):
+        if not self.token:
+            msg = "Token is not set"
+            raise ValueError(msg)
+
         return {
             "Accept": self._accept_format,
             "Authorization": f"Bearer {self.token.access_token}",
@@ -151,9 +159,6 @@ class RequestService(object):
     def catchHTTPError(self, error):
         if error.code == 400:
             raise RequestExeption(self).badRequest()
-
-        elif error.code == 401:
-            raise AuthExeption(self.credentials).unauthorized(error.reason)
 
         else:
             raise error

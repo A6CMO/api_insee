@@ -5,7 +5,7 @@ import csv
 
 import pytest
 
-import api_insee.criteria as Criteria
+from api_insee import criteria
 import conftest as conf
 from api_insee import ApiInsee
 from api_insee.conf import API_VERSION
@@ -50,8 +50,8 @@ def test_request_format_csv(api):
 def test_request_format_csv_in_get_parameters(api):
     request = api.siret(
         q=(
-            Criteria.Field("codeCommuneEtablissement", 92046),
-            Criteria.Field("unitePurgeeUniteLegale", True),
+            criteria.Field("codeCommuneEtablissement", 92046),
+            criteria.Field("unitePurgeeUniteLegale", True),
         )
     )
     data = request.get(format="csv")
@@ -70,7 +70,7 @@ def test_request_format_csv_in_get_parameters(api):
 
 @pytest.mark.vcr
 def test_request_csv_fail_with_cursor(api):
-    request = api.siren(Criteria.Raw("*"))
+    request = api.siren(criteria.Raw("*"))
     request.format = "csv"
 
     assert request.header["Accept"] == "text/csv"

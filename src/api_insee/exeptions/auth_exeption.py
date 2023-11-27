@@ -4,6 +4,7 @@ class AuthExeption(Exception):
     def __init__(self, credential):
         self.key = credential.key
         self.secret = credential.secret
+        self.message: str | None = None
 
     def invalidkeyAndSecret(self):
         self.message = (

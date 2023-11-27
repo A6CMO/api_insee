@@ -5,6 +5,7 @@ class ParamsExeption(Exception):
     def __init__(self, name, value):
         self.name = name
         self.value = value
+        self.message: str | None = None
 
     def wrongFormat(self, paramFormat):
         self.message = (

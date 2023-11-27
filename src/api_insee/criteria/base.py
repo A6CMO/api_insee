@@ -2,9 +2,6 @@ class Base:
     format_description = " "
     negative = False
 
-    def __init__(self, *args, **kwargs):
-        pass
-
     def validate(self):
         return True
 

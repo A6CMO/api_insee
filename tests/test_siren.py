@@ -3,7 +3,7 @@
 
 import pytest
 
-import api_insee.criteria as Criteria
+from api_insee import criteria
 from api_insee.conf import API_VERSION
 
 __author__ = "Lenselle Nicolas"
@@ -25,8 +25,8 @@ def test_siren_search(api):
 
 @pytest.mark.vcr
 def test_siren_raw_search(api):
-    criteria = Criteria.Raw("unitePurgeeUniteLegale:True")
-    request = api.siren(q=criteria)
+    criteria_ = criteria.Raw("unitePurgeeUniteLegale:True")
+    request = api.siren(q=criteria_)
     results = request.get()
 
     assert results["header"]["statut"] == 200
@@ -35,8 +35,8 @@ def test_siren_raw_search(api):
 
 @pytest.mark.vcr
 def test_siren_search_by_field(api):
-    criteria = Criteria.Field("unitePurgeeUniteLegale", True)
-    request = api.siren(q=criteria)
+    criteria_ = criteria.Field("unitePurgeeUniteLegale", True)
+    request = api.siren(q=criteria_)
     results = request.get()
 
     assert results["header"]["statut"] == 200
@@ -50,14 +50,14 @@ def test_siren_search_date(api):
 
 
 def test_siren_search_with_period_variable(api):
-    request = api.siren(q=Criteria.PeriodicField("etatAdministratifUniteLegale", "C"))
+    request = api.siren(q=criteria.PeriodicField("etatAdministratifUniteLegale", "C"))
 
     assert request.url == base_siren_url + "?q=periode(etatAdministratifUniteLegale:C)"
 
 
 def test_siren_search_exact_field(api):
     request = api.siren(
-        q=Criteria.Periodic(Criteria.FieldExact("denominationUniteLegale", "LE TIMBRE"))
+        q=criteria.Periodic(criteria.FieldExact("denominationUniteLegale", "LE TIMBRE"))
     )
 
     assert (

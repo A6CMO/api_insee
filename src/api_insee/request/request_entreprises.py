@@ -79,4 +79,4 @@ class RequestEntrepriseServiceLiensSuccession(RequestEntrepriseService):
         super(RequestEntrepriseServiceLiensSuccession, self).__init__(*args, **kwargs)
 
     def get(self, format=None, method=None):
-        return super(RequestEntrepriseService, self).get(format=format, method="get")
+        return super(RequestEntrepriseService, self).get(format=format)

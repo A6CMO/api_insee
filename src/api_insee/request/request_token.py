@@ -1,7 +1,3 @@
-import urllib.request as ur
-import urllib.error as ue
-import json
-
 from api_insee.conf import API_VERSION
 from .request import RequestService
 

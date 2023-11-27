@@ -1,5 +1,3 @@
-from api_insee.exeptions.params_exeption import ParamsExeption
-
 class Base():
 
     format_description = " "

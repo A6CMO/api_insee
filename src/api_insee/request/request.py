@@ -1,13 +1,12 @@
-import ssl
-import urllib.request as ur
-import urllib.parse as up
-import urllib.error as ue
 import json
+import ssl
+import urllib.error as ue
+import urllib.parse as up
+import urllib.request as ur
 
-from api_insee.conf import API_VERSION
+import api_insee.criteria as Criteria
 from api_insee.exeptions.auth_exeption import AuthExeption
 from api_insee.exeptions.request_exeption import RequestExeption
-import api_insee.criteria as Criteria
 
 
 class RequestService(object):

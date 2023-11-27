@@ -3,9 +3,8 @@
 
 import pytest
 
-from api_insee import ApiInsee
-from api_insee.conf import API_VERSION
 import api_insee.criteria as Criteria
+from api_insee.conf import API_VERSION
 
 __author__ = "Lenselle Nicolas"
 __copyright__ = "Lenselle Nicolas"

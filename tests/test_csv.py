@@ -1,14 +1,15 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import pytest
-import conftest as conf
 import csv
 
-from api_insee import ApiInsee
+import pytest
+
 import api_insee.criteria as Criteria
-from api_insee.exeptions.request_exeption import RequestExeption
+import conftest as conf
+from api_insee import ApiInsee
 from api_insee.conf import API_VERSION
+from api_insee.exeptions.request_exeption import RequestExeption
 
 __author__ = "Lenselle Nicolas"
 __copyright__ = "Lenselle Nicolas"

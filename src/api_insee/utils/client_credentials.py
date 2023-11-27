@@ -1,5 +1,7 @@
 import base64
+
 from api_insee.exeptions.auth_exeption import AuthExeption
+
 
 class ClientCredentials():
 

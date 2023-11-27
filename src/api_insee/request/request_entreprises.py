@@ -1,15 +1,7 @@
-import urllib.request as ur
-import urllib.error as ue
-import json
-
 from api_insee.conf import API_VERSION
-import api_insee.criteria as Criteria
 from api_insee.exeptions.request_exeption import RequestExeption
 from .request import RequestService
 
-
-
-#from api_insee.exeptions.params_exeption import ParamsExeption
 
 class RequestEntrepriseService(RequestService):
 
@@ -100,7 +92,7 @@ class RequestEntrepriseServiceLiensSuccession(RequestEntrepriseService):
     path = API_VERSION['path_liens_succession']
 
     def __init__(self, *args, **kwargs):
-        super(RequestEntrepriseServiceLiensSuccession, self).__init__(*args, **kwargs)  
+        super(RequestEntrepriseServiceLiensSuccession, self).__init__(*args, **kwargs)
 
     def get(self, format=None, method=None):
-        return super(RequestEntrepriseService, self).get(format=format, method='get')  
+        return super(RequestEntrepriseService, self).get(format=format, method='get')

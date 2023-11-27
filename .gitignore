@@ -10,6 +10,9 @@
 *.pot
 __pycache__/*
 .cache/*
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
 .*.swp
 */.ipynb_checkpoints/*
 
@@ -48,6 +51,7 @@ MANIFEST
 
 # Per-project virtualenvs
 .venv*/
+venv/
 
 # Configuration
 ./tests/conftest.py
@@ -55,3 +59,4 @@ MANIFEST
 tests/conftest.py
 
 env/
+.env

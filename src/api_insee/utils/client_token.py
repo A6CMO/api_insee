@@ -1,7 +1,7 @@
 import time
 
 
-class ClientToken():
+class ClientToken:
     token_type = False
     epoch_expiration = False
     access_token = False

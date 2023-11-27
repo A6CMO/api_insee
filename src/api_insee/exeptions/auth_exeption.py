@@ -22,7 +22,7 @@ class AuthExeption(Exception):
         )
 
         if reason:
-            self.message += "\n %s" % (reason)
+            self.message += "\n %s" % reason
 
         return self
 

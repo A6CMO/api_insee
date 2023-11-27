@@ -3,7 +3,7 @@ from api_insee.utils.client_credentials import ClientCredentials
 from api_insee.utils.client_token import ClientToken
 
 
-class AuthService():
+class AuthService:
     token = None
 
     def __init__(self, key=False, secret=False):

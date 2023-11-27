@@ -3,7 +3,7 @@ import base64
 from api_insee.exeptions.auth_exeption import AuthExeption
 
 
-class ClientCredentials():
+class ClientCredentials:
 
     def __init__(self, key=False, secret=False):
         self.key = key

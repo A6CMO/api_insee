@@ -18,5 +18,5 @@ class RequestTokenService(RequestService):
     @property
     def header(self):
         return {
-            'Authorization': 'Basic %s' % (self.credentials.encoded)
+            'Authorization': 'Basic %s' % self.credentials.encoded
         }

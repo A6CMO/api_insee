@@ -1,4 +1,4 @@
-class Base():
+class Base:
     format_description = " "
     negative = False
 

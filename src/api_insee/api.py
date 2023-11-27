@@ -4,7 +4,7 @@ from api_insee.request.request_entreprises import (
 from api_insee.utils.auth_service import AuthService, MockAuth
 
 
-class ApiInsee():
+class ApiInsee:
 
     def __init__(self, key, secret, format='json', noauth=False):
 

@@ -1,19 +1,18 @@
+from typing import Any
+
 from .base import Base
 
 
 class Field(Base):
-    def __init__(self, name, value, *args, **kwargs):
+    def __init__(self, name: str, value: Any) -> None:
         self.name = name
         self.value = value
 
-    def to_url_params(self):
-        query = self.representation
+    def to_url_params(self) -> str:
+        minus = "-" if self.negative else ""
 
-        if self.negative:
-            query = "-" + query
-
-        return query
+        return f"{minus}{self.representation}"
 
     @property
-    def representation(self):
+    def representation(self) -> str:
         return f"{self.name}:{self.value}"

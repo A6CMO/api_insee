@@ -1,8 +1,12 @@
+from typing import Literal
+
+LogicOperator = Literal["AND", "OR"]
+
+
 class Base:
-    format_description = " "
     negative = False
 
-    def validate(self):
+    def validate(self) -> bool:
         return True
 
     def to_url_params(self) -> str:
@@ -11,26 +15,28 @@ class Base:
     def __str__(self) -> str:
         return self.to_url_params()
 
-    def __neg__(self):
+    def __neg__(self) -> "Base":
         self.negative = not self.negative
+
         return self
 
-    def __and__(self, criteria):
+    def __and__(self, criteria: "Base") -> "TreeCriteria":
         return TreeCriteria(self, "AND", criteria)
 
-    def __or__(self, criteria):
+    def __or__(self, criteria: "Base") -> "TreeCriteria":
         return TreeCriteria(self, "OR", criteria)
 
 
 class TreeCriteria(Base):
-    left = None
-    operator = None
-    right = None
-
-    def __init__(self, left, operator, right, **kwargs):
+    def __init__(
+        self,
+        left: Base,
+        operator: LogicOperator,
+        right: Base,
+    ) -> None:
         self.left = left
         self.operator = operator
         self.right = right
 
-    def to_url_params(self):
+    def to_url_params(self) -> str:
         return f"{self.left} {self.operator} {self.right}"

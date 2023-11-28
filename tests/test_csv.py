@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import csv
+from typing import cast
 
 import pytest
 
@@ -18,13 +19,13 @@ base_siren_url = API_VERSION["url"] + API_VERSION["path_siren"]
 
 
 @pytest.mark.vcr
-def test_request_format_fallback_is_json(api):
+def test_request_format_fallback_is_json(api: ApiInsee) -> None:
     request = api.siret("39860733300059")
     assert request.header["Accept"] == "application/json"
 
 
 @pytest.mark.vcr
-def test_request_format_fallback_is_csv(api):
+def test_request_format_fallback_is_csv(api: ApiInsee) -> None:
     api_csv = ApiInsee(
         key=conf.SIRENE_API_CONSUMER_KEY,
         secret=conf.SIRENE_API_CONSUMER_SECRET,
@@ -36,7 +37,7 @@ def test_request_format_fallback_is_csv(api):
 
 
 @pytest.mark.vcr
-def test_request_format_csv(api):
+def test_request_format_csv(api: ApiInsee) -> None:
     request = api.siret(
         q='denominationUniteLegale:"bleu le"&nombre=20&champs=denominationUniteLegale'
     )
@@ -46,14 +47,14 @@ def test_request_format_csv(api):
 
 
 @pytest.mark.vcr
-def test_request_format_csv_in_get_parameters(api):
+def test_request_format_csv_in_get_parameters(api: ApiInsee) -> None:
     request = api.siret(
         q=(
             criteria.Field("codeCommuneEtablissement", 92046),
             criteria.Field("unitePurgeeUniteLegale", True),
         )
     )
-    data = request.get(format="csv")
+    data = cast(str, request.get(format="csv"))
     reader = csv.reader(data.split("\n"), delimiter=",")
 
     assert request.header["Accept"] == "text/csv"
@@ -68,7 +69,7 @@ def test_request_format_csv_in_get_parameters(api):
 
 
 @pytest.mark.vcr
-def test_request_csv_fail_with_cursor(api):
+def test_request_csv_fail_with_cursor(api: ApiInsee) -> None:
     request = api.siren(criteria.Raw("*"))
     request.format = "csv"
 

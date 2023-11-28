@@ -1,10 +1,11 @@
 import base64
+from typing import Optional
 
 from api_insee.exeptions.authentication_error import InvalidCredentialsError
 
 
 class ClientCredentials:
-    def __init__(self, key=False, secret=False):
+    def __init__(self, key: Optional[str] = None, secret: Optional[str] = None) -> None:
         self.key = key
         self.secret = secret
 

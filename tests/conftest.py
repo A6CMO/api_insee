@@ -1,31 +1,19 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-import importlib.util
-import os
 import re
-import sys
 from pathlib import Path
-from typing import Any
+from typing import Any, Final
 
 import pytest
+from _pytest.fixtures import SubRequest
 
 from api_insee import ApiInsee
 
-#
-#  Import API Insee Module
-#
-
-dir_path = os.path.dirname(os.path.realpath(__file__))
-MODULE_PATH = dir_path + "/../src/api_insee/__init__.py"
-MODULE_NAME = "api_insee"
-spec = importlib.util.spec_from_file_location(MODULE_NAME, MODULE_PATH)
-module = importlib.util.module_from_spec(spec)
-sys.modules[spec.name] = module
-spec.loader.exec_module(module)
+PROJECT_ROOT: Final = Path(__file__).parent.parent
 
 
 def parse_env_file() -> dict[str, str]:
-    with Path(Path(dir_path).parent, ".env").open() as file:
+    with Path(PROJECT_ROOT, ".env").open() as file:
         lines = (
             line.split("=")
             for line in file.read().splitlines(keepends=False)
@@ -41,7 +29,7 @@ SIRENE_API_CONSUMER_SECRET = CREDENTIALS["SIRENE_API_CONSUMER_SECRET"]
 
 
 @pytest.fixture
-def api(request) -> ApiInsee:
+def api(request: SubRequest) -> ApiInsee:
     return ApiInsee(
         SIRENE_API_CONSUMER_KEY,
         SIRENE_API_CONSUMER_SECRET,
@@ -64,7 +52,7 @@ def replace_token(response: dict[str, Any]) -> dict[str, Any]:
 
 
 @pytest.fixture
-def vcr_config():
+def vcr_config() -> dict[str, Any]:
     return {
         "filter_headers": ["authorization", "api_token", "Set-Cookie"],
         "before_record_response": replace_token,

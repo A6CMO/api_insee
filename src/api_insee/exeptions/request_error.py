@@ -10,5 +10,5 @@ class RequestError(Exception):
 
 
 class UrlError(RequestError):
-    def __init__(self, request: "RequestService"):
+    def __init__(self, request: "RequestService") -> None:
         super().__init__(f"bad request url : {request.url}")

@@ -1,6 +1,6 @@
-from typing import Any, TypeVar
+from typing import Any, Optional, Type, TypeVar
 
-from api_insee.request.request import RequestService
+from api_insee.request.request import AvailableFormat, RequestService
 from api_insee.request.request_entreprises import (
     RequestEntrepriseServiceLiensSuccession,
     RequestEntrepriseServiceSiren,
@@ -12,12 +12,20 @@ T = TypeVar("T", bound=RequestService)
 
 
 class ApiInsee:
-    def __init__(self, key, secret, format="json", noauth=False):
+    def __init__(
+        self,
+        key: Optional[str],
+        secret: Optional[str],
+        format: AvailableFormat = "json",
+        noauth: bool = False,
+    ) -> None:
+        self.format = format
+
+        self.auth: AuthService
         if noauth:
-            self.auth = MockAuth()
+            self.auth = MockAuth(key=key, secret=secret)
         else:
             self.auth = AuthService(key=key, secret=secret)
-        self.format = format
 
     def siret(self, *args: Any, **kwargs: Any) -> RequestEntrepriseServiceSiret:
         return self._wrap(RequestEntrepriseServiceSiret, *args, **kwargs)
@@ -34,7 +42,7 @@ class ApiInsee:
 
     def _wrap(
         self,
-        request_service: type[T],
+        request_service: Type[T],
         *args: Any,
         **kwargs: Any,
     ) -> T:

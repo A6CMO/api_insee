@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+from typing import Any, cast
 
 import pytest
 
-from api_insee import criteria
+from api_insee import ApiInsee, criteria
 from api_insee.conf import API_VERSION
 
 __author__ = "Lenselle Nicolas"
@@ -13,7 +14,7 @@ __license__ = "mit"
 base_siret_url = API_VERSION["url"] + API_VERSION["path_siret"]
 
 
-def test_liens_succession_search(api):
+def test_liens_succession_search(api: ApiInsee) -> None:
     request = api.liens_succession(
         q=criteria.Field("siretEtablissementPredecesseur", 39860733300042)
     )
@@ -37,11 +38,11 @@ def test_liens_succession_search(api):
 
 
 @pytest.mark.vcr
-def test_liens_succession_search_request(api):
+def test_liens_succession_search_request(api: ApiInsee) -> None:
     request = api.liens_succession(
         q=criteria.Field("siretEtablissementPredecesseur", 39860733300042)
     )
-    data = request.get()
+    data = cast(dict[str, Any], request.get())
     siret_predecesseur = data["liensSuccession"][0]["siretEtablissementPredecesseur"]
 
     assert siret_predecesseur == "39860733300042"
@@ -52,7 +53,7 @@ def test_liens_succession_search_request(api):
             & criteria.Field("dateLienSuccession", "2004-04-01")
         )
     )
-    data = request.get()
+    data = cast(dict[str, Any], request.get())
     siret_predecesseur = data["liensSuccession"][0]["siretEtablissementPredecesseur"]
     assert siret_predecesseur == "00555008200027"
     assert data["liensSuccession"][0]["dateLienSuccession"] == "2004-04-01"

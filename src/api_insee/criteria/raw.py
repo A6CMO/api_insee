@@ -2,11 +2,11 @@ from .base import Base
 
 
 class Raw(Base):
-    def __init__(self, value):
+    def __init__(self, value: str):
         self.value = value
 
-    def validate(self):
+    def validate(self) -> bool:
         return True
 
-    def to_url_params(self):
+    def to_url_params(self) -> str:
         return self.value

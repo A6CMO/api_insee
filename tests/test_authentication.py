@@ -12,13 +12,13 @@ __license__ = "mit"
 from api_insee.exeptions.authentication_error import InvalidCredentialsError
 
 
-def test_missing_credentials():
+def test_missing_credentials() -> None:
     with pytest.raises(InvalidCredentialsError):
-        ApiInsee(False, False)
+        ApiInsee(None, None)
 
 
 @pytest.mark.vcr
-def test_unauthorized_credentials():
+def test_unauthorized_credentials() -> None:
     with pytest.raises(InvalidCredentialsError):
         ApiInsee(
             key="wrong api key",
@@ -27,10 +27,10 @@ def test_unauthorized_credentials():
 
 
 @pytest.mark.vcr
-def test_generate_token():
+def test_generate_token() -> None:
     api = ApiInsee(
         key=conf.SIRENE_API_CONSUMER_KEY,
         secret=conf.SIRENE_API_CONSUMER_SECRET,
     )
 
-    assert len(api.auth.token.access_token) > 0
+    assert api.auth.token.access_token

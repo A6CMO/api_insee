@@ -1,7 +1,10 @@
-# -*- coding: utf-8 -*-
-from pkg_resources import DistributionNotFound, get_distribution
+from pkg_resources import (  # type: ignore[import-untyped]
+    DistributionNotFound,
+    get_distribution,
+)
 
-from .api import ApiInsee
+from . import criteria as criteria
+from .api import ApiInsee as ApiInsee
 
 try:
     dist_name = __name__

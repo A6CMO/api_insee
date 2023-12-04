@@ -10,6 +10,9 @@ jobs:
     strategy:
       matrix:
         include:
+          - pytest_job: py38
+            python: "3.8"
+            os_version: "ubuntu-latest"
           - pytest_job: py39
             python: "3.9"
             os_version: "ubuntu-latest"

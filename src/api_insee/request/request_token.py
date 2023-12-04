@@ -1,4 +1,4 @@
-from typing import NoReturn
+from typing import Dict, NoReturn
 from urllib.error import HTTPError
 
 from api_insee.conf import API_VERSION
@@ -21,7 +21,7 @@ class RequestTokenService(RequestService):
         return "grant_type=client_credentials".encode("ascii")
 
     @property
-    def header(self) -> dict[str, str]:
+    def header(self) -> Dict[str, str]:
         return {"Authorization": f"Basic {self.credentials.encoded}"}
 
     def catch_http_error(self, error: HTTPError) -> NoReturn:

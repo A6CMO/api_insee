@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 import re
 from pathlib import Path
-from typing import Any, Final
+from typing import Any, Dict, Final
 
 import pytest
 from _pytest.fixtures import SubRequest
@@ -12,7 +12,7 @@ from api_insee import ApiInsee
 PROJECT_ROOT: Final = Path(__file__).parent.parent
 
 
-def parse_env_file() -> dict[str, str]:
+def parse_env_file() -> Dict[str, str]:
     with Path(PROJECT_ROOT, ".env").open() as file:
         lines = (
             line.split("=")
@@ -37,7 +37,7 @@ def api(request: SubRequest) -> ApiInsee:
     )
 
 
-def replace_token(response: dict[str, Any]) -> dict[str, Any]:
+def replace_token(response: Dict[str, Any]) -> Dict[str, Any]:
     if "headers" in response and "Set-Cookie" in response["headers"]:
         del response["headers"]["Set-Cookie"]
 
@@ -52,7 +52,7 @@ def replace_token(response: dict[str, Any]) -> dict[str, Any]:
 
 
 @pytest.fixture
-def vcr_config() -> dict[str, Any]:
+def vcr_config() -> Dict[str, Any]:
     return {
         "filter_headers": ["authorization", "api_token", "Set-Cookie"],
         "before_record_response": replace_token,

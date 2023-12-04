@@ -1,4 +1,4 @@
-from typing import Any, Iterator, Optional, Union, cast
+from typing import Any, Dict, Iterator, Optional, Union, cast
 
 from api_insee.conf import API_VERSION
 from api_insee.exeptions.request_error import RequestError
@@ -24,7 +24,7 @@ class RequestEntrepriseService(RequestService):
         self,
         format: Optional[AvailableFormat] = None,
         method: Optional[AvailableMethod] = None,
-    ) -> Union[str, dict[str, Any]]:
+    ) -> Union[str, Dict[str, Any]]:
         if self._url_params.get("q", False) and not method:
             method = "post"
         else:
@@ -38,7 +38,7 @@ class RequestEntrepriseService(RequestService):
 
         return f'{API_VERSION["url"]}{self.path}{reference}'
 
-    def pages(self, nombre: int = 100) -> Iterator[dict[str, Any]]:
+    def pages(self, nombre: int = 100) -> Iterator[Dict[str, Any]]:
         if self.format == "csv":
             raise RequestError("You cannot use csv format with cursor")
 
@@ -53,7 +53,7 @@ class RequestEntrepriseService(RequestService):
 
             # Pagination is not available with csv format, we can cast response
             # as dict.
-            page = cast(dict[str, Any], self.get(method="get"))
+            page = cast(Dict[str, Any], self.get(method="get"))
 
             yield page
 
@@ -91,5 +91,5 @@ class RequestEntrepriseServiceLiensSuccession(RequestEntrepriseService):
         self,
         format: Optional[AvailableFormat] = None,
         method: Optional[AvailableMethod] = "get",
-    ) -> Union[str, dict[str, Any]]:
+    ) -> Union[str, Dict[str, Any]]:
         return super(RequestEntrepriseService, self).get(format=format, method=method)

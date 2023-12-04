@@ -2,6 +2,7 @@ from typing import Any, Dict, Iterator, Optional, Union, cast
 
 from api_insee.conf import API_VERSION
 from api_insee.exeptions.request_error import RequestError
+
 from .request import AvailableFormat, AvailableMethod, RequestService
 
 
@@ -18,7 +19,7 @@ class RequestEntrepriseService(RequestService):
             self.reference = args[0]
             args = args[1:]
 
-        super(RequestEntrepriseService, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
     def get(  # type: ignore[override]
         self,
@@ -30,7 +31,7 @@ class RequestEntrepriseService(RequestService):
         else:
             method = method or "get"
 
-        return super(RequestEntrepriseService, self).get(format=format, method=method)
+        return super().get(format=format, method=method)
 
     @property
     def url_path(self) -> str:
@@ -40,7 +41,8 @@ class RequestEntrepriseService(RequestService):
 
     def pages(self, nombre: int = 100) -> Iterator[Dict[str, Any]]:
         if self.format == "csv":
-            raise RequestError("You cannot use csv format with cursor")
+            msg = "You cannot use csv format with cursor"
+            raise RequestError(msg)
 
         cursor = ""
         next_cursor = "*"
@@ -64,32 +66,32 @@ class RequestEntrepriseService(RequestService):
 class RequestEntrepriseServiceSiren(RequestEntrepriseService):
     path = API_VERSION["path_siren"]
 
-    def __init__(self, *args, **kwargs) -> None:
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
         if len(args) and isinstance(args[0], list):
             kwargs.update({"q": " OR ".join(["siren:" + siren for siren in args[0]])})
 
-        super(RequestEntrepriseServiceSiren, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
 
 class RequestEntrepriseServiceSiret(RequestEntrepriseService):
     path = API_VERSION["path_siret"]
 
-    def __init__(self, *args, **kwargs) -> None:
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
         if len(args) and isinstance(args[0], list):
             kwargs.update({"q": " OR ".join(["siret:" + siret for siret in args[0]])})
 
-        super(RequestEntrepriseServiceSiret, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
 
 class RequestEntrepriseServiceLiensSuccession(RequestEntrepriseService):
     path = API_VERSION["path_liens_succession"]
 
-    def __init__(self, *args, **kwargs) -> None:
-        super(RequestEntrepriseServiceLiensSuccession, self).__init__(*args, **kwargs)
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        super().__init__(*args, **kwargs)
 
     def get(  # type: ignore[override]
         self,
         format: Optional[AvailableFormat] = None,
         method: Optional[AvailableMethod] = "get",
     ) -> Union[str, Dict[str, Any]]:
-        return super(RequestEntrepriseService, self).get(format=format, method=method)
+        return super().get(format=format, method=method)

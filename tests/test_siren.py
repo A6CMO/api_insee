@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
 from typing import Any, Dict, cast
 
 import pytest
@@ -14,7 +12,7 @@ __license__ = "mit"
 base_siren_url = API_VERSION["url"] + API_VERSION["path_siren"]
 
 
-@pytest.mark.vcr
+@pytest.mark.vcr()
 def test_siren_search(api: ApiInsee) -> None:
     request = api.siren("809893225")
     unit = cast(Dict[str, Any], request.get())
@@ -24,7 +22,7 @@ def test_siren_search(api: ApiInsee) -> None:
     assert request.url == base_siren_url + "/809893225"
 
 
-@pytest.mark.vcr
+@pytest.mark.vcr()
 def test_siren_raw_search(api: ApiInsee) -> None:
     criteria_ = criteria.Raw("unitePurgeeUniteLegale:True")
     request = api.siren(q=criteria_)
@@ -34,7 +32,7 @@ def test_siren_raw_search(api: ApiInsee) -> None:
     assert request.url == base_siren_url + "?q=unitePurgeeUniteLegale:True"
 
 
-@pytest.mark.vcr
+@pytest.mark.vcr()
 def test_siren_search_by_field(api: ApiInsee) -> None:
     criteria_ = criteria.Field("unitePurgeeUniteLegale", True)
     request = api.siren(q=criteria_)
@@ -58,7 +56,9 @@ def test_siren_search_with_period_variable(api: ApiInsee) -> None:
 
 def test_siren_search_exact_field(api: ApiInsee) -> None:
     request = api.siren(
-        q=criteria.Periodic(criteria.FieldExact("denominationUniteLegale", "LE TIMBRE"))
+        q=criteria.Periodic(
+            criteria.FieldExact("denominationUniteLegale", "LE TIMBRE"),
+        ),
     )
 
     assert (
@@ -67,7 +67,7 @@ def test_siren_search_exact_field(api: ApiInsee) -> None:
     )
 
 
-@pytest.mark.vcr
+@pytest.mark.vcr()
 def test_siren_multi_unit(api: ApiInsee) -> None:
     request = api.siren(q={"categorieEntreprise": "PME"}, nombre=1000)
     data = cast(Dict[str, Any], request.get())

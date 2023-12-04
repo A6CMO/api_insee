@@ -3,6 +3,8 @@ import ssl
 import urllib.error as ue
 import urllib.parse as up
 import urllib.request as ur
+
+from http import HTTPStatus
 from http.client import HTTPResponse
 from typing import (
     Any,
@@ -37,7 +39,6 @@ class RequestService:
             List[Any],
             Tuple[Any],
             str,
-            int,
             float,
             criteria.Base,
         ],
@@ -51,7 +52,7 @@ class RequestService:
 
     def init_criteria_from_dictionnary(self, dictionnary: Dict[str, Any]) -> None:
         self.criteria = criteria.List(
-            *[criteria.Field(key, value) for (key, value) in dictionnary.items()]
+            *[criteria.Field(key, value) for (key, value) in dictionnary.items()],
         )
 
     def init_criteria_from_criteria(self, *args: Any) -> None:
@@ -85,7 +86,7 @@ class RequestService:
             self.format = format
 
         if method not in {"get", "post"}:
-            msg = f'method parameter must be "get" or "post"'
+            msg = 'method parameter must be "get" or "post"'
             raise ValueError(msg)
 
         try:
@@ -96,8 +97,8 @@ class RequestService:
             return self.format_response(response)
         except ue.HTTPError as EX:
             self.catch_http_error(EX)
-        except Exception:
-            raise Exception(self.url_encoded)
+        except Exception as e:
+            raise Exception(self.url_encoded) from e
 
     def get_request(self) -> ur.Request:
         return ur.Request(self.url_encoded, data=self.data, headers=self.header)
@@ -116,16 +117,16 @@ class RequestService:
         if self.format == "csv":
             return self.format_response_csv(response)
 
+        msg = f"Wrong response format {self.format}"
+        raise ValueError(msg)
+
     def format_response_json(self, response: HTTPResponse) -> Dict[str, Any]:
         raw = response.read().decode("utf-8")
-        parsed = cast(Dict[str, Any], json.loads(raw))
 
-        return parsed
+        return cast(Dict[str, Any], json.loads(raw))
 
     def format_response_csv(self, response: HTTPResponse) -> str:
-        raw = response.read().decode("utf-8")
-
-        return raw
+        return response.read().decode("utf-8")
 
     @property
     def url(self) -> str:
@@ -161,29 +162,26 @@ class RequestService:
             List[Any],
             Tuple[Any],
             str,
-            int,
             float,
             criteria.Base,
         ],
     ) -> None:
         if isinstance(value, dict):
             criteria_ = criteria.List(
-                *[criteria.Field(key, value) for (key, value) in value.items()]
+                *[criteria.Field(key, value) for (key, value) in value.items()],
             ).to_url_params()
 
-        elif isinstance(value, list) or isinstance(value, tuple):
+        elif isinstance(value, (list, tuple)):
             criteria_ = criteria.List(*value).to_url_params()
 
-        elif (
-            isinstance(value, str) or isinstance(value, int) or isinstance(value, float)
-        ):
+        elif isinstance(value, (float, int, str)):
             criteria_ = criteria.Raw(str(value)).to_url_params()
 
         elif isinstance(value, criteria.Base):
             criteria_ = value.to_url_params()
 
         else:
-            raise Exception
+            raise TypeError
 
         self._url_params[name] = criteria_
 
@@ -221,7 +219,7 @@ class RequestService:
             self._accept_format = "application/json"
 
     def catch_http_error(self, error: HTTPError) -> NoReturn:
-        if error.code == 400:
+        if error.code == HTTPStatus.BAD_REQUEST:
             raise UrlError(self)
 
         raise error

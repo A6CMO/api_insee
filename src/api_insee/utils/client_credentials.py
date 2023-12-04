@@ -1,4 +1,5 @@
 import base64
+
 from typing import Optional
 
 from api_insee.exeptions.authentication_error import InvalidCredentialsError
@@ -15,7 +16,6 @@ class ClientCredentials:
         self.encoded = self.get_encoded_credentials()
 
     def get_encoded_credentials(self) -> str:
-        blike = f"{self.key}:{self.secret}".encode("utf-8")
-        encoded = base64.b64encode(blike).decode("utf-8")
+        blike = f"{self.key}:{self.secret}".encode()
 
-        return encoded
+        return base64.b64encode(blike).decode("utf-8")

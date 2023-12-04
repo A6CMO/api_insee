@@ -18,8 +18,8 @@ class AuthService:
 class MockAuth(AuthService):
     def get_token(self) -> ClientToken:
         return ClientToken(
-            token_type="Bearer",
+            token_type="Bearer",  # noqa: S106
             expires_in=100000,
-            access_token="No Auth",
+            access_token="No Auth",  # noqa: S106
             scope="No Scope",
         )

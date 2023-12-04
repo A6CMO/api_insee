@@ -1,9 +1,11 @@
+from http import HTTPStatus
 from typing import Dict, NoReturn
 from urllib.error import HTTPError
 
 from api_insee.conf import API_VERSION
 from api_insee.exeptions.authentication_error import InvalidCredentialsError
 from api_insee.utils.client_credentials import ClientCredentials
+
 from .request import RequestService
 
 
@@ -25,7 +27,7 @@ class RequestTokenService(RequestService):
         return {"Authorization": f"Basic {self.credentials.encoded}"}
 
     def catch_http_error(self, error: HTTPError) -> NoReturn:
-        if error.code == 401:
+        if error.code == HTTPStatus.UNAUTHORIZED:
             raise InvalidCredentialsError(self.credentials)
 
         super().catch_http_error(error)

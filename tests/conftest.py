@@ -1,12 +1,11 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
 import re
+
 from pathlib import Path
 from typing import Any, Dict, Final
 
 import pytest
-from _pytest.fixtures import SubRequest
 
+from _pytest.fixtures import SubRequest
 from api_insee import ApiInsee
 
 PROJECT_ROOT: Final = Path(__file__).parent.parent
@@ -28,7 +27,7 @@ SIRENE_API_CONSUMER_KEY = CREDENTIALS["SIRENE_API_CONSUMER_KEY"]
 SIRENE_API_CONSUMER_SECRET = CREDENTIALS["SIRENE_API_CONSUMER_SECRET"]
 
 
-@pytest.fixture
+@pytest.fixture()
 def api(request: SubRequest) -> ApiInsee:
     return ApiInsee(
         SIRENE_API_CONSUMER_KEY,
@@ -51,7 +50,7 @@ def replace_token(response: Dict[str, Any]) -> Dict[str, Any]:
     return response
 
 
-@pytest.fixture
+@pytest.fixture()
 def vcr_config() -> Dict[str, Any]:
     return {
         "filter_headers": ["authorization", "api_token", "Set-Cookie"],

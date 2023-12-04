@@ -1,5 +1,45 @@
+[project]
+name = 'api-insee'
+version = "1.5"
+requires-python = ">=3.8"
+
+[tool.pytest]
+
 [tool.black]
 target-version = ["py38", "py39","py310","py311"]
 
 [tool.mypy]
 strict = true
+mypy_path = ['$MYPY_CONFIG_FILE_DIR/src', '$MYPY_CONFIG_FILE_DIR/tests']
+explicit_package_bases = true
+
+[tool.ruff]
+fix = true
+
+extend-select = ["A", "B", "C", "D", "E", "F", "G", "I", "N", "Q", "S", "T", "W", "ANN", "ARG", "BLE", "COM", "DJ", "DTZ", "EM", "ERA", "EXE", "FBT", "ICN", "INP", "ISC", "NPY", "PD", "PGH", "PIE", "PL", "PT", "PTH", "PYI", "RET", "RSE", "RUF", "SIM", "SLF", "TCH", "TID", "TRY", "UP", "YTT"]
+ignore = [
+    "A002", # argument shadowing python builtin
+    "A003", # Class attribute shadowing python builtin
+    "ANN10", # Missing type annotation for `self`, `cls`, etc...
+    "ANN401", # Dynamically typed expressions (typing.Any) disallowed in `*args` `**kwargs`
+    "D10", # missing docstring
+    "D203", # one blank line before class docstring
+    "D212", # multi-line-summary-first-line
+    "FBT", # flakes8 boolean traps
+]
+
+[tool.ruff.per-file-ignores]
+"__init__.py" = [
+    "E402", # Module level import not at top of file
+    "PLC0414", # useless-import-alias
+]
+"test_*.py" = [
+    "E501", # line-too-long
+    "PLR2004", # missing-type-self
+    "S101", # assert
+    "SLF001", # Private member accessed
+]
+
+[tool.ruff.lint.isort]
+lines-between-types = 1
+order-by-type = true

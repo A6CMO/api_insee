@@ -18,15 +18,17 @@ T = TypeVar("T", bound=RequestService)
 class ApiInsee:
     api_urls: ApiUrls
 
-    def __init__(
+    def __init__(  # noqa: PLR0913
         self,
         key: str,
         secret: str,
         format: AvailableFormat = "json",
         api_version: ApiVersion = ApiVersion.V_3,
+        auth_service: Type[AuthService] = AuthService,
     ) -> None:
         self.format = format
         self.api_urls = api_version.urls
+        self.auth_service = auth_service
         self.auth = self._get_auth_service(key, secret)
 
     def siret(self, *args: Any, **kwargs: Any) -> RequestEntrepriseServiceSiret:
@@ -52,7 +54,7 @@ class ApiInsee:
 
             return service
 
-        return AuthService(key, secret, factory)
+        return self.auth_service(key, secret, factory)
 
     def _wrap(
         self,

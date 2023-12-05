@@ -1,6 +1,7 @@
 import pytest
 
 from api_insee import ApiInsee
+from api_insee.utils.auth_service import AuthService, RequestTokenServiceFactory
 from conftest import SIRENE_API_CONSUMER_KEY, SIRENE_API_CONSUMER_SECRET
 
 __author__ = "Lenselle Nicolas"
@@ -12,7 +13,7 @@ from api_insee.exeptions.authentication_error import InvalidCredentialsError
 
 def test_missing_credentials() -> None:
     with pytest.raises(InvalidCredentialsError):
-        ApiInsee(None, None)
+        ApiInsee("", "")
 
 
 @pytest.mark.vcr()
@@ -32,3 +33,17 @@ def test_generate_token() -> None:
     )
 
     assert api.auth.token.access_token
+
+
+def test_use_custom_auth_service() -> None:
+    class CustomAuthService(AuthService):
+        def __init__(
+            self,
+            key: str,
+            secret: str,
+            request_token_service_factory: RequestTokenServiceFactory,
+        ) -> None:
+            raise NotImplementedError
+
+    with pytest.raises(NotImplementedError):
+        ApiInsee("foo", "bar", auth_service=CustomAuthService)

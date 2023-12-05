@@ -1,13 +1,15 @@
 import re
 
-from typing import Any, Dict, Final, Type
+from typing import Any, Dict, Final, Type, Union
+from unittest.mock import MagicMock
 
 import pytest
 
 from _pytest.fixtures import SubRequest
 from api_insee import ApiInsee
 from api_insee.conf import ApiVersion
-from utils import ApiInseeTestDouble, parse_env_file
+from api_insee.utils.auth_service import AuthService
+from utils import parse_env_file
 
 CREDENTIALS: Final = parse_env_file()
 SIRENE_API_CONSUMER_KEY: Final = CREDENTIALS["SIRENE_API_CONSUMER_KEY"]
@@ -21,32 +23,30 @@ BASE_SIRET_URL: Final = API_URLS["path_siret"]
 
 @pytest.fixture()
 def api(request: SubRequest) -> ApiInsee:
-    api_insee = _get_api_type(request)
-
-    return api_insee(
+    return ApiInsee(
         SIRENE_API_CONSUMER_KEY,
         SIRENE_API_CONSUMER_SECRET,
         api_version=API_VERSION,
+        auth_service=_get_auth_service(request),
     )
 
 
 @pytest.fixture()
 def api_311(request: SubRequest) -> ApiInsee:
-    api_insee = _get_api_type(request)
-
-    return api_insee(
+    return ApiInsee(
         SIRENE_API_CONSUMER_KEY,
         SIRENE_API_CONSUMER_SECRET,
         api_version=ApiVersion.V_3_11,
+        auth_service=_get_auth_service(request),
     )
 
 
-def _get_api_type(request: SubRequest) -> Type[ApiInsee]:
+def _get_auth_service(request: SubRequest) -> Union[Type[AuthService], MagicMock]:
     return (
-        ApiInsee
+        AuthService
         # We enable authentication when tests are launched in record mode
         if request.config.option.record_mode is not None
-        else ApiInseeTestDouble
+        else MagicMock()
     )
 
 

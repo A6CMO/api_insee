@@ -22,3 +22,5 @@ Version 2.0
       return an invalid credential errors on token request
     - `UrlError` that extend `RequestError` is raised when API return a bad request
       error
+
+- Drop `noauth` parameter in `ApiInsee` init method

@@ -1,4 +1,4 @@
-from typing import Any, Optional, Type, TypeVar
+from typing import Any, Type, TypeVar
 
 from api_insee.request.request import AvailableFormat, RequestService
 from api_insee.request.request_entreprises import (
@@ -6,7 +6,7 @@ from api_insee.request.request_entreprises import (
     RequestEntrepriseServiceSiren,
     RequestEntrepriseServiceSiret,
 )
-from api_insee.utils.auth_service import AuthService, MockAuth
+from api_insee.utils.auth_service import AuthService
 
 T = TypeVar("T", bound=RequestService)
 
@@ -14,18 +14,12 @@ T = TypeVar("T", bound=RequestService)
 class ApiInsee:
     def __init__(
         self,
-        key: Optional[str],
-        secret: Optional[str],
+        key: str,
+        secret: str,
         format: AvailableFormat = "json",
-        noauth: bool = False,
     ) -> None:
         self.format = format
-
-        self.auth: AuthService
-        if noauth:
-            self.auth = MockAuth(key=key, secret=secret)
-        else:
-            self.auth = AuthService(key=key, secret=secret)
+        self.auth = self._get_auth_service(key, secret)
 
     def siret(self, *args: Any, **kwargs: Any) -> RequestEntrepriseServiceSiret:
         return self._wrap(RequestEntrepriseServiceSiret, *args, **kwargs)
@@ -39,6 +33,9 @@ class ApiInsee:
         **kwargs: Any,
     ) -> RequestEntrepriseServiceLiensSuccession:
         return self._wrap(RequestEntrepriseServiceLiensSuccession, *args, **kwargs)
+
+    def _get_auth_service(self, key: str, secret: str) -> AuthService:
+        return AuthService(key=key, secret=secret)
 
     def _wrap(
         self,

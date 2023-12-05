@@ -1,0 +1,93 @@
+interactions:
+- request:
+    body: grant_type=client_credentials
+    headers:
+      Connection:
+      - close
+      Content-Length:
+      - '29'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Host:
+      - api.insee.fr
+      User-Agent:
+      - Python-urllib/3.10
+    method: POST
+    uri: https://api.insee.fr/token
+  response:
+    body:
+      string: '{"access_token":"00000000-0000-0000-0000-000000000000","scope":"am_application_scope
+        default","token_type":"Bearer","expires_in":495797}'
+    headers:
+      Cache-Control:
+      - no-store
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 05 Dec 2023 20:39:30 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=100000; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - DENY
+      X-XSS-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Connection:
+      - close
+      Host:
+      - api.insee.fr
+      User-Agent:
+      - Python-urllib/3.10
+    method: GET
+    uri: https://api.insee.fr/entreprises/sirene3/V3.11/informations
+  response:
+    body:
+      string: "{\"etatService\":\"UP\",\"etatsDesServices\":[{\"Collection\":\"Unit\xE9s
+        L\xE9gales\",\"etatCollection\":\"UP\"},{\"Collection\":\"\xC9tablissements\",\"etatCollection\":\"UP\"},{\"Collection\":\"Liens
+        de succession\",\"etatCollection\":\"UP\"},{\"Collection\":\"Refus d'immatriculation
+        au RCS\",\"etatCollection\":\"UP\"}],\"versionService\":\"3.11.5\",\"journalDesModifications\":\"https://api.insee.fr/registry/resource/_system/governance/apimgt/applicationdata/provider/insee/Sirene/V3/documentation/files/changelog.txt\",\"datesDernieresMisesAJourDesDonnees\":[{\"collection\":\"Unit\xE9s
+        L\xE9gales\",\"dateDerniereMiseADisposition\":null,\"dateDernierTraitementMaximum\":\"2022-12-16T18:45:03\",\"dateDernierTraitementDeMasse\":null},{\"collection\":\"\xC9tablissements\",\"dateDerniereMiseADisposition\":null,\"dateDernierTraitementMaximum\":\"2022-12-18T07:17:25.990Z\",\"dateDernierTraitementDeMasse\":null},{\"collection\":\"Liens
+        de succession\",\"dateDerniereMiseADisposition\":null,\"dateDernierTraitementMaximum\":\"2022-11-10T21:49:24\",\"dateDernierTraitementDeMasse\":null},{\"collection\":\"Refus
+        d'immatriculation au RCS\",\"dateDerniereMiseADisposition\":\"2023-05-04T19:18:25\",\"dateDernierTraitementMaximum\":null,\"dateDernierTraitementDeMasse\":null}]}"
+    headers:
+      Access-Control-Allow-Headers:
+      - authorization,Access-Control-Allow-Origin,Content-Type,SOAPAction
+      Access-Control-Allow-Methods:
+      - GET
+      Access-Control-Allow-Origin:
+      - '*'
+      Cache-Control:
+      - private
+      Connection:
+      - close
+      Content-Type:
+      - application/json;charset=utf-8
+      Date:
+      - Tue, 05 Dec 2023 20:39:30 GMT
+      Strict-Transport-Security:
+      - max-age=100000; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 200
+      message: ''
+version: 1

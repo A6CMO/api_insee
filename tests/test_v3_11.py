@@ -22,3 +22,10 @@ def test_liens_succession(api_311: ApiInsee) -> None:
     response = api_311.liens_succession(nombre=0).get()
 
     assert response["header"]["statut"] == 200  # type: ignore[index]
+
+
+@pytest.mark.vcr()
+def test_informations(api_311: ApiInsee) -> None:
+    response = api_311.informations().get()
+
+    assert response["versionService"].startswith("3.11")

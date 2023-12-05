@@ -68,6 +68,10 @@ class RequestService:
         self.token = token
 
     @overload
+    def get(self) -> Dict[str, Any]:
+        ...
+
+    @overload
     def get(
         self,
         format: Optional[Literal["json"]],

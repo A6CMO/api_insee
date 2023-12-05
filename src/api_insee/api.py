@@ -7,6 +7,7 @@ from api_insee.request.request_entreprises import (
     RequestEntrepriseServiceSiren,
     RequestEntrepriseServiceSiret,
 )
+from api_insee.request.request_informations import RequestInformationsService
 from api_insee.request.request_token import RequestTokenService
 from api_insee.utils.auth_service import AuthService
 from api_insee.utils.client_credentials import ClientCredentials
@@ -33,6 +34,9 @@ class ApiInsee:
 
     def siren(self, *args: Any, **kwargs: Any) -> RequestEntrepriseServiceSiren:
         return self._wrap(RequestEntrepriseServiceSiren, *args, **kwargs)
+
+    def informations(self, *args: Any, **kwargs: Any) -> RequestInformationsService:
+        return self._wrap(RequestInformationsService, *args, **kwargs)
 
     def liens_succession(
         self,

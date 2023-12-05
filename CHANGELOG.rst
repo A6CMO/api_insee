@@ -10,6 +10,7 @@ Version 0.1
 Version 2.0
 ===========
 - Add API v3.11 support
+- Add informations endpoint support
 - Drop unused exception `ParamsExeption`
 - Replace class and methods violate PEP8 naming convention
     - Errors classes are renamed SubjectError

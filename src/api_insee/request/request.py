@@ -7,6 +7,7 @@ import urllib.request as ur
 from http import HTTPStatus
 from http.client import HTTPResponse
 from typing import (
+    TYPE_CHECKING,
     Any,
     Dict,
     List,
@@ -24,11 +25,15 @@ from api_insee import criteria
 from api_insee.exeptions.request_error import UrlError
 from api_insee.utils.client_token import ClientToken
 
+if TYPE_CHECKING:
+    from api_insee.conf import ApiPathName, ApiUrls
+
 AvailableFormat = Literal["csv", "json"]
 AvailableMethod = Literal["get", "post"]
 
 
 class RequestService:
+    path_name: "ApiPathName"
     _accept_format = "application/json"
 
     def __init__(
@@ -46,6 +51,7 @@ class RequestService:
         self._url_params: Dict[str, str] = {}
         self.token: Optional[ClientToken] = None
         self.criteria: Optional[criteria.Base] = None
+        self._api_urls: Optional["ApiUrls"] = None
 
         for key, value in kwargs.items():
             self.set_url_params(key, value)
@@ -129,6 +135,22 @@ class RequestService:
         return response.read().decode("utf-8")
 
     @property
+    def path(self) -> str:
+        return self.api_urls[self.path_name]
+
+    @property
+    def api_urls(self) -> "ApiUrls":
+        if self._api_urls is None:
+            msg = "You need to set api_urls before send request"
+            raise ValueError(msg)
+
+        return self._api_urls
+
+    @api_urls.setter
+    def api_urls(self, value: "ApiUrls") -> None:
+        self._api_urls = value
+
+    @property
     def url(self) -> str:
         return up.unquote_plus(self.url_encoded)
 
@@ -138,7 +160,7 @@ class RequestService:
 
     @property
     def url_path(self) -> str:
-        return "/"
+        return self.path
 
     @property
     def url_encoded_params(self) -> str:

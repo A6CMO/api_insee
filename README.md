@@ -12,17 +12,29 @@ Depuis un terminal :
 
 `pip install api-insee`
 
-Pour pouvoir interroger l'api vous devez créer un compte consommateur sur [api.insee.fr](https://api.insee.fr).
+Pour pouvoir interroger l'api, vous devez créer un compte consommateur sur
+[api.insee.fr](https://api.insee.fr).
 Puis récupérer vos clés consommateur et secrète.
 
 ```python
 from api_insee import ApiInsee
 
 api = ApiInsee(
-    key = # clé consommateur,
-    secret = # clé secrète
+    key=consumer_key,
+    secret=secret_key,
 )
 ```
+Ou, pour interroger la version 3.11 de l’api
+```python
+from api_insee import ApiInsee, ApiVersion
+
+api = ApiInsee(
+    key=consumer_key,
+    secret=secret_key,
+    api_version=ApiVersion.V_3_11,
+)
+```
+
 ---------------------------
 
 #### Exemples d'interrogation

@@ -1,7 +1,34 @@
-API_VERSION = {
-    "url": "https://api.insee.fr",
-    "path_token": "/token",
-    "path_siren": "/entreprises/sirene/V3/siren",
-    "path_siret": "/entreprises/sirene/V3/siret",
-    "path_liens_succession": "/entreprises/sirene/V3/siret/liensSuccession",
-}
+from enum import Enum
+from typing import Literal, TypedDict
+
+_BASE_URL = "https://api.insee.fr"
+_TOKEN_URL = f"{_BASE_URL}/token"
+
+
+ApiPathName = Literal[
+    "path_token",
+    "path_siren",
+    "path_siret",
+    "path_liens_succession",
+]
+
+
+class ApiUrls(TypedDict):
+    path_token: str
+    path_siren: str
+    path_siret: str
+    path_liens_succession: str
+
+
+class ApiVersion(Enum):
+    V_3 = f"{_BASE_URL}/entreprises/sirene/V3"
+    V_3_11 = f"{_BASE_URL}/entreprises/sirene3/V3.11"
+
+    @property
+    def urls(self) -> ApiUrls:
+        return {
+            "path_token": _TOKEN_URL,
+            "path_siren": f"{self.value}/siren",
+            "path_siret": f"{self.value}/siret",
+            "path_liens_succession": f"{self.value}/siret/liensSuccession",
+        }

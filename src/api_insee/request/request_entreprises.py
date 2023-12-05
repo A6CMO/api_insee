@@ -1,14 +1,11 @@
 from typing import Any, Dict, Iterator, Optional, Union, cast
 
-from api_insee.conf import API_VERSION
 from api_insee.exeptions.request_error import RequestError
 
 from .request import AvailableFormat, AvailableMethod, RequestService
 
 
 class RequestEntrepriseService(RequestService):
-    path = ""
-
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         champs = kwargs.get("champs")
         if champs and isinstance(champs, list):
@@ -37,7 +34,7 @@ class RequestEntrepriseService(RequestService):
     def url_path(self) -> str:
         reference = f"/{self.reference}" if self.reference else ""
 
-        return f'{API_VERSION["url"]}{self.path}{reference}'
+        return f"{self.path}{reference}"
 
     def pages(self, nombre: int = 100) -> Iterator[Dict[str, Any]]:
         if self.format == "csv":
@@ -64,7 +61,7 @@ class RequestEntrepriseService(RequestService):
 
 
 class RequestEntrepriseServiceSiren(RequestEntrepriseService):
-    path = API_VERSION["path_siren"]
+    path_name = "path_siren"
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         if len(args) and isinstance(args[0], list):
@@ -74,7 +71,7 @@ class RequestEntrepriseServiceSiren(RequestEntrepriseService):
 
 
 class RequestEntrepriseServiceSiret(RequestEntrepriseService):
-    path = API_VERSION["path_siret"]
+    path_name = "path_siret"
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         if len(args) and isinstance(args[0], list):
@@ -84,7 +81,7 @@ class RequestEntrepriseServiceSiret(RequestEntrepriseService):
 
 
 class RequestEntrepriseServiceLiensSuccession(RequestEntrepriseService):
-    path = API_VERSION["path_liens_succession"]
+    path_name = "path_liens_succession"
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         super().__init__(*args, **kwargs)

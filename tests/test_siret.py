@@ -3,13 +3,12 @@ from typing import Any, Dict, cast
 import pytest
 
 from api_insee import ApiInsee, criteria
-from api_insee.conf import API_VERSION
 
 __author__ = "Lenselle Nicolas"
 __copyright__ = "Lenselle Nicolas"
 __license__ = "mit"
 
-base_siret_url = API_VERSION["url"] + API_VERSION["path_siret"]
+from conftest import BASE_SIRET_URL
 
 
 @pytest.mark.vcr()
@@ -19,12 +18,12 @@ def test_siret_search(api: ApiInsee) -> None:
 
     assert unit["etablissement"]["siret"] == "39860733300059"
     assert unit["header"]["statut"] == 200
-    assert request.url == base_siret_url + "/39860733300059"
+    assert request.url == BASE_SIRET_URL + "/39860733300059"
 
 
 def test_siret_search_with_date(api: ApiInsee) -> None:
     request = api.siret("39860733300059", date="2015-08-01")
-    assert request.url == base_siret_url + "/39860733300059?date=2015-08-01"
+    assert request.url == BASE_SIRET_URL + "/39860733300059?date=2015-08-01"
 
 
 def test_siret_search_with_champs(api: ApiInsee) -> None:
@@ -38,7 +37,7 @@ def test_siret_search_with_champs(api: ApiInsee) -> None:
     request = api.siret("39860733300059", champs=champs)
     assert (
         request.url
-        == base_siret_url
+        == BASE_SIRET_URL
         + "/39860733300059?champs=siret,denominationUniteLegale,nomUsageUniteLegale,prenom1UniteLegale"
     )
 
@@ -53,7 +52,7 @@ def test_siret_search_with_2_criteria(api: ApiInsee) -> None:
 
     assert (
         request.url
-        == base_siret_url
+        == BASE_SIRET_URL
         + "?q=codeCommuneEtablissement:92046 AND unitePurgeeUniteLegale:True"
     )
 
@@ -69,7 +68,7 @@ def test_siret_search_with_2_criteria_and_date(api: ApiInsee) -> None:
 
     assert (
         request.url
-        == base_siret_url
+        == BASE_SIRET_URL
         + "?date=2018-01-01&q=codeCommuneEtablissement:92046 AND unitePurgeeUniteLegale:True"
     )
 
@@ -83,8 +82,8 @@ def test_siret_search_from_dict_criteria(api: ApiInsee) -> None:
     )
 
     expected = {
-        f"{base_siret_url}?q=codeCommuneEtablissement:92046 AND unitePurgeeUniteLegale:True",
-        f"{base_siret_url}?q=unitePurgeeUniteLegale:True AND codeCommuneEtablissement:92046",
+        f"{BASE_SIRET_URL}?q=codeCommuneEtablissement:92046 AND unitePurgeeUniteLegale:True",
+        f"{BASE_SIRET_URL}?q=unitePurgeeUniteLegale:True AND codeCommuneEtablissement:92046",
     }
 
     assert request.url in expected
@@ -103,7 +102,7 @@ def test_siret_search_with_operators_or_and_parentheses(api: ApiInsee) -> None:
 
     assert (
         request.url
-        == base_siret_url
+        == BASE_SIRET_URL
         + "?q=codeCommuneEtablissement:92046 OR unitePurgeeUniteLegale:True AND codeCommuneEtablissement:92046"
     )
 
@@ -116,7 +115,7 @@ def test_siret_search_with_operators(api: ApiInsee) -> None:
 
     assert (
         request.url
-        == base_siret_url
+        == BASE_SIRET_URL
         + "?q=codeCommuneEtablissement:92046 OR unitePurgeeUniteLegale:True"
     )
 
@@ -131,7 +130,7 @@ def test_siret_search_with_not_operator(api: ApiInsee) -> None:
 
     assert (
         request.url
-        == base_siret_url
+        == BASE_SIRET_URL
         + "?q=codeCommuneEtablissement:92046 AND -unitePurgeeUniteLegale:True"
     )
 
@@ -145,7 +144,7 @@ def test_siret_search_with_periodic_list(api: ApiInsee) -> None:
     )
     assert (
         request.url
-        == base_siret_url
+        == BASE_SIRET_URL
         + "?q=periode(activitePrincipaleEtablissement:84.23Z AND etatAdministratifEtablissement:A)"
     )
 
@@ -162,7 +161,7 @@ def test_siret_search_with_periodic_list_with_or(api: ApiInsee) -> None:
 
     assert (
         request.url
-        == base_siret_url
+        == BASE_SIRET_URL
         + "?q=periode(activitePrincipaleEtablissement:84.23Z OR activitePrincipaleEtablissement:86.21Z OR activitePrincipaleEtablissement:87.21Z)"
     )
 
@@ -178,7 +177,7 @@ def test_siret_search_with_periodic_list_and_operators(api: ApiInsee) -> None:
 
     assert (
         request.url
-        == base_siret_url
+        == BASE_SIRET_URL
         + "?q=periode(activitePrincipaleEtablissement:84.23Z OR activitePrincipaleEtablissement:86.21Z AND etatAdministratifEtablissement:A)"
     )
 
@@ -194,7 +193,7 @@ def test_siret_search_with_periodic_list_and_operators_excluding(api: ApiInsee) 
 
     assert (
         request.url
-        == base_siret_url
+        == BASE_SIRET_URL
         + "?q=periode(activitePrincipaleEtablissement:84.23Z OR activitePrincipaleEtablissement:86.21Z) AND periode(etatAdministratifEtablissement:A)"
     )
 
@@ -202,7 +201,7 @@ def test_siret_search_with_periodic_list_and_operators_excluding(api: ApiInsee) 
 def test_siret_search_with_including_borne(api: ApiInsee) -> None:
     request = api.siret(q=criteria.Range("nomUsageUniteLegale", "DUPONT", "DURANT"))
 
-    assert request.url == base_siret_url + "?q=nomUsageUniteLegale:[DUPONT TO DURANT]"
+    assert request.url == BASE_SIRET_URL + "?q=nomUsageUniteLegale:[DUPONT TO DURANT]"
 
 
 def test_siret_search_with_excluding_borne(api: ApiInsee) -> None:
@@ -210,7 +209,7 @@ def test_siret_search_with_excluding_borne(api: ApiInsee) -> None:
         q=criteria.Range("nomUsageUniteLegale", "DUPONT", "DURANT", exclude=True),
     )
 
-    assert request.url == base_siret_url + "?q=nomUsageUniteLegale:{DUPONT TO DURANT}"
+    assert request.url == BASE_SIRET_URL + "?q=nomUsageUniteLegale:{DUPONT TO DURANT}"
 
 
 @pytest.mark.vcr()

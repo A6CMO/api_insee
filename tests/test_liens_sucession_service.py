@@ -3,13 +3,12 @@ from typing import Any, Dict, cast
 import pytest
 
 from api_insee import ApiInsee, criteria
-from api_insee.conf import API_VERSION
 
 __author__ = "Lenselle Nicolas"
 __copyright__ = "Lenselle Nicolas"
 __license__ = "mit"
 
-base_siret_url = API_VERSION["url"] + API_VERSION["path_siret"]
+from conftest import BASE_SIRET_URL
 
 
 def test_liens_succession_search(api: ApiInsee) -> None:
@@ -18,7 +17,7 @@ def test_liens_succession_search(api: ApiInsee) -> None:
     )
     assert (
         request.url
-        == base_siret_url
+        == BASE_SIRET_URL
         + "/liensSuccession?q=siretEtablissementPredecesseur:39860733300042"
     )
 
@@ -30,7 +29,7 @@ def test_liens_succession_search(api: ApiInsee) -> None:
     )
     assert (
         request.url
-        == base_siret_url
+        == BASE_SIRET_URL
         + "/liensSuccession?q=siretEtablissementPredecesseur:00555008200027 AND dateLienSuccession:2004-04-01"
     )
 

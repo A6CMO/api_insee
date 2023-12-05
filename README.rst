@@ -20,7 +20,7 @@ From a terminal :
 
 ``pip install api-insee``
 
-To request the API you must create a consummer account on
+To request the API you must create a consumer account on
 `api.insee.fr <https://api.insee.fr>`__. Then with your access keys :
 
 .. code:: python
@@ -28,8 +28,20 @@ To request the API you must create a consummer account on
     from api_insee import ApiInsee
 
     api = ApiInsee(
-        key = # consummer key,
-        secret = # secret key
+        key=consumer_key,
+        secret=secret_key,
+    )
+
+Or for use with 3.11 API version
+
+.. code:: python
+
+    from api_insee import ApiInsee
+
+    api = ApiInsee(
+        key=consumer_key,
+        secret=secret_key,
+        api_version=ApiVersion,
     )
 
 --------------
@@ -182,8 +194,8 @@ argument. Results are limited by 10000 per pages.
     from api_insee import ApiInsee
 
     api = ApiInsee(
-        key = # consummer key,
-        secret = # secret key
+        key=consumer_key,
+        secret=secret_key,
     )
 
     request = api.siren(q={

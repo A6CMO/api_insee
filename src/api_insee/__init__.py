@@ -5,6 +5,7 @@ from pkg_resources import (  # type: ignore[import-untyped]
 
 from . import criteria as criteria
 from .api import ApiInsee as ApiInsee
+from .conf import ApiVersion as ApiVersion
 
 try:
     dist_name = __name__

@@ -1,29 +1,52 @@
 import re
 
-from typing import Any, Dict, Type
+from typing import Any, Dict, Final, Type
 
 import pytest
 
 from _pytest.fixtures import SubRequest
 from api_insee import ApiInsee
+from api_insee.conf import ApiVersion
 from utils import ApiInseeTestDouble, parse_env_file
 
-CREDENTIALS = parse_env_file()
-SIRENE_API_CONSUMER_KEY = CREDENTIALS["SIRENE_API_CONSUMER_KEY"]
-SIRENE_API_CONSUMER_SECRET = CREDENTIALS["SIRENE_API_CONSUMER_SECRET"]
+CREDENTIALS: Final = parse_env_file()
+SIRENE_API_CONSUMER_KEY: Final = CREDENTIALS["SIRENE_API_CONSUMER_KEY"]
+SIRENE_API_CONSUMER_SECRET: Final = CREDENTIALS["SIRENE_API_CONSUMER_SECRET"]
+
+API_VERSION: Final = ApiVersion.V_3
+API_URLS: Final = API_VERSION.urls
+BASE_SIREN_URL: Final = API_URLS["path_siren"]
+BASE_SIRET_URL: Final = API_URLS["path_siret"]
 
 
 @pytest.fixture()
 def api(request: SubRequest) -> ApiInsee:
-    api_insee: Type[ApiInsee] = (
-        ApiInsee
-        if request.config.option.record_mode is not None
-        else ApiInseeTestDouble
-    )
+    api_insee = _get_api_type(request)
 
     return api_insee(
         SIRENE_API_CONSUMER_KEY,
         SIRENE_API_CONSUMER_SECRET,
+        api_version=API_VERSION,
+    )
+
+
+@pytest.fixture()
+def api_311(request: SubRequest) -> ApiInsee:
+    api_insee = _get_api_type(request)
+
+    return api_insee(
+        SIRENE_API_CONSUMER_KEY,
+        SIRENE_API_CONSUMER_SECRET,
+        api_version=ApiVersion.V_3_11,
+    )
+
+
+def _get_api_type(request: SubRequest) -> Type[ApiInsee]:
+    return (
+        ApiInsee
+        # We enable authentication when tests are launched in record mode
+        if request.config.option.record_mode is not None
+        else ApiInseeTestDouble
     )
 
 

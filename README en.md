@@ -4,7 +4,7 @@ Python helper to request Sirene API
 
 API Sirene give access to French companies and business database. Entities are recorded since the creation of this administrative register in 1973. To use this API you have to create an account on https://api.insee.fr/
 
-The python library ```api_insee``` is a help to request the API Sirene in perfect simplicity. You'll find more information about the API in the [official documentation](https://api.insee.fr/catalogue/site/themes/wso2/subthemes/insee/pages/item-info.jag?name=Sirene&version=V3&provider=insee)
+The python library `api_insee` is a help to request the API Sirene in perfect simplicity. You'll find more information about the API in the [official documentation](https://api.insee.fr/catalogue/site/themes/wso2/subthemes/insee/pages/item-info.jag?name=Sirene&version=V3&provider=insee)
 
 #### Installation
 
@@ -12,15 +12,25 @@ From a terminal :
 
 `pip install api-insee`
 
-To request the API you must create a consummer account on [api.insee.fr](https://api.insee.fr).
+To request the API you must create a consumer account on [api.insee.fr](https://api.insee.fr).
 Then with your access keys :
 
 ```python
 from api_insee import ApiInsee
 
 api = ApiInsee(
-    key = # consummer key,
-    secret = # secret key
+    key=consumer_key,
+    secret=secret_key,
+)
+```
+Or for use with 3.11 API version.
+```python
+from api_insee import ApiInsee, ApiVersion
+
+api = ApiInsee(
+    key=consumer_key,
+    secret=secret_key,
+    api_version=ApiVersion.V_3_11,
 )
 ```
 ---------------------------
@@ -144,12 +154,12 @@ argument. Results are limited by 10000 per pages.
 from api_insee import ApiInsee
 
 api = ApiInsee(
-    key = # consummer key,
-    secret = # secret key
+    key=consumer key,
+    secret=secret key,
 )
 
 request = api.siren(q={
-    'categorieEntreprise': 'PME'
+    'categorieEntreprise': 'PME',
 })
 
 for (page_index, page_result) in enumerate(request.pages(nombre=1000)):

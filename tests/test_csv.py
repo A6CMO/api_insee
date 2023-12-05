@@ -6,14 +6,11 @@ import conftest as conf
 import pytest
 
 from api_insee import ApiInsee, criteria
-from api_insee.conf import API_VERSION
 from api_insee.exeptions.request_error import RequestError
 
 __author__ = "Lenselle Nicolas"
 __copyright__ = "Lenselle Nicolas"
 __license__ = "mit"
-
-base_siren_url = API_VERSION["url"] + API_VERSION["path_siren"]
 
 
 @pytest.mark.vcr()

@@ -3,13 +3,12 @@ from typing import Any, Dict, cast
 import pytest
 
 from api_insee import ApiInsee, criteria
-from api_insee.conf import API_VERSION
 
 __author__ = "Lenselle Nicolas"
 __copyright__ = "Lenselle Nicolas"
 __license__ = "mit"
 
-base_siren_url = API_VERSION["url"] + API_VERSION["path_siren"]
+from conftest import BASE_SIREN_URL
 
 
 @pytest.mark.vcr()
@@ -19,7 +18,7 @@ def test_siren_search(api: ApiInsee) -> None:
 
     assert unit["uniteLegale"]["siren"] == "809893225"
     assert unit["header"]["statut"] == 200
-    assert request.url == base_siren_url + "/809893225"
+    assert request.url == BASE_SIREN_URL + "/809893225"
 
 
 @pytest.mark.vcr()
@@ -29,7 +28,7 @@ def test_siren_raw_search(api: ApiInsee) -> None:
     results = cast(Dict[str, Any], request.get())
 
     assert results["header"]["statut"] == 200
-    assert request.url == base_siren_url + "?q=unitePurgeeUniteLegale:True"
+    assert request.url == BASE_SIREN_URL + "?q=unitePurgeeUniteLegale:True"
 
 
 @pytest.mark.vcr()
@@ -39,19 +38,19 @@ def test_siren_search_by_field(api: ApiInsee) -> None:
     results = cast(Dict[str, Any], request.get())
 
     assert results["header"]["statut"] == 200
-    assert request.url == base_siren_url + "?q=unitePurgeeUniteLegale:True"
+    assert request.url == BASE_SIREN_URL + "?q=unitePurgeeUniteLegale:True"
 
 
 def test_siren_search_date(api: ApiInsee) -> None:
     request = api.siren("005520135", date="2018-01-01")
 
-    assert request.url == base_siren_url + "/005520135?date=2018-01-01"
+    assert request.url == BASE_SIREN_URL + "/005520135?date=2018-01-01"
 
 
 def test_siren_search_with_period_variable(api: ApiInsee) -> None:
     request = api.siren(q=criteria.PeriodicField("etatAdministratifUniteLegale", "C"))
 
-    assert request.url == base_siren_url + "?q=periode(etatAdministratifUniteLegale:C)"
+    assert request.url == BASE_SIREN_URL + "?q=periode(etatAdministratifUniteLegale:C)"
 
 
 def test_siren_search_exact_field(api: ApiInsee) -> None:
@@ -63,7 +62,7 @@ def test_siren_search_exact_field(api: ApiInsee) -> None:
 
     assert (
         request.url
-        == base_siren_url + '?q=periode(denominationUniteLegale:"LE TIMBRE")'
+        == BASE_SIREN_URL + '?q=periode(denominationUniteLegale:"LE TIMBRE")'
     )
 
 

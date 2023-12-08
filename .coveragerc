@@ -26,3 +26,10 @@ exclude_lines =
     # Don't complain if non-runnable code isn't run:
     if 0:
     if __name__ == .__main__.:
+
+    # Abstractmethod and overload should have empty body
+    @abstractmethod
+    @overload
+
+    # Type checking only code can't be executed
+    if TYPE_CHECKING:

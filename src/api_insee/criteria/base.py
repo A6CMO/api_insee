@@ -1,16 +1,15 @@
+from abc import ABC, abstractmethod
 from typing import Literal
 
 LogicOperator = Literal["AND", "OR"]
 
 
-class Base:
+class Base(ABC):
     negative = False
 
-    def validate(self) -> bool:
-        return True
-
+    @abstractmethod
     def to_url_params(self) -> str:
-        return ""
+        ...
 
     def __str__(self) -> str:
         return self.to_url_params()

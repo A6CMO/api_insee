@@ -1,7 +1,6 @@
-from typing import Any, Type, TypeVar
+from typing import TYPE_CHECKING, Any, Type, TypeVar, Union
 
 from api_insee.conf import ApiUrls, ApiVersion
-from api_insee.request.request import AvailableFormat, RequestService
 from api_insee.request.request_entreprises import (
     RequestEntrepriseServiceLiensSuccession,
     RequestEntrepriseServiceSiren,
@@ -10,9 +9,14 @@ from api_insee.request.request_entreprises import (
 from api_insee.request.request_informations import RequestInformationsService
 from api_insee.request.request_token import RequestTokenService
 from api_insee.utils.auth_service import AuthService
-from api_insee.utils.client_credentials import ClientCredentials
 
-T = TypeVar("T", bound=RequestService)
+if TYPE_CHECKING:
+    from api_insee.request.request import AvailableFormat, RequestService
+    from api_insee.utils.client_credentials import ClientCredentials
+
+    T = TypeVar("T", bound=RequestService)
+else:
+    T = None
 
 
 class ApiInsee:
@@ -22,14 +26,19 @@ class ApiInsee:
         self,
         key: str,
         secret: str,
-        format: AvailableFormat = "json",
+        format: "AvailableFormat" = "json",
         api_version: ApiVersion = ApiVersion.V_3,
-        auth_service: Type[AuthService] = AuthService,
+        auth_service: Union[Type[AuthService], None] = None,
     ) -> None:
         self.format = format
         self.api_urls = api_version.urls
-        self.auth_service = auth_service
-        self.auth = self._get_auth_service(key, secret)
+
+        auth_service = auth_service or AuthService
+        self.auth = auth_service(
+            key,
+            secret,
+            self._request_token_service_factory,
+        )
 
     def siret(self, *args: Any, **kwargs: Any) -> RequestEntrepriseServiceSiret:
         return self._wrap(RequestEntrepriseServiceSiret, *args, **kwargs)
@@ -47,14 +56,14 @@ class ApiInsee:
     ) -> RequestEntrepriseServiceLiensSuccession:
         return self._wrap(RequestEntrepriseServiceLiensSuccession, *args, **kwargs)
 
-    def _get_auth_service(self, key: str, secret: str) -> AuthService:
-        def factory(credentials: ClientCredentials) -> RequestTokenService:
-            service = RequestTokenService(credentials)
-            service.api_urls = self.api_urls
+    def _request_token_service_factory(
+        self,
+        credentials: "ClientCredentials",
+    ) -> RequestTokenService:
+        service = RequestTokenService(credentials)
+        service.api_urls = self.api_urls
 
-            return service
-
-        return self.auth_service(key, secret, factory)
+        return service
 
     def _wrap(
         self,

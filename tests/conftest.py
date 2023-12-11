@@ -9,7 +9,8 @@ from _pytest.fixtures import SubRequest
 from api_insee import ApiInsee
 from api_insee.conf import ApiVersion
 from api_insee.utils.auth_service import AuthService
-from utils import parse_env_file
+
+from tests.utils import parse_env_file
 
 CREDENTIALS: Final = parse_env_file()
 SIRENE_API_CONSUMER_KEY: Final = CREDENTIALS["SIRENE_API_CONSUMER_KEY"]

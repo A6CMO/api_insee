@@ -8,7 +8,7 @@ __author__ = "Lenselle Nicolas"
 __copyright__ = "Lenselle Nicolas"
 __license__ = "mit"
 
-from conftest import BASE_SIREN_URL
+from tests.conftest import BASE_SIREN_URL
 
 
 @pytest.mark.vcr()

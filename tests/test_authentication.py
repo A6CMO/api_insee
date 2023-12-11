@@ -2,7 +2,8 @@ import pytest
 
 from api_insee import ApiInsee
 from api_insee.utils.auth_service import AuthService, RequestTokenServiceFactory
-from conftest import SIRENE_API_CONSUMER_KEY, SIRENE_API_CONSUMER_SECRET
+
+from tests.conftest import SIRENE_API_CONSUMER_KEY, SIRENE_API_CONSUMER_SECRET
 
 __author__ = "Lenselle Nicolas"
 __copyright__ = "Lenselle Nicolas"

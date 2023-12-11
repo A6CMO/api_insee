@@ -8,7 +8,7 @@ __author__ = "Lenselle Nicolas"
 __copyright__ = "Lenselle Nicolas"
 __license__ = "mit"
 
-from conftest import BASE_SIRET_URL
+from tests.conftest import BASE_SIRET_URL
 
 
 def test_liens_succession_search(api: ApiInsee) -> None:

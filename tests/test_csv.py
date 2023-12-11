@@ -2,11 +2,12 @@ import csv
 
 from typing import cast
 
-import conftest as conf
 import pytest
 
 from api_insee import ApiInsee, criteria
 from api_insee.exeptions.request_error import RequestError
+
+import tests.conftest as conf
 
 __author__ = "Lenselle Nicolas"
 __copyright__ = "Lenselle Nicolas"

@@ -59,7 +59,6 @@ norecursedirs = [
     ".github"
 ]
 testpaths = ["tests"]
-pythonpath = ". src tests"
 
 [tool.aliases]
 build = "bdist_wheel"
@@ -86,7 +85,7 @@ target-version = ["py38", "py39","py310","py311"]
 
 [tool.mypy]
 strict = true
-mypy_path = ['$MYPY_CONFIG_FILE_DIR/src', '$MYPY_CONFIG_FILE_DIR/tests']
+mypy_path = ['$MYPY_CONFIG_FILE_DIR', '$MYPY_CONFIG_FILE_DIR/src']
 explicit_package_bases = true
 
 [tool.ruff]

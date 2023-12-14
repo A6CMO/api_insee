@@ -2,7 +2,7 @@ from http import HTTPStatus
 from typing import Dict, NoReturn
 from urllib.error import HTTPError
 
-from api_insee.exeptions.authentication_error import InvalidCredentialsError
+from api_insee.exceptions.authentication_error import InvalidCredentialsError
 from api_insee.utils.client_credentials import ClientCredentials
 
 from .request import RequestService

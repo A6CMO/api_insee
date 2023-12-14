@@ -22,7 +22,7 @@ from typing import (
 from urllib.error import HTTPError
 
 from api_insee import criteria
-from api_insee.exeptions.request_error import UrlError
+from api_insee.exceptions.request_error import UrlError
 
 if TYPE_CHECKING:
     from api_insee.conf import ApiPathName, ApiUrls

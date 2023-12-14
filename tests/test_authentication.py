@@ -9,7 +9,7 @@ __author__ = "Lenselle Nicolas"
 __copyright__ = "Lenselle Nicolas"
 __license__ = "mit"
 
-from api_insee.exeptions.authentication_error import InvalidCredentialsError
+from api_insee.exceptions.authentication_error import InvalidCredentialsError
 
 
 def test_missing_credentials() -> None:

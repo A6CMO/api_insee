@@ -1,6 +1,6 @@
 import base64
 
-from api_insee.exeptions.authentication_error import InvalidCredentialsError
+from api_insee.exceptions.authentication_error import InvalidCredentialsError
 
 
 class ClientCredentials:

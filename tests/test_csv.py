@@ -5,7 +5,7 @@ from typing import cast
 import pytest
 
 from api_insee import ApiInsee, criteria
-from api_insee.exeptions.request_error import RequestError
+from api_insee.exceptions.request_error import RequestError
 
 import tests.conftest as conf
 

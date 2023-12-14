@@ -24,3 +24,4 @@ Version 2.0
     - `UrlError` that extend `RequestError` is raised when API return a bad
       request error
 - Drop `noauth` parameter in `ApiInsee` init method
+- Rename `exeptions` package to `exceptions`

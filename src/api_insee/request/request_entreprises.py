@@ -1,6 +1,6 @@
 from typing import Any, Dict, Iterator, Optional, Union, cast
 
-from api_insee.exeptions.request_error import RequestError
+from api_insee.exceptions.request_error import RequestError
 
 from .request import AvailableFormat, AvailableMethod, RequestService
 

@@ -1,11 +1,44 @@
-import time
+from dataclasses import dataclass, field
+from time import time
+from typing import Protocol, Union
 
-from typing import Any, Optional
+
+class _PropertyTokenProvider(Protocol):
+    @property
+    def token_type(self) -> str:
+        ...
+
+    @property
+    def epoch_expiration(self) -> int:
+        ...
+
+    @property
+    def access_token(self) -> str:
+        ...
+
+    @property
+    def scope(self) -> str:
+        ...
 
 
+class _FieldTokenProvider(Protocol):
+    token_type: str
+    epoch_expiration: int
+    access_token: str
+    scope: str
+
+
+TokenProvider = Union[_FieldTokenProvider, _PropertyTokenProvider]
+
+
+@dataclass
 class ClientToken:
-    def __init__(self, **data: Any) -> None:
-        self.token_type: Optional[str] = data.get("token_type")
-        self.epoch_expiration: int = data.get("expires_in", 0) + int(time.time())
-        self.access_token: Optional[str] = data.get("access_token")
-        self.scope: Optional[str] = data.get("scope")
+    token_type: str
+    expires_in: int
+    access_token: str
+    scope: str
+
+    epoch_expiration: int = field(init=False)
+
+    def __post_init__(self) -> None:
+        self.epoch_expiration = self.expires_in + int(time())

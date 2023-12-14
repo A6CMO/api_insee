@@ -23,10 +23,10 @@ from urllib.error import HTTPError
 
 from api_insee import criteria
 from api_insee.exeptions.request_error import UrlError
-from api_insee.utils.client_token import ClientToken
 
 if TYPE_CHECKING:
     from api_insee.conf import ApiPathName, ApiUrls
+    from api_insee.utils.client_token import TokenProvider
 
 AvailableFormat = Literal["csv", "json"]
 AvailableMethod = Literal["get", "post"]
@@ -49,7 +49,7 @@ class RequestService:
         ],
     ) -> None:
         self._url_params: Dict[str, str] = {}
-        self.token: Optional[ClientToken] = None
+        self.token: Optional["TokenProvider"] = None
         self.criteria: Optional[criteria.Base] = None
         self._api_urls: Optional["ApiUrls"] = None
 
@@ -64,7 +64,7 @@ class RequestService:
     def init_criteria_from_criteria(self, *args: Any) -> None:
         self.criteria = criteria.List(*args)
 
-    def use_token(self, token: ClientToken) -> None:
+    def use_token(self, token: "TokenProvider") -> None:
         self.token = token
 
     @overload

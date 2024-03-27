@@ -24,7 +24,7 @@ class ApiUrls(TypedDict):
 
 class ApiVersion(Enum):
     V_3 = f"{_BASE_URL}/entreprises/sirene/V3"
-    V_3_11 = f"{_BASE_URL}/entreprises/sirene3/V3.11"
+    V_3_11 = f"{_BASE_URL}/entreprises/sirene/V3.11"
 
     @property
     def urls(self) -> ApiUrls:

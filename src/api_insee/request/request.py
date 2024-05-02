@@ -101,8 +101,8 @@ class RequestService:
 
         try:
             request = self.get_request() if method == "get" else self.post_request()
-            gcontext = ssl.SSLContext()
-            response = ur.urlopen(request, context=gcontext)
+            ssl_context = ssl.create_default_context()
+            response = ur.urlopen(request, context=ssl_context)
 
             return self.format_response(response)
         except ue.HTTPError as EX:

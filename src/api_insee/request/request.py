@@ -74,7 +74,7 @@ class RequestService:
     @overload
     def get(
         self,
-        format: Optional[Literal["json"]],
+        format: Optional[Literal["json"]] = None,
         method: AvailableMethod = "get",
     ) -> Dict[str, Any]:
         ...

@@ -6,10 +6,10 @@ from unittest.mock import MagicMock
 import pytest
 
 from _pytest.fixtures import SubRequest
+
 from api_insee import ApiInsee
 from api_insee.conf import ApiVersion
 from api_insee.utils.auth_service import AuthService
-
 from tests.utils import parse_env_file
 
 CREDENTIALS: Final = parse_env_file()
@@ -22,7 +22,7 @@ BASE_SIREN_URL: Final = API_URLS["path_siren"]
 BASE_SIRET_URL: Final = API_URLS["path_siret"]
 
 
-@pytest.fixture()
+@pytest.fixture
 def api(request: SubRequest) -> ApiInsee:
     return ApiInsee(
         SIRENE_API_CONSUMER_KEY,
@@ -40,7 +40,7 @@ def _get_auth_service(request: SubRequest) -> Union[Type[AuthService], MagicMock
     )
 
 
-@pytest.fixture()
+@pytest.fixture
 def vcr_config() -> Dict[str, Any]:
     return {
         "filter_headers": ["authorization", "api_token", "Set-Cookie"],

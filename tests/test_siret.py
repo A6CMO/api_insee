@@ -11,7 +11,7 @@ __license__ = "mit"
 from tests.conftest import BASE_SIRET_URL
 
 
-@pytest.mark.vcr()
+@pytest.mark.vcr
 def test_siret_search(api: ApiInsee) -> None:
     request = api.siret("39860733300059")
     unit = cast(Dict[str, Any], request.get())
@@ -212,7 +212,7 @@ def test_siret_search_with_excluding_borne(api: ApiInsee) -> None:
     assert request.url == BASE_SIRET_URL + "?q=nomUsageUniteLegale:{DUPONT TO DURANT}"
 
 
-@pytest.mark.vcr()
+@pytest.mark.vcr
 def test_siret_multi_unit(api: ApiInsee) -> None:
     request = api.siret(q="codeCommuneEtablissement:92046", nombre=1000)
     data = cast(Dict[str, Any], request.get())

@@ -7,7 +7,7 @@ __copyright__ = "Lenselle Nicolas"
 __license__ = "mit"
 
 
-@pytest.mark.vcr()
+@pytest.mark.vcr
 def test_request_first_pages(api: ApiInsee) -> None:
     request = api.siren(criteria.Raw("*"))
 
@@ -19,7 +19,7 @@ def test_request_first_pages(api: ApiInsee) -> None:
     assert first["header"]["curseurSuivant"]
 
 
-@pytest.mark.vcr()
+@pytest.mark.vcr
 def test_request_iterate_on_pages(api: ApiInsee) -> None:
     request = api.siren(criteria.Raw("*"))
 

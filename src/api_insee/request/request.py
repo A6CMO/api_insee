@@ -22,7 +22,7 @@ from typing import (
 from urllib.error import HTTPError
 
 from api_insee import criteria
-from api_insee.exceptions.request_error import UrlError
+from api_insee.exceptions.request_error import RequestError, UrlError
 
 if TYPE_CHECKING:
     from api_insee.conf import ApiPathName, ApiUrls
@@ -38,7 +38,6 @@ class RequestService:
 
     def __init__(
         self,
-        *args: Any,
         **kwargs: Union[
             Dict[str, Any],
             List[Any],
@@ -96,26 +95,43 @@ class RequestService:
             msg = 'method parameter must be "get" or "post"'
             raise ValueError(msg)
 
+        request = self.get_request() if method == "get" else self.post_request()
+        if not request.full_url.startswith("https"):
+            msg = f"invalid url {request.full_url}"
+            raise ValueError(msg)
+
+        ssl_context = ssl.create_default_context()
+
         try:
-            request = self.get_request() if method == "get" else self.post_request()
-            ssl_context = ssl.create_default_context()
-            response = ur.urlopen(request, context=ssl_context)
+            response = ur.urlopen(request, context=ssl_context)  # noqa: S310
 
             return self.format_response(response)
         except ue.HTTPError as EX:
             self.catch_http_error(EX)
         except Exception as e:
-            raise Exception(self.url_encoded) from e
+            raise RequestError(self.url_encoded) from e
 
     def get_request(self) -> ur.Request:
-        return ur.Request(self.url_encoded, data=self.data, headers=self.header)
+        return self._create_request(self.url_encoded, self.data, self.header)
 
     def post_request(self) -> ur.Request:
-        header = self.header
-        header.update({"Content-Type": "application/x-www-form-urlencoded"})
-        data = up.urlencode(self._url_params).encode("utf-8")
+        return self._create_request(
+            self.url_path,
+            up.urlencode(self._url_params).encode("utf-8"),
+            {**self.header, "Content-Type": "application/x-www-form-urlencoded"},
+        )
 
-        return ur.Request(self.url_path, data=data, headers=header)
+    def _create_request(
+        self,
+        url: str,
+        data: Optional[bytes],
+        headers: Dict[str, str],
+    ) -> ur.Request:
+        if not url.startswith("https"):
+            msg = f"invalid url {url}"
+            raise ValueError(msg)
+
+        return ur.Request(url, data=data, headers=headers)  # noqa: S310
 
     def format_response(self, response: HTTPResponse) -> Union[str, Dict[str, Any]]:
         if self.format == "json":

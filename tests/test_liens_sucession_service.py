@@ -34,7 +34,7 @@ def test_liens_succession_search(api: ApiInsee) -> None:
     )
 
 
-@pytest.mark.vcr()
+@pytest.mark.vcr
 def test_liens_succession_search_request(api: ApiInsee) -> None:
     request = api.liens_succession(
         q=criteria.Field("siretEtablissementPredecesseur", 39860733300042),

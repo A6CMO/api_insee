@@ -11,7 +11,7 @@ __license__ = "mit"
 from tests.conftest import BASE_SIREN_URL
 
 
-@pytest.mark.vcr()
+@pytest.mark.vcr
 def test_siren_search(api: ApiInsee) -> None:
     request = api.siren("809893225")
     unit = cast(Dict[str, Any], request.get())
@@ -21,7 +21,7 @@ def test_siren_search(api: ApiInsee) -> None:
     assert request.url == BASE_SIREN_URL + "/809893225"
 
 
-@pytest.mark.vcr()
+@pytest.mark.vcr
 def test_siren_raw_search(api: ApiInsee) -> None:
     criteria_ = criteria.Raw("unitePurgeeUniteLegale:True")
     request = api.siren(q=criteria_)
@@ -31,7 +31,7 @@ def test_siren_raw_search(api: ApiInsee) -> None:
     assert request.url == BASE_SIREN_URL + "?q=unitePurgeeUniteLegale:True"
 
 
-@pytest.mark.vcr()
+@pytest.mark.vcr
 def test_siren_search_by_field(api: ApiInsee) -> None:
     criteria_ = criteria.Field("unitePurgeeUniteLegale", True)
     request = api.siren(q=criteria_)
@@ -66,7 +66,7 @@ def test_siren_search_exact_field(api: ApiInsee) -> None:
     )
 
 
-@pytest.mark.vcr()
+@pytest.mark.vcr
 def test_siren_multi_unit(api: ApiInsee) -> None:
     request = api.siren(q={"categorieEntreprise": "PME"}, nombre=1000)
     data = cast(Dict[str, Any], request.get())

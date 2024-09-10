@@ -22,7 +22,7 @@ else:
 class ApiInsee:
     api_urls: ApiUrls
 
-    def __init__(  # noqa: PLR0913
+    def __init__(
         self,
         key: str,
         secret: str,

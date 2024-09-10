@@ -4,23 +4,23 @@ from typing import cast
 
 import pytest
 
+import tests.conftest as conf
+
 from api_insee import ApiInsee, criteria
 from api_insee.exceptions.request_error import RequestError
-
-import tests.conftest as conf
 
 __author__ = "Lenselle Nicolas"
 __copyright__ = "Lenselle Nicolas"
 __license__ = "mit"
 
 
-@pytest.mark.vcr()
+@pytest.mark.vcr
 def test_request_format_fallback_is_json(api: ApiInsee) -> None:
     request = api.siret("39860733300059")
     assert request.header["Accept"] == "application/json"
 
 
-@pytest.mark.vcr()
+@pytest.mark.vcr
 def test_request_format_fallback_is_csv() -> None:
     api_csv = ApiInsee(
         key=conf.SIRENE_API_CONSUMER_KEY,
@@ -32,7 +32,7 @@ def test_request_format_fallback_is_csv() -> None:
     assert request.header["Accept"] == "text/csv"
 
 
-@pytest.mark.vcr()
+@pytest.mark.vcr
 def test_request_format_csv(api: ApiInsee) -> None:
     request = api.siret(
         q='denominationUniteLegale:"bleu le"&nombre=20&champs=denominationUniteLegale',
@@ -42,7 +42,7 @@ def test_request_format_csv(api: ApiInsee) -> None:
     assert request.header["Accept"] == "text/csv"
 
 
-@pytest.mark.vcr()
+@pytest.mark.vcr
 def test_request_format_csv_in_get_parameters(api: ApiInsee) -> None:
     request = api.siret(
         q=(
@@ -64,7 +64,7 @@ def test_request_format_csv_in_get_parameters(api: ApiInsee) -> None:
     assert lcount == 1
 
 
-@pytest.mark.vcr()
+@pytest.mark.vcr
 def test_request_csv_fail_with_cursor(api: ApiInsee) -> None:
     request = api.siren(criteria.Raw("*"))
     request.format = "csv"

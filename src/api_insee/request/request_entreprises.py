@@ -14,9 +14,8 @@ class RequestEntrepriseService(RequestService):
         self.reference: Optional[str] = None
         if args and isinstance(args[0], str):
             self.reference = args[0]
-            args = args[1:]
 
-        super().__init__(*args, **kwargs)
+        super().__init__(**kwargs)
 
     def get(  # type: ignore[override]
         self,
@@ -82,9 +81,6 @@ class RequestEntrepriseServiceSiret(RequestEntrepriseService):
 
 class RequestEntrepriseServiceLiensSuccession(RequestEntrepriseService):
     path_name = "path_liens_succession"
-
-    def __init__(self, *args: Any, **kwargs: Any) -> None:
-        super().__init__(*args, **kwargs)
 
     def get(  # type: ignore[override]
         self,

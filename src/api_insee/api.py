@@ -1,4 +1,4 @@
-from typing import TYPE_CHECKING, Any, Type, TypeVar, Union
+from typing import TYPE_CHECKING, Any, Type, TypeVar
 
 from api_insee.conf import ApiUrls, ApiVersion
 from api_insee.request.request_entreprises import (
@@ -7,12 +7,11 @@ from api_insee.request.request_entreprises import (
     RequestEntrepriseServiceSiret,
 )
 from api_insee.request.request_informations import RequestInformationsService
-from api_insee.request.request_token import RequestTokenService
-from api_insee.utils.auth_service import AuthService
+from api_insee.utils.api_key import ApiKey
+from api_insee.utils.client_token import ClientToken
 
 if TYPE_CHECKING:
     from api_insee.request.request import AvailableFormat, RequestService
-    from api_insee.utils.client_credentials import ClientCredentials
 
     T = TypeVar("T", bound=RequestService)
 else:
@@ -24,21 +23,13 @@ class ApiInsee:
 
     def __init__(
         self,
-        key: str,
-        secret: str,
+        api_key: str,
         format: "AvailableFormat" = "json",
         api_version: ApiVersion = ApiVersion.V_3_11,
-        auth_service: Union[Type[AuthService], None] = None,
     ) -> None:
         self.format = format
         self.api_urls = api_version.urls
-
-        auth_service = auth_service or AuthService
-        self.auth = auth_service(
-            key,
-            secret,
-            self._request_token_service_factory,
-        )
+        self.api_key = ApiKey(api_key)
 
     def siret(self, *args: Any, **kwargs: Any) -> RequestEntrepriseServiceSiret:
         return self._wrap(RequestEntrepriseServiceSiret, *args, **kwargs)
@@ -56,15 +47,6 @@ class ApiInsee:
     ) -> RequestEntrepriseServiceLiensSuccession:
         return self._wrap(RequestEntrepriseServiceLiensSuccession, *args, **kwargs)
 
-    def _request_token_service_factory(
-        self,
-        credentials: "ClientCredentials",
-    ) -> RequestTokenService:
-        service = RequestTokenService(credentials)
-        service.api_urls = self.api_urls
-
-        return service
-
     def _wrap(
         self,
         request_service: Type[T],
@@ -73,7 +55,7 @@ class ApiInsee:
     ) -> T:
         service = request_service(*args, **kwargs)
         service.format = self.format
-        service.use_token(self.auth.token)
+        service.use_token(ClientToken(access_token=self.api_key))
         service.api_urls = self.api_urls
 
         return service

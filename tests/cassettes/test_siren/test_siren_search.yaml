@@ -1,50 +1,5 @@
 interactions:
 - request:
-    body: grant_type=client_credentials
-    headers:
-      Connection:
-      - close
-      Content-Length:
-      - '29'
-      Content-Type:
-      - application/x-www-form-urlencoded
-      Host:
-      - api.insee.fr
-      User-Agent:
-      - Python-urllib/3.11
-    method: POST
-    uri: https://api.insee.fr/token
-  response:
-    body:
-      string: '{"access_token":"00000000-0000-0000-0000-000000000000","scope":"am_application_scope
-        default","token_type":"Bearer","expires_in":597747}'
-    headers:
-      Cache-Control:
-      - no-store
-      Connection:
-      - close
-      Content-Type:
-      - application/json
-      Date:
-      - Mon, 27 Nov 2023 10:26:54 GMT
-      Pragma:
-      - no-cache
-      Strict-Transport-Security:
-      - max-age=100000; includeSubDomains
-      Transfer-Encoding:
-      - chunked
-      X-Cnection:
-      - close
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - DENY
-      X-XSS-Protection:
-      - 1; mode=block
-    status:
-      code: 200
-      message: OK
-- request:
     body: null
     headers:
       Accept:
@@ -56,17 +11,11 @@ interactions:
       User-Agent:
       - Python-urllib/3.11
     method: GET
-    uri: https://api.insee.fr/entreprises/sirene/V3.11/siren/809893225
+    uri: https://api.insee.fr/api-sirene/3.11/siren/809893225
   response:
     body:
-      string: '{"header":{"statut":200,"message":"OK"},"uniteLegale":{"siren":"809893225","statutDiffusionUniteLegale":"O","dateCreationUniteLegale":"2015-01-01","sigleUniteLegale":null,"sexeUniteLegale":null,"prenom1UniteLegale":null,"prenom2UniteLegale":null,"prenom3UniteLegale":null,"prenom4UniteLegale":null,"prenomUsuelUniteLegale":null,"pseudonymeUniteLegale":null,"identifiantAssociationUniteLegale":null,"trancheEffectifsUniteLegale":"NN","anneeEffectifsUniteLegale":null,"dateDernierTraitementUniteLegale":"2022-10-24T12:56:56","nombrePeriodesUniteLegale":4,"categorieEntreprise":"PME","anneeCategorieEntreprise":"2020","periodesUniteLegale":[{"dateFin":null,"dateDebut":"2022-09-09","etatAdministratifUniteLegale":"A","changementEtatAdministratifUniteLegale":false,"nomUniteLegale":null,"changementNomUniteLegale":false,"nomUsageUniteLegale":null,"changementNomUsageUniteLegale":false,"denominationUniteLegale":"PAPANGOO","changementDenominationUniteLegale":false,"denominationUsuelle1UniteLegale":null,"denominationUsuelle2UniteLegale":null,"denominationUsuelle3UniteLegale":null,"changementDenominationUsuelleUniteLegale":false,"categorieJuridiqueUniteLegale":"5710","changementCategorieJuridiqueUniteLegale":false,"activitePrincipaleUniteLegale":"47.91B","nomenclatureActivitePrincipaleUniteLegale":"NAFRev2","changementActivitePrincipaleUniteLegale":false,"nicSiegeUniteLegale":"00015","changementNicSiegeUniteLegale":false,"economieSocialeSolidaireUniteLegale":"N","changementEconomieSocialeSolidaireUniteLegale":false,"societeMissionUniteLegale":"N","changementSocieteMissionUniteLegale":false,"caractereEmployeurUniteLegale":"O","changementCaractereEmployeurUniteLegale":true},{"dateFin":"2022-09-08","dateDebut":"2022-03-31","etatAdministratifUniteLegale":"A","changementEtatAdministratifUniteLegale":false,"nomUniteLegale":null,"changementNomUniteLegale":false,"nomUsageUniteLegale":null,"changementNomUsageUniteLegale":false,"denominationUniteLegale":"PAPANGOO","changementDenominationUniteLegale":false,"denominationUsuelle1UniteLegale":null,"denominationUsuelle2UniteLegale":null,"denominationUsuelle3UniteLegale":null,"changementDenominationUsuelleUniteLegale":false,"categorieJuridiqueUniteLegale":"5710","changementCategorieJuridiqueUniteLegale":false,"activitePrincipaleUniteLegale":"47.91B","nomenclatureActivitePrincipaleUniteLegale":"NAFRev2","changementActivitePrincipaleUniteLegale":false,"nicSiegeUniteLegale":"00015","changementNicSiegeUniteLegale":false,"economieSocialeSolidaireUniteLegale":"N","changementEconomieSocialeSolidaireUniteLegale":true,"societeMissionUniteLegale":"N","changementSocieteMissionUniteLegale":true,"caractereEmployeurUniteLegale":"N","changementCaractereEmployeurUniteLegale":false},{"dateFin":"2022-03-30","dateDebut":"2019-12-31","etatAdministratifUniteLegale":"A","changementEtatAdministratifUniteLegale":false,"nomUniteLegale":null,"changementNomUniteLegale":false,"nomUsageUniteLegale":null,"changementNomUsageUniteLegale":false,"denominationUniteLegale":"PAPANGOO","changementDenominationUniteLegale":false,"denominationUsuelle1UniteLegale":null,"denominationUsuelle2UniteLegale":null,"denominationUsuelle3UniteLegale":null,"changementDenominationUsuelleUniteLegale":false,"categorieJuridiqueUniteLegale":"5710","changementCategorieJuridiqueUniteLegale":false,"activitePrincipaleUniteLegale":"47.91B","nomenclatureActivitePrincipaleUniteLegale":"NAFRev2","changementActivitePrincipaleUniteLegale":false,"nicSiegeUniteLegale":"00015","changementNicSiegeUniteLegale":false,"economieSocialeSolidaireUniteLegale":null,"changementEconomieSocialeSolidaireUniteLegale":false,"societeMissionUniteLegale":null,"changementSocieteMissionUniteLegale":false,"caractereEmployeurUniteLegale":"N","changementCaractereEmployeurUniteLegale":true},{"dateFin":"2019-12-30","dateDebut":"2015-01-01","etatAdministratifUniteLegale":"A","changementEtatAdministratifUniteLegale":false,"nomUniteLegale":null,"changementNomUniteLegale":false,"nomUsageUniteLegale":null,"changementNomUsageUniteLegale":false,"denominationUniteLegale":"PAPANGOO","changementDenominationUniteLegale":false,"denominationUsuelle1UniteLegale":null,"denominationUsuelle2UniteLegale":null,"denominationUsuelle3UniteLegale":null,"changementDenominationUsuelleUniteLegale":false,"categorieJuridiqueUniteLegale":"5710","changementCategorieJuridiqueUniteLegale":false,"activitePrincipaleUniteLegale":"47.91B","nomenclatureActivitePrincipaleUniteLegale":"NAFRev2","changementActivitePrincipaleUniteLegale":false,"nicSiegeUniteLegale":"00015","changementNicSiegeUniteLegale":false,"economieSocialeSolidaireUniteLegale":null,"changementEconomieSocialeSolidaireUniteLegale":false,"societeMissionUniteLegale":null,"changementSocieteMissionUniteLegale":false,"caractereEmployeurUniteLegale":"O","changementCaractereEmployeurUniteLegale":false}]}}'
+      string: '{"header":{"statut":200,"message":"OK"},"uniteLegale":{"siren":"809893225","statutDiffusionUniteLegale":"O","dateCreationUniteLegale":"2015-01-01","sigleUniteLegale":null,"sexeUniteLegale":null,"prenom1UniteLegale":null,"prenom2UniteLegale":null,"prenom3UniteLegale":null,"prenom4UniteLegale":null,"prenomUsuelUniteLegale":null,"pseudonymeUniteLegale":null,"identifiantAssociationUniteLegale":null,"trancheEffectifsUniteLegale":null,"anneeEffectifsUniteLegale":null,"dateDernierTraitementUniteLegale":"2024-03-22T14:26:06.000","nombrePeriodesUniteLegale":2,"categorieEntreprise":"PME","anneeCategorieEntreprise":"2021","periodesUniteLegale":[{"dateFin":null,"dateDebut":"2022-03-31","etatAdministratifUniteLegale":"A","changementEtatAdministratifUniteLegale":false,"nomUniteLegale":null,"changementNomUniteLegale":false,"nomUsageUniteLegale":null,"changementNomUsageUniteLegale":false,"denominationUniteLegale":"PAPANGOO","changementDenominationUniteLegale":false,"denominationUsuelle1UniteLegale":null,"denominationUsuelle2UniteLegale":null,"denominationUsuelle3UniteLegale":null,"changementDenominationUsuelleUniteLegale":false,"categorieJuridiqueUniteLegale":"5710","changementCategorieJuridiqueUniteLegale":false,"activitePrincipaleUniteLegale":"47.91B","nomenclatureActivitePrincipaleUniteLegale":"NAFRev2","changementActivitePrincipaleUniteLegale":false,"nicSiegeUniteLegale":"00015","changementNicSiegeUniteLegale":false,"economieSocialeSolidaireUniteLegale":"N","changementEconomieSocialeSolidaireUniteLegale":true,"societeMissionUniteLegale":null,"changementSocieteMissionUniteLegale":false,"caractereEmployeurUniteLegale":null,"changementCaractereEmployeurUniteLegale":false},{"dateFin":"2022-03-30","dateDebut":"2015-01-01","etatAdministratifUniteLegale":"A","changementEtatAdministratifUniteLegale":false,"nomUniteLegale":null,"changementNomUniteLegale":false,"nomUsageUniteLegale":null,"changementNomUsageUniteLegale":false,"denominationUniteLegale":"PAPANGOO","changementDenominationUniteLegale":false,"denominationUsuelle1UniteLegale":null,"denominationUsuelle2UniteLegale":null,"denominationUsuelle3UniteLegale":null,"changementDenominationUsuelleUniteLegale":false,"categorieJuridiqueUniteLegale":"5710","changementCategorieJuridiqueUniteLegale":false,"activitePrincipaleUniteLegale":"47.91B","nomenclatureActivitePrincipaleUniteLegale":"NAFRev2","changementActivitePrincipaleUniteLegale":false,"nicSiegeUniteLegale":"00015","changementNicSiegeUniteLegale":false,"economieSocialeSolidaireUniteLegale":null,"changementEconomieSocialeSolidaireUniteLegale":false,"societeMissionUniteLegale":null,"changementSocieteMissionUniteLegale":false,"caractereEmployeurUniteLegale":null,"changementCaractereEmployeurUniteLegale":false}]}}'
     headers:
-      Access-Control-Allow-Headers:
-      - authorization,Access-Control-Allow-Origin,Content-Type,SOAPAction
-      Access-Control-Allow-Methods:
-      - GET
-      Access-Control-Allow-Origin:
-      - '*'
       Cache-Control:
       - no-cache
       Connection:
@@ -74,100 +23,29 @@ interactions:
       Content-Type:
       - application/json;charset=utf-8
       Date:
-      - Mon, 27 Nov 2023 10:26:54 GMT
+      - Tue, 10 Sep 2024 13:24:18 GMT
       Expires:
       - Thu, 01 Jan 1970 00:00:00 GMT
+      Server:
+      - unknown
       Strict-Transport-Security:
       - max-age=100000; includeSubDomains
-      Transfer-Encoding:
-      - chunked
       Vary:
       - Accept-Encoding
-    status:
-      code: 200
-      message: ''
-- request:
-    body: grant_type=client_credentials
-    headers:
-      Connection:
-      - close
-      Content-Length:
-      - '29'
-      Content-Type:
-      - application/x-www-form-urlencoded
-      Host:
-      - api.insee.fr
-      User-Agent:
-      - Python-urllib/3.11
-    method: POST
-    uri: https://api.insee.fr/token
-  response:
-    body:
-      string: '{"access_token":"00000000-0000-0000-0000-000000000000","scope":"am_application_scope
-        default","token_type":"Bearer","expires_in":597531}'
-    headers:
-      Cache-Control:
-      - no-store
-      Connection:
-      - close
-      Content-Type:
-      - application/json
-      Date:
-      - Mon, 27 Nov 2023 10:30:29 GMT
-      Pragma:
-      - no-cache
-      Strict-Transport-Security:
-      - max-age=100000; includeSubDomains
-      Transfer-Encoding:
+      X-Gravitee-Client-Identifier:
+      - 0b45988f-e76d-4ea7-8598-8fe76d1ea7aa
+      X-Gravitee-Request-Id:
+      - 74ccc42f-6880-43cc-8cc4-2f688043ccd8
+      X-Gravitee-Transaction-Id:
+      - 74ccc42f-6880-43cc-8cc4-2f688043ccd8
+      X-Rate-Limit-Limit:
+      - '30'
+      X-Rate-Limit-Remaining:
+      - '22'
+      X-Rate-Limit-Reset:
+      - '1725974715180'
+      transfer-encoding:
       - chunked
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - DENY
-      X-XSS-Protection:
-      - 1; mode=block
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - application/json
-      Connection:
-      - close
-      Host:
-      - api.insee.fr
-      User-Agent:
-      - Python-urllib/3.11
-    method: GET
-    uri: https://api.insee.fr/entreprises/sirene/V3.11/siren/809893225
-  response:
-    body:
-      string: '{"header":{"statut":200,"message":"OK"},"uniteLegale":{"siren":"809893225","statutDiffusionUniteLegale":"O","dateCreationUniteLegale":"2015-01-01","sigleUniteLegale":null,"sexeUniteLegale":null,"prenom1UniteLegale":null,"prenom2UniteLegale":null,"prenom3UniteLegale":null,"prenom4UniteLegale":null,"prenomUsuelUniteLegale":null,"pseudonymeUniteLegale":null,"identifiantAssociationUniteLegale":null,"trancheEffectifsUniteLegale":"NN","anneeEffectifsUniteLegale":null,"dateDernierTraitementUniteLegale":"2022-10-24T12:56:56","nombrePeriodesUniteLegale":4,"categorieEntreprise":"PME","anneeCategorieEntreprise":"2020","periodesUniteLegale":[{"dateFin":null,"dateDebut":"2022-09-09","etatAdministratifUniteLegale":"A","changementEtatAdministratifUniteLegale":false,"nomUniteLegale":null,"changementNomUniteLegale":false,"nomUsageUniteLegale":null,"changementNomUsageUniteLegale":false,"denominationUniteLegale":"PAPANGOO","changementDenominationUniteLegale":false,"denominationUsuelle1UniteLegale":null,"denominationUsuelle2UniteLegale":null,"denominationUsuelle3UniteLegale":null,"changementDenominationUsuelleUniteLegale":false,"categorieJuridiqueUniteLegale":"5710","changementCategorieJuridiqueUniteLegale":false,"activitePrincipaleUniteLegale":"47.91B","nomenclatureActivitePrincipaleUniteLegale":"NAFRev2","changementActivitePrincipaleUniteLegale":false,"nicSiegeUniteLegale":"00015","changementNicSiegeUniteLegale":false,"economieSocialeSolidaireUniteLegale":"N","changementEconomieSocialeSolidaireUniteLegale":false,"societeMissionUniteLegale":"N","changementSocieteMissionUniteLegale":false,"caractereEmployeurUniteLegale":"O","changementCaractereEmployeurUniteLegale":true},{"dateFin":"2022-09-08","dateDebut":"2022-03-31","etatAdministratifUniteLegale":"A","changementEtatAdministratifUniteLegale":false,"nomUniteLegale":null,"changementNomUniteLegale":false,"nomUsageUniteLegale":null,"changementNomUsageUniteLegale":false,"denominationUniteLegale":"PAPANGOO","changementDenominationUniteLegale":false,"denominationUsuelle1UniteLegale":null,"denominationUsuelle2UniteLegale":null,"denominationUsuelle3UniteLegale":null,"changementDenominationUsuelleUniteLegale":false,"categorieJuridiqueUniteLegale":"5710","changementCategorieJuridiqueUniteLegale":false,"activitePrincipaleUniteLegale":"47.91B","nomenclatureActivitePrincipaleUniteLegale":"NAFRev2","changementActivitePrincipaleUniteLegale":false,"nicSiegeUniteLegale":"00015","changementNicSiegeUniteLegale":false,"economieSocialeSolidaireUniteLegale":"N","changementEconomieSocialeSolidaireUniteLegale":true,"societeMissionUniteLegale":"N","changementSocieteMissionUniteLegale":true,"caractereEmployeurUniteLegale":"N","changementCaractereEmployeurUniteLegale":false},{"dateFin":"2022-03-30","dateDebut":"2019-12-31","etatAdministratifUniteLegale":"A","changementEtatAdministratifUniteLegale":false,"nomUniteLegale":null,"changementNomUniteLegale":false,"nomUsageUniteLegale":null,"changementNomUsageUniteLegale":false,"denominationUniteLegale":"PAPANGOO","changementDenominationUniteLegale":false,"denominationUsuelle1UniteLegale":null,"denominationUsuelle2UniteLegale":null,"denominationUsuelle3UniteLegale":null,"changementDenominationUsuelleUniteLegale":false,"categorieJuridiqueUniteLegale":"5710","changementCategorieJuridiqueUniteLegale":false,"activitePrincipaleUniteLegale":"47.91B","nomenclatureActivitePrincipaleUniteLegale":"NAFRev2","changementActivitePrincipaleUniteLegale":false,"nicSiegeUniteLegale":"00015","changementNicSiegeUniteLegale":false,"economieSocialeSolidaireUniteLegale":null,"changementEconomieSocialeSolidaireUniteLegale":false,"societeMissionUniteLegale":null,"changementSocieteMissionUniteLegale":false,"caractereEmployeurUniteLegale":"N","changementCaractereEmployeurUniteLegale":true},{"dateFin":"2019-12-30","dateDebut":"2015-01-01","etatAdministratifUniteLegale":"A","changementEtatAdministratifUniteLegale":false,"nomUniteLegale":null,"changementNomUniteLegale":false,"nomUsageUniteLegale":null,"changementNomUsageUniteLegale":false,"denominationUniteLegale":"PAPANGOO","changementDenominationUniteLegale":false,"denominationUsuelle1UniteLegale":null,"denominationUsuelle2UniteLegale":null,"denominationUsuelle3UniteLegale":null,"changementDenominationUsuelleUniteLegale":false,"categorieJuridiqueUniteLegale":"5710","changementCategorieJuridiqueUniteLegale":false,"activitePrincipaleUniteLegale":"47.91B","nomenclatureActivitePrincipaleUniteLegale":"NAFRev2","changementActivitePrincipaleUniteLegale":false,"nicSiegeUniteLegale":"00015","changementNicSiegeUniteLegale":false,"economieSocialeSolidaireUniteLegale":null,"changementEconomieSocialeSolidaireUniteLegale":false,"societeMissionUniteLegale":null,"changementSocieteMissionUniteLegale":false,"caractereEmployeurUniteLegale":"O","changementCaractereEmployeurUniteLegale":false}]}}'
-    headers:
-      Access-Control-Allow-Headers:
-      - authorization,Access-Control-Allow-Origin,Content-Type,SOAPAction
-      Access-Control-Allow-Methods:
-      - GET
-      Access-Control-Allow-Origin:
-      - '*'
-      Cache-Control:
-      - no-cache
-      Connection:
-      - close
-      Content-Type:
-      - application/json;charset=utf-8
-      Date:
-      - Mon, 27 Nov 2023 10:30:30 GMT
-      Expires:
-      - Thu, 01 Jan 1970 00:00:00 GMT
-      Strict-Transport-Security:
-      - max-age=100000; includeSubDomains
-      Transfer-Encoding:
-      - chunked
-      Vary:
-      - Accept-Encoding
     status:
       code: 200
       message: ''

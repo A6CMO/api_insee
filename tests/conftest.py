@@ -1,20 +1,14 @@
-import re
-
-from typing import Any, Dict, Final, Type, Union
-from unittest.mock import MagicMock
+from typing import Any, Dict, Final
 
 import pytest
 
-from _pytest.fixtures import SubRequest
-
 from api_insee import ApiInsee
 from api_insee.conf import ApiVersion
-from api_insee.utils.auth_service import AuthService
+from api_insee.request.request import RequestService
 from tests.utils import parse_env_file
 
 CREDENTIALS: Final = parse_env_file()
-SIRENE_API_CONSUMER_KEY: Final = CREDENTIALS["SIRENE_API_CONSUMER_KEY"]
-SIRENE_API_CONSUMER_SECRET: Final = CREDENTIALS["SIRENE_API_CONSUMER_SECRET"]
+SIRENE_API_KEY: Final = CREDENTIALS["SIRENE_API_KEY"]
 
 API_VERSION: Final = ApiVersion.V_3_11
 API_URLS: Final = API_VERSION.urls
@@ -23,27 +17,14 @@ BASE_SIRET_URL: Final = API_URLS["path_siret"]
 
 
 @pytest.fixture
-def api(request: SubRequest) -> ApiInsee:
-    return ApiInsee(
-        SIRENE_API_CONSUMER_KEY,
-        SIRENE_API_CONSUMER_SECRET,
-        auth_service=_get_auth_service(request),
-    )
-
-
-def _get_auth_service(request: SubRequest) -> Union[Type[AuthService], MagicMock]:
-    return (
-        AuthService
-        # We enable authentication when tests are launched in record mode
-        if request.config.option.record_mode is not None
-        else MagicMock()
-    )
+def api() -> ApiInsee:
+    return ApiInsee(SIRENE_API_KEY)
 
 
 @pytest.fixture
 def vcr_config() -> Dict[str, Any]:
     return {
-        "filter_headers": ["authorization", "api_token", "Set-Cookie"],
+        "filter_headers": [RequestService.API_AUTHORIZATION_HEADER],
         "before_record_response": replace_token,
     }
 
@@ -51,12 +32,5 @@ def vcr_config() -> Dict[str, Any]:
 def replace_token(response: Dict[str, Any]) -> Dict[str, Any]:
     if "headers" in response and "Set-Cookie" in response["headers"]:
         del response["headers"]["Set-Cookie"]
-
-    if "body" in response and "string" in response["body"]:
-        response["body"]["string"] = re.sub(
-            b'"access_token":"[^"]+"',
-            b'"access_token":"00000000-0000-0000-0000-000000000000"',
-            response["body"]["string"],
-        )
 
     return response

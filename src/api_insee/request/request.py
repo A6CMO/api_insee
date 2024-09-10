@@ -35,6 +35,7 @@ AvailableMethod = Literal["get", "post"]
 class RequestService:
     path_name: "ApiPathName"
     _accept_format = "application/json"
+    API_AUTHORIZATION_HEADER = "X-INSEE-Api-Key-Integration"
 
     def __init__(
         self,
@@ -236,7 +237,7 @@ class RequestService:
 
         return {
             "Accept": self._accept_format,
-            "Authorization": f"Bearer {self.token.access_token}",
+            self.API_AUTHORIZATION_HEADER: self.token.access_token,
         }
 
     @property

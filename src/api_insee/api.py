@@ -27,7 +27,7 @@ class ApiInsee:
         key: str,
         secret: str,
         format: "AvailableFormat" = "json",
-        api_version: ApiVersion = ApiVersion.V_3,
+        api_version: ApiVersion = ApiVersion.V_3_11,
         auth_service: Union[Type[AuthService], None] = None,
     ) -> None:
         self.format = format

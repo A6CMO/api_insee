@@ -24,16 +24,6 @@ api = ApiInsee(
     secret=secret_key,
 )
 ```
-Ou, pour interroger la version 3.11 de l’api
-```python
-from api_insee import ApiInsee, ApiVersion
-
-api = ApiInsee(
-    key=consumer_key,
-    secret=secret_key,
-    api_version=ApiVersion.V_3_11,
-)
-```
 
 ---------------------------
 

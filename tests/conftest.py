@@ -16,7 +16,7 @@ CREDENTIALS: Final = parse_env_file()
 SIRENE_API_CONSUMER_KEY: Final = CREDENTIALS["SIRENE_API_CONSUMER_KEY"]
 SIRENE_API_CONSUMER_SECRET: Final = CREDENTIALS["SIRENE_API_CONSUMER_SECRET"]
 
-API_VERSION: Final = ApiVersion.V_3
+API_VERSION: Final = ApiVersion.V_3_11
 API_URLS: Final = API_VERSION.urls
 BASE_SIREN_URL: Final = API_URLS["path_siren"]
 BASE_SIRET_URL: Final = API_URLS["path_siret"]
@@ -27,17 +27,6 @@ def api(request: SubRequest) -> ApiInsee:
     return ApiInsee(
         SIRENE_API_CONSUMER_KEY,
         SIRENE_API_CONSUMER_SECRET,
-        api_version=API_VERSION,
-        auth_service=_get_auth_service(request),
-    )
-
-
-@pytest.fixture()
-def api_311(request: SubRequest) -> ApiInsee:
-    return ApiInsee(
-        SIRENE_API_CONSUMER_KEY,
-        SIRENE_API_CONSUMER_SECRET,
-        api_version=ApiVersion.V_3_11,
         auth_service=_get_auth_service(request),
     )
 

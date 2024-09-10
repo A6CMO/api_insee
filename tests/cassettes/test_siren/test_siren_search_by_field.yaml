@@ -58,7 +58,7 @@ interactions:
       User-Agent:
       - Python-urllib/3.11
     method: POST
-    uri: https://api.insee.fr/entreprises/sirene/V3/siren
+    uri: https://api.insee.fr/entreprises/sirene/V3.11/siren
   response:
     body:
       string: '{"header":{"statut":200,"message":"OK","total":4359342,"debut":0,"nombre":20},"unitesLegales":[{"siren":"314077215","statutDiffusionUniteLegale":"O","unitePurgeeUniteLegale":true,"dateCreationUniteLegale":"1978-01-01","sigleUniteLegale":null,"sexeUniteLegale":null,"prenom1UniteLegale":null,"prenom2UniteLegale":null,"prenom3UniteLegale":null,"prenom4UniteLegale":null,"prenomUsuelUniteLegale":null,"pseudonymeUniteLegale":null,"identifiantAssociationUniteLegale":null,"trancheEffectifsUniteLegale":null,"anneeEffectifsUniteLegale":null,"dateDernierTraitementUniteLegale":null,"nombrePeriodesUniteLegale":1,"categorieEntreprise":null,"anneeCategorieEntreprise":null,"periodesUniteLegale":[{"dateFin":null,"dateDebut":null,"etatAdministratifUniteLegale":"C","changementEtatAdministratifUniteLegale":false,"nomUniteLegale":null,"changementNomUniteLegale":false,"nomUsageUniteLegale":null,"changementNomUsageUniteLegale":false,"denominationUniteLegale":"TPS
@@ -165,7 +165,7 @@ interactions:
       User-Agent:
       - Python-urllib/3.11
     method: POST
-    uri: https://api.insee.fr/entreprises/sirene/V3/siren
+    uri: https://api.insee.fr/entreprises/sirene/V3.11/siren
   response:
     body:
       string: '{"header":{"statut":200,"message":"OK","total":4359342,"debut":0,"nombre":20},"unitesLegales":[{"siren":"314077215","statutDiffusionUniteLegale":"O","unitePurgeeUniteLegale":true,"dateCreationUniteLegale":"1978-01-01","sigleUniteLegale":null,"sexeUniteLegale":null,"prenom1UniteLegale":null,"prenom2UniteLegale":null,"prenom3UniteLegale":null,"prenom4UniteLegale":null,"prenomUsuelUniteLegale":null,"pseudonymeUniteLegale":null,"identifiantAssociationUniteLegale":null,"trancheEffectifsUniteLegale":null,"anneeEffectifsUniteLegale":null,"dateDernierTraitementUniteLegale":null,"nombrePeriodesUniteLegale":1,"categorieEntreprise":null,"anneeCategorieEntreprise":null,"periodesUniteLegale":[{"dateFin":null,"dateDebut":null,"etatAdministratifUniteLegale":"C","changementEtatAdministratifUniteLegale":false,"nomUniteLegale":null,"changementNomUniteLegale":false,"nomUsageUniteLegale":null,"changementNomUsageUniteLegale":false,"denominationUniteLegale":"TPS

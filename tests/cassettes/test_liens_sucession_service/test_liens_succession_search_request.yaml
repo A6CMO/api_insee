@@ -54,7 +54,7 @@ interactions:
       User-Agent:
       - Python-urllib/3.11
     method: GET
-    uri: https://api.insee.fr/entreprises/sirene/V3/siret/liensSuccession?q=siretEtablissementPredecesseur%3A39860733300042
+    uri: https://api.insee.fr/entreprises/sirene/V3.11/siret/liensSuccession?q=siretEtablissementPredecesseur%3A39860733300042
   response:
     body:
       string: '{"header":{"statut":200,"message":"OK","total":1,"debut":0,"nombre":1},"liensSuccession":[{"siretEtablissementPredecesseur":"39860733300042","siretEtablissementSuccesseur":"39860733300059","dateLienSuccession":"2015-01-09","transfertSiege":true,"continuiteEconomique":true,"dateDernierTraitementLienSuccession":"2014-12-02T06:33:11"}]}'
@@ -103,7 +103,7 @@ interactions:
       User-Agent:
       - Python-urllib/3.11
     method: GET
-    uri: https://api.insee.fr/entreprises/sirene/V3/siret/liensSuccession?q=siretEtablissementPredecesseur%3A00555008200027+AND+dateLienSuccession%3A2004-04-01
+    uri: https://api.insee.fr/entreprises/sirene/V3.11/siret/liensSuccession?q=siretEtablissementPredecesseur%3A00555008200027+AND+dateLienSuccession%3A2004-04-01
   response:
     body:
       string: '{"header":{"statut":200,"message":"OK","total":2,"debut":0,"nombre":2},"liensSuccession":[{"siretEtablissementPredecesseur":"00555008200027","siretEtablissementSuccesseur":"00605009000031","dateLienSuccession":"2004-04-01","transfertSiege":false,"continuiteEconomique":false,"dateDernierTraitementLienSuccession":"2005-11-26T11:54:04"},{"siretEtablissementPredecesseur":"00555008200027","siretEtablissementSuccesseur":"00605009000049","dateLienSuccession":"2004-04-01","transfertSiege":false,"continuiteEconomique":false,"dateDernierTraitementLienSuccession":"2005-11-26T11:54:04"}]}'
@@ -195,7 +195,7 @@ interactions:
       User-Agent:
       - Python-urllib/3.11
     method: GET
-    uri: https://api.insee.fr/entreprises/sirene/V3/siret/liensSuccession?q=siretEtablissementPredecesseur%3A39860733300042
+    uri: https://api.insee.fr/entreprises/sirene/V3.11/siret/liensSuccession?q=siretEtablissementPredecesseur%3A39860733300042
   response:
     body:
       string: '{"header":{"statut":200,"message":"OK","total":1,"debut":0,"nombre":1},"liensSuccession":[{"siretEtablissementPredecesseur":"39860733300042","siretEtablissementSuccesseur":"39860733300059","dateLienSuccession":"2015-01-09","transfertSiege":true,"continuiteEconomique":true,"dateDernierTraitementLienSuccession":"2014-12-02T06:33:11"}]}'
@@ -244,7 +244,7 @@ interactions:
       User-Agent:
       - Python-urllib/3.11
     method: GET
-    uri: https://api.insee.fr/entreprises/sirene/V3/siret/liensSuccession?q=siretEtablissementPredecesseur%3A00555008200027+AND+dateLienSuccession%3A2004-04-01
+    uri: https://api.insee.fr/entreprises/sirene/V3.11/siret/liensSuccession?q=siretEtablissementPredecesseur%3A00555008200027+AND+dateLienSuccession%3A2004-04-01
   response:
     body:
       string: '{"header":{"statut":200,"message":"OK","total":2,"debut":0,"nombre":2},"liensSuccession":[{"siretEtablissementPredecesseur":"00555008200027","siretEtablissementSuccesseur":"00605009000049","dateLienSuccession":"2004-04-01","transfertSiege":false,"continuiteEconomique":false,"dateDernierTraitementLienSuccession":"2005-11-26T11:54:04"},{"siretEtablissementPredecesseur":"00555008200027","siretEtablissementSuccesseur":"00605009000031","dateLienSuccession":"2004-04-01","transfertSiege":false,"continuiteEconomique":false,"dateDernierTraitementLienSuccession":"2005-11-26T11:54:04"}]}'

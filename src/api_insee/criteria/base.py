@@ -8,8 +8,7 @@ class Base(ABC):
     negative = False
 
     @abstractmethod
-    def to_url_params(self) -> str:
-        ...
+    def to_url_params(self) -> str: ...
 
     def __str__(self) -> str:
         return self.to_url_params()

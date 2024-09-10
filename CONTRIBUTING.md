@@ -7,7 +7,7 @@ pip install -r requirements-dev.txt
 pre-commit install --install-hooks
 [[ ! -e .env ]] && cp .env.sample .env
 ```
-Then, populate `.env` file with your api credentials.
+Then, populate `.env` file with your api key.
 
 ## Tests
 Launch tests

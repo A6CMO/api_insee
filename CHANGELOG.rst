@@ -25,3 +25,7 @@ Version 2.0
       request error
 - Drop `noauth` parameter in `ApiInsee` init method
 - Rename `exeptions` package to `exceptions`
+
+Version 3.0
+===========
+- Add support to INSEE GRAVITEE portal

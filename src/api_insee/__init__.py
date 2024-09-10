@@ -1,4 +1,4 @@
-from pkg_resources import (  # type: ignore[import-untyped]
+from pkg_resources import (
     DistributionNotFound,
     get_distribution,
 )

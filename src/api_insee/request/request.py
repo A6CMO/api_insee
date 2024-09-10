@@ -49,9 +49,9 @@ class RequestService:
         ],
     ) -> None:
         self._url_params: Dict[str, str] = {}
-        self.token: Optional["TokenProvider"] = None
+        self.token: Optional[TokenProvider] = None
         self.criteria: Optional[criteria.Base] = None
-        self._api_urls: Optional["ApiUrls"] = None
+        self._api_urls: Optional[ApiUrls] = None
 
         for key, value in kwargs.items():
             self.set_url_params(key, value)
@@ -68,24 +68,21 @@ class RequestService:
         self.token = token
 
     @overload
-    def get(self) -> Dict[str, Any]:
-        ...
+    def get(self) -> Dict[str, Any]: ...
 
     @overload
     def get(
         self,
         format: Optional[Literal["json"]] = None,
         method: AvailableMethod = "get",
-    ) -> Dict[str, Any]:
-        ...
+    ) -> Dict[str, Any]: ...
 
     @overload
     def get(
         self,
         format: Literal["csv"],
         method: AvailableMethod = "get",
-    ) -> str:
-        ...
+    ) -> str: ...
 
     def get(
         self,

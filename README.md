@@ -2,7 +2,7 @@
 
 API Sirene donne accès aux informations concernant les entreprises et les établissements immatriculés au répertoire interadministratif Sirene depuis sa création en 1973, y compris les unités fermées. La recherche peut être unitaire, multicritère, phonétique et porter sur les données courantes et historisées. Les services actuellement disponibles interrogent les unités légales (Siren) et les établissements (Siret).
 
-La bibliothéque python ```api_insee``` est une aide pour d'interroger l'API Sirene en toute simplicité.
+La bibliothéque python `api_insee` est une aide pour d'interroger l'API Sirene en toute simplicité.
 Vous trouverez d'avantage d'informations au sujet de l'API Sirene dans la [documentation officielle](https://api.insee.fr/catalogue/site/themes/wso2/subthemes/insee/pages/item-info.jag?name=Sirene&version=V3&provider=insee)
 
 
@@ -12,17 +12,15 @@ Depuis un terminal :
 
 `pip install api-insee`
 
-Pour pouvoir interroger l'api, vous devez créer un compte consommateur sur
-[api.insee.fr](https://api.insee.fr).
-Puis récupérer vos clés consommateur et secrète.
+Pour pouvoir interroger l'api, vous devez créer un compte sur
+[le portail INSEE](https://portail-api.insee.fr/).
+Puis créer une application pour récupérer une clé d’API.
+[Voir la documentation](https://www.sirene.fr/static-resources/doc/Insee-Nouveau-portail-des-API-Modalites-de-connexion.pdf)
 
 ```python
 from api_insee import ApiInsee
 
-api = ApiInsee(
-    key=consumer_key,
-    secret=secret_key,
-)
+api = ApiInsee(api_key)
 ```
 
 ---------------------------

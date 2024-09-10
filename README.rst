@@ -20,17 +20,15 @@ From a terminal :
 
 ``pip install api-insee``
 
-To request the API you must create a consumer account on
-`api.insee.fr <https://api.insee.fr>`__. Then with your access keys :
+To request the API you must create an account on `INSEE portal <https://portail-api.insee.fr/>`__.
+Then create an application for générate an API key
+`see documentation <https://www.sirene.fr/static-resources/doc/Insee-Nouveau-portail-des-API-Modalites-de-connexion.pdf>`__
 
 .. code:: python
 
     from api_insee import ApiInsee
 
-    api = ApiInsee(
-        key=consumer_key,
-        secret=secret_key,
-    )
+    api = ApiInsee(api_key)
 
 --------------
 

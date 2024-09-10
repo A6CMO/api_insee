@@ -23,16 +23,6 @@ api = ApiInsee(
     secret=secret_key,
 )
 ```
-Or for use with 3.11 API version.
-```python
-from api_insee import ApiInsee, ApiVersion
-
-api = ApiInsee(
-    key=consumer_key,
-    secret=secret_key,
-    api_version=ApiVersion.V_3_11,
-)
-```
 ---------------------------
 
 #### Request samples

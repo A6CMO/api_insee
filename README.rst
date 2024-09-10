@@ -32,18 +32,6 @@ To request the API you must create a consumer account on
         secret=secret_key,
     )
 
-Or for use with 3.11 API version
-
-.. code:: python
-
-    from api_insee import ApiInsee
-
-    api = ApiInsee(
-        key=consumer_key,
-        secret=secret_key,
-        api_version=ApiVersion,
-    )
-
 --------------
 
 Request samples

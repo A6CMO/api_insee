@@ -22,11 +22,7 @@ def test_request_format_fallback_is_json(api: ApiInsee) -> None:
 
 @pytest.mark.vcr
 def test_request_format_fallback_is_csv() -> None:
-    api_csv = ApiInsee(
-        key=conf.SIRENE_API_CONSUMER_KEY,
-        secret=conf.SIRENE_API_CONSUMER_SECRET,
-        format="csv",
-    )
+    api_csv = ApiInsee(conf.SIRENE_API_KEY, format="csv")
 
     request = api_csv.siret("39860733300059")
     assert request.header["Accept"] == "text/csv"

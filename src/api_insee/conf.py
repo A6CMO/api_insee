@@ -23,7 +23,7 @@ class ApiUrls(TypedDict):
 
 
 class ApiVersion(Enum):
-    V_3_11 = f"{_BASE_URL}/entreprises/sirene/V3.11"
+    V_3_11 = f"{_BASE_URL}/api-sirene/3.11"
 
     @property
     def urls(self) -> ApiUrls:

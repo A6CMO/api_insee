@@ -1,27 +1,17 @@
-from dataclasses import dataclass, field
-from time import time
-from typing import Protocol, Union
+from dataclasses import dataclass
+from typing import TYPE_CHECKING, Protocol, Union
+
+if TYPE_CHECKING:
+    from api_insee.utils.api_key import ApiKey
 
 
 class _PropertyTokenProvider(Protocol):
     @property
-    def token_type(self) -> str: ...
-
-    @property
-    def epoch_expiration(self) -> int: ...
-
-    @property
-    def access_token(self) -> str: ...
-
-    @property
-    def scope(self) -> str: ...
+    def access_token(self) -> "ApiKey": ...
 
 
 class _FieldTokenProvider(Protocol):
-    token_type: str
-    epoch_expiration: int
-    access_token: str
-    scope: str
+    access_token: "ApiKey"
 
 
 TokenProvider = Union[_FieldTokenProvider, _PropertyTokenProvider]
@@ -29,12 +19,4 @@ TokenProvider = Union[_FieldTokenProvider, _PropertyTokenProvider]
 
 @dataclass
 class ClientToken:
-    token_type: str
-    expires_in: int
-    access_token: str
-    scope: str
-
-    epoch_expiration: int = field(init=False)
-
-    def __post_init__(self) -> None:
-        self.epoch_expiration = self.expires_in + int(time())
+    access_token: "ApiKey"

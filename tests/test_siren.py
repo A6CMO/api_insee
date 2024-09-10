@@ -68,17 +68,15 @@ def test_siren_search_exact_field(api: ApiInsee) -> None:
 
 @pytest.mark.vcr
 def test_siren_multi_unit(api: ApiInsee) -> None:
-    request = api.siren(q={"categorieEntreprise": "PME"}, nombre=1000)
+    request = api.siren(q={"categorieEntreprise": "PME"}, nombre=30)
     data = cast(Dict[str, Any], request.get())
 
-    _list = []
-    for unit in data["unitesLegales"]:
-        _list.append(unit["siren"])
+    sirens = [unit["siren"] for unit in data["unitesLegales"]]
 
-    request = api.siren(_list, nombre=1000)
+    request = api.siren(sirens, nombre=30)
     data = cast(Dict[str, Any], request.get())
     units = data["unitesLegales"]
 
-    assert len(units) == 1000
+    assert len(units) == 30
     for unit in units:
-        assert unit["siren"] in _list
+        assert unit["siren"] in sirens

@@ -1,10 +1,36 @@
-name: run-tests
+name: code quality
 on:
   workflow_dispatch:
   push:
   pull_request:
 
 jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        include:
+          - tool_name: mypy
+            run_command: mypy --install-types --non-interactive .
+          - tool_name: ruff
+            run_command: ruff check --no-fix .
+          - tool_name: black
+            run_command: black --check .
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install
+        run: pip install -r requirements-dev.txt
+
+      - name: Run ${{ matrix.tool_name }}
+        run: ${{ matrix.run_command }}
+
   tests:
     runs-on: ubuntu-latest
     strategy:

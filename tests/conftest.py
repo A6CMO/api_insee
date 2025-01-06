@@ -1,4 +1,4 @@
-from typing import Any, Dict, Final
+from typing import Any, Final
 
 import pytest
 
@@ -22,14 +22,14 @@ def api() -> ApiInsee:
 
 
 @pytest.fixture
-def vcr_config() -> Dict[str, Any]:
+def vcr_config() -> dict[str, Any]:
     return {
         "filter_headers": [RequestService.API_AUTHORIZATION_HEADER],
         "before_record_response": replace_token,
     }
 
 
-def replace_token(response: Dict[str, Any]) -> Dict[str, Any]:
+def replace_token(response: dict[str, Any]) -> dict[str, Any]:
     if "headers" in response and "Set-Cookie" in response["headers"]:
         del response["headers"]["Set-Cookie"]
 

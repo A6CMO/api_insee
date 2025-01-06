@@ -13,7 +13,7 @@ classifiers = [
 ]
 urls = {Homepage = "https://github.com/sne3ks/api_insee"}
 dynamic = ["version"]
-requires-python = ">=3.8"
+requires-python = ">=3.9"
 
 [project.readme]
 file = "README.rst"
@@ -65,7 +65,7 @@ no-vcs = "1"
 formats = "bdist_wheel"
 
 [tool.black]
-target-version = ["py38", "py39","py310","py311"]
+target-version = ["py39","py310","py311"]
 
 [tool.mypy]
 strict = true

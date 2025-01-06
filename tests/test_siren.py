@@ -1,4 +1,4 @@
-from typing import Any, Dict, cast
+from typing import Any, cast
 
 import pytest
 
@@ -14,7 +14,7 @@ from tests.conftest import BASE_SIREN_URL
 @pytest.mark.vcr
 def test_siren_search(api: ApiInsee) -> None:
     request = api.siren("809893225")
-    unit = cast(Dict[str, Any], request.get())
+    unit = cast(dict[str, Any], request.get())
 
     assert unit["uniteLegale"]["siren"] == "809893225"
     assert unit["header"]["statut"] == 200
@@ -25,7 +25,7 @@ def test_siren_search(api: ApiInsee) -> None:
 def test_siren_raw_search(api: ApiInsee) -> None:
     criteria_ = criteria.Raw("unitePurgeeUniteLegale:True")
     request = api.siren(q=criteria_)
-    results = cast(Dict[str, Any], request.get())
+    results = cast(dict[str, Any], request.get())
 
     assert results["header"]["statut"] == 200
     assert request.url == BASE_SIREN_URL + "?q=unitePurgeeUniteLegale:True"
@@ -35,7 +35,7 @@ def test_siren_raw_search(api: ApiInsee) -> None:
 def test_siren_search_by_field(api: ApiInsee) -> None:
     criteria_ = criteria.Field("unitePurgeeUniteLegale", True)
     request = api.siren(q=criteria_)
-    results = cast(Dict[str, Any], request.get())
+    results = cast(dict[str, Any], request.get())
 
     assert results["header"]["statut"] == 200
     assert request.url == BASE_SIREN_URL + "?q=unitePurgeeUniteLegale:True"
@@ -69,12 +69,12 @@ def test_siren_search_exact_field(api: ApiInsee) -> None:
 @pytest.mark.vcr
 def test_siren_multi_unit(api: ApiInsee) -> None:
     request = api.siren(q={"categorieEntreprise": "PME"}, nombre=30)
-    data = cast(Dict[str, Any], request.get())
+    data = cast(dict[str, Any], request.get())
 
     sirens = [unit["siren"] for unit in data["unitesLegales"]]
 
     request = api.siren(sirens, nombre=30)
-    data = cast(Dict[str, Any], request.get())
+    data = cast(dict[str, Any], request.get())
     units = data["unitesLegales"]
 
     assert len(units) == 30

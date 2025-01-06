@@ -1,4 +1,4 @@
-from typing import Any, Dict, cast
+from typing import Any, cast
 
 import pytest
 
@@ -39,7 +39,7 @@ def test_liens_succession_search_request(api: ApiInsee) -> None:
     request = api.liens_succession(
         q=criteria.Field("siretEtablissementPredecesseur", 39860733300042),
     )
-    data = cast(Dict[str, Any], request.get())
+    data = cast(dict[str, Any], request.get())
     siret_predecesseur = data["liensSuccession"][0]["siretEtablissementPredecesseur"]
 
     assert siret_predecesseur == "39860733300042"
@@ -50,7 +50,7 @@ def test_liens_succession_search_request(api: ApiInsee) -> None:
             & criteria.Field("dateLienSuccession", "2004-04-01")
         ),
     )
-    data = cast(Dict[str, Any], request.get())
+    data = cast(dict[str, Any], request.get())
     siret_predecesseur = data["liensSuccession"][0]["siretEtablissementPredecesseur"]
     assert siret_predecesseur == "00555008200027"
     assert data["liensSuccession"][0]["dateLienSuccession"] == "2004-04-01"

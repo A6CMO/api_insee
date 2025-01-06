@@ -1,4 +1,4 @@
-from typing import TYPE_CHECKING, Any, Type, TypeVar
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from api_insee.conf import ApiUrls, ApiVersion
 from api_insee.request.request_entreprises import (
@@ -49,7 +49,7 @@ class ApiInsee:
 
     def _wrap(
         self,
-        request_service: Type[T],
+        request_service: type[T],
         *args: Any,
         **kwargs: Any,
     ) -> T:

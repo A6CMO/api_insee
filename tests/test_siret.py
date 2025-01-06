@@ -1,4 +1,4 @@
-from typing import Any, Dict, cast
+from typing import Any, cast
 
 import pytest
 
@@ -14,7 +14,7 @@ from tests.conftest import BASE_SIRET_URL
 @pytest.mark.vcr
 def test_siret_search(api: ApiInsee) -> None:
     request = api.siret("39860733300059")
-    unit = cast(Dict[str, Any], request.get())
+    unit = cast(dict[str, Any], request.get())
 
     assert unit["etablissement"]["siret"] == "39860733300059"
     assert unit["header"]["statut"] == 200
@@ -215,14 +215,14 @@ def test_siret_search_with_excluding_borne(api: ApiInsee) -> None:
 @pytest.mark.vcr
 def test_siret_multi_unit(api: ApiInsee) -> None:
     request = api.siret(q="codeCommuneEtablissement:92046", nombre=1000)
-    data = cast(Dict[str, Any], request.get())
+    data = cast(dict[str, Any], request.get())
 
     _list = []
     for unit in data["etablissements"]:
         _list.append(unit["siret"])
 
     request = api.siret(_list, nombre=1000)
-    data = cast(Dict[str, Any], request.get())
+    data = cast(dict[str, Any], request.get())
     units = data["etablissements"]
 
     assert len(units) == 1000

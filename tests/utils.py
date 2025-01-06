@@ -1,10 +1,10 @@
 from pathlib import Path
-from typing import Dict, Final
+from typing import Final
 
 PROJECT_ROOT: Final = Path(__file__).parent.parent
 
 
-def parse_env_file() -> Dict[str, str]:
+def parse_env_file() -> dict[str, str]:
     with Path(PROJECT_ROOT, ".env").open() as file:
         lines = (
             line.split("=")

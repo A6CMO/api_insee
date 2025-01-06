@@ -9,12 +9,9 @@ from http.client import HTTPResponse
 from typing import (
     TYPE_CHECKING,
     Any,
-    Dict,
-    List,
     Literal,
     NoReturn,
     Optional,
-    Tuple,
     Union,
     cast,
     overload,
@@ -40,15 +37,15 @@ class RequestService:
     def __init__(
         self,
         **kwargs: Union[
-            Dict[str, Any],
-            List[Any],
-            Tuple[Any],
+            dict[str, Any],
+            list[Any],
+            tuple[Any],
             str,
             float,
             criteria.Base,
         ],
     ) -> None:
-        self._url_params: Dict[str, str] = {}
+        self._url_params: dict[str, str] = {}
         self.token: Optional[TokenProvider] = None
         self.criteria: Optional[criteria.Base] = None
         self._api_urls: Optional[ApiUrls] = None
@@ -56,7 +53,7 @@ class RequestService:
         for key, value in kwargs.items():
             self.set_url_params(key, value)
 
-    def init_criteria_from_dictionnary(self, dictionnary: Dict[str, Any]) -> None:
+    def init_criteria_from_dictionnary(self, dictionnary: dict[str, Any]) -> None:
         self.criteria = criteria.List(
             *[criteria.Field(key, value) for (key, value) in dictionnary.items()],
         )
@@ -68,14 +65,14 @@ class RequestService:
         self.token = token
 
     @overload
-    def get(self) -> Dict[str, Any]: ...
+    def get(self) -> dict[str, Any]: ...
 
     @overload
     def get(
         self,
         format: Optional[Literal["json"]] = None,
         method: AvailableMethod = "get",
-    ) -> Dict[str, Any]: ...
+    ) -> dict[str, Any]: ...
 
     @overload
     def get(
@@ -88,7 +85,7 @@ class RequestService:
         self,
         format: Optional[AvailableFormat] = None,
         method: AvailableMethod = "get",
-    ) -> Union[str, Dict[str, Any]]:
+    ) -> Union[str, dict[str, Any]]:
         if format:
             self.format = format
 
@@ -126,7 +123,7 @@ class RequestService:
         self,
         url: str,
         data: Optional[bytes],
-        headers: Dict[str, str],
+        headers: dict[str, str],
     ) -> ur.Request:
         if not url.startswith("https"):
             msg = f"invalid url {url}"
@@ -134,7 +131,7 @@ class RequestService:
 
         return ur.Request(url, data=data, headers=headers)  # noqa: S310
 
-    def format_response(self, response: HTTPResponse) -> Union[str, Dict[str, Any]]:
+    def format_response(self, response: HTTPResponse) -> Union[str, dict[str, Any]]:
         if self.format == "json":
             return self.format_response_json(response)
 
@@ -144,10 +141,10 @@ class RequestService:
         msg = f"Wrong response format {self.format}"
         raise ValueError(msg)
 
-    def format_response_json(self, response: HTTPResponse) -> Dict[str, Any]:
+    def format_response_json(self, response: HTTPResponse) -> dict[str, Any]:
         raw = response.read().decode("utf-8")
 
-        return cast(Dict[str, Any], json.loads(raw))
+        return cast(dict[str, Any], json.loads(raw))
 
     def format_response_csv(self, response: HTTPResponse) -> str:
         return response.read().decode("utf-8")
@@ -191,16 +188,16 @@ class RequestService:
         return ""
 
     @property
-    def url_params(self) -> Dict[str, str]:
+    def url_params(self) -> dict[str, str]:
         return self._url_params.copy()
 
     def set_url_params(
         self,
         name: str,
         value: Union[
-            Dict[str, Any],
-            List[Any],
-            Tuple[Any],
+            dict[str, Any],
+            list[Any],
+            tuple[Any],
             str,
             float,
             criteria.Base,
@@ -230,7 +227,7 @@ class RequestService:
         return None
 
     @property
-    def header(self) -> Dict[str, str]:
+    def header(self) -> dict[str, str]:
         if not self.token:
             msg = "Token is not set"
             raise ValueError(msg)

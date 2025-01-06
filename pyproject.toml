@@ -12,7 +12,7 @@ classifiers = [
     "Programming Language :: Python",
 ]
 urls = {Homepage = "https://github.com/sne3ks/api_insee"}
-dynamic = ["version"]
+version = "3.1.0"
 requires-python = ">=3.9"
 
 [project.readme]

@@ -30,3 +30,9 @@ Version 3.0
 ===========
 - Drop API v3 support
 - Add INSEE GRAVITEE portal support
+
+Version 3.1.0
+=============
+- Drop python 3.9 support
+- Add python 3.12 support
+- Add python 3.13 support

@@ -39,13 +39,10 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        include:
-          - pytest_job: py39
-            python: "3.9"
-          - pytest_job: py310
-            python: "3.10"
-          - pytest_job: py311
-            python: "3.11"
+        python:
+          - "3.9"
+          - "3.10"
+          - "3.11"
 
     steps:
       - uses: actions/checkout@v4
@@ -58,6 +55,4 @@ jobs:
 
       - run: pip install -r requirements-dev.txt
       - run: cp .env.sample .env
-
-      - name: Run ${{ matrix.pytest_job }} pytest job
-        run: pytest
+      - run: pytest

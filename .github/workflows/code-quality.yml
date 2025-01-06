@@ -10,26 +10,30 @@ jobs:
 
     strategy:
       matrix:
-        include:
-          - tool_name: mypy
+        python:
+          - "3.9"
+          - "3.10"
+          - "3.11"
+        tool:
+          - name: mypy
             run_command: mypy --install-types --non-interactive .
-          - tool_name: ruff
+          - name: ruff
             run_command: ruff check --no-fix .
-          - tool_name: black
+          - name: black
             run_command: black --check .
 
     steps:
       - uses: actions/checkout@v4
-      - name: Setup Python 3.11
+      - name: Setup Python ${{ matrix.python }}
         uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
+          python-version: ${{ matrix.python }}
 
       - name: Install
         run: pip install -r requirements-dev.txt
 
-      - name: Run ${{ matrix.tool_name }}
-        run: ${{ matrix.run_command }}
+      - name: Run ${{ matrix.tool.name }} on python ${{ matrix.python }}
+        run: ${{ matrix.tool.run_command }}
 
   tests:
     runs-on: ubuntu-latest

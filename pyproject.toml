@@ -65,7 +65,7 @@ no-vcs = "1"
 formats = "bdist_wheel"
 
 [tool.black]
-target-version = ["py39","py310","py311"]
+target-version = ["py39", "py310", "py311", "py312"]
 
 [tool.mypy]
 strict = true

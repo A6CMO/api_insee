@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import TYPE_CHECKING, Protocol, Union
+from typing import TYPE_CHECKING, Protocol, TypeAlias
 
 if TYPE_CHECKING:
     from api_insee.utils.api_key import ApiKey
@@ -14,7 +14,7 @@ class _FieldTokenProvider(Protocol):
     access_token: "ApiKey"
 
 
-TokenProvider = Union[_FieldTokenProvider, _PropertyTokenProvider]
+TokenProvider: TypeAlias = _FieldTokenProvider | _PropertyTokenProvider
 
 
 @dataclass

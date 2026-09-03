@@ -11,8 +11,7 @@ from typing import (
     Any,
     Literal,
     NoReturn,
-    Optional,
-    Union,
+    TypeAlias,
     cast,
     overload,
 )
@@ -27,6 +26,9 @@ if TYPE_CHECKING:
 
 AvailableFormat = Literal["csv", "json"]
 AvailableMethod = Literal["get", "post"]
+UrlParamValue: TypeAlias = (
+    dict[str, Any] | list[Any] | tuple[Any, ...] | str | float | criteria.Base
+)
 
 
 class RequestService:
@@ -36,19 +38,12 @@ class RequestService:
 
     def __init__(
         self,
-        **kwargs: Union[
-            dict[str, Any],
-            list[Any],
-            tuple[Any],
-            str,
-            float,
-            criteria.Base,
-        ],
+        **kwargs: UrlParamValue,
     ) -> None:
         self._url_params: dict[str, str] = {}
-        self.token: Optional[TokenProvider] = None
-        self.criteria: Optional[criteria.Base] = None
-        self._api_urls: Optional[ApiUrls] = None
+        self.token: TokenProvider | None = None
+        self.criteria: criteria.Base | None = None
+        self._api_urls: ApiUrls | None = None
 
         for key, value in kwargs.items():
             self.set_url_params(key, value)
@@ -70,7 +65,7 @@ class RequestService:
     @overload
     def get(
         self,
-        format: Optional[Literal["json"]] = None,
+        format: Literal["json"] | None = None,
         method: AvailableMethod = "get",
     ) -> dict[str, Any]: ...
 
@@ -83,9 +78,9 @@ class RequestService:
 
     def get(
         self,
-        format: Optional[AvailableFormat] = None,
+        format: AvailableFormat | None = None,
         method: AvailableMethod = "get",
-    ) -> Union[str, dict[str, Any]]:
+    ) -> str | dict[str, Any]:
         if format:
             self.format = format
 
@@ -122,7 +117,7 @@ class RequestService:
     def _create_request(
         self,
         url: str,
-        data: Optional[bytes],
+        data: bytes | None,
         headers: dict[str, str],
     ) -> ur.Request:
         if not url.startswith("https"):
@@ -131,7 +126,7 @@ class RequestService:
 
         return ur.Request(url, data=data, headers=headers)  # noqa: S310
 
-    def format_response(self, response: HTTPResponse) -> Union[str, dict[str, Any]]:
+    def format_response(self, response: HTTPResponse) -> str | dict[str, Any]:
         if self.format == "json":
             return self.format_response_json(response)
 
@@ -194,24 +189,17 @@ class RequestService:
     def set_url_params(
         self,
         name: str,
-        value: Union[
-            dict[str, Any],
-            list[Any],
-            tuple[Any],
-            str,
-            float,
-            criteria.Base,
-        ],
+        value: UrlParamValue,
     ) -> None:
         if isinstance(value, dict):
             criteria_ = criteria.List(
                 *[criteria.Field(key, value) for (key, value) in value.items()],
             ).to_url_params()
 
-        elif isinstance(value, (list, tuple)):
+        elif isinstance(value, list | tuple):
             criteria_ = criteria.List(*value).to_url_params()
 
-        elif isinstance(value, (float, int, str)):
+        elif isinstance(value, float | int | str):
             criteria_ = criteria.Raw(str(value)).to_url_params()
 
         elif isinstance(value, criteria.Base):
@@ -223,7 +211,7 @@ class RequestService:
         self._url_params[name] = criteria_
 
     @property
-    def data(self) -> Optional[bytes]:
+    def data(self) -> bytes | None:
         return None
 
     @property

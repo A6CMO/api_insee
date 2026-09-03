@@ -1,5 +1,5 @@
 from collections.abc import Iterator
-from typing import Any, Optional, Union, cast
+from typing import Any, cast
 
 from api_insee.exceptions.request_error import RequestError
 
@@ -12,7 +12,7 @@ class RequestEntrepriseService(RequestService):
         if champs and isinstance(champs, list):
             kwargs.update({"champs": ",".join(champs)})
 
-        self.reference: Optional[str] = None
+        self.reference: str | None = None
         if args and isinstance(args[0], str):
             self.reference = args[0]
 
@@ -20,9 +20,9 @@ class RequestEntrepriseService(RequestService):
 
     def get(  # type: ignore[override]
         self,
-        format: Optional[AvailableFormat] = None,
-        method: Optional[AvailableMethod] = None,
-    ) -> Union[str, dict[str, Any]]:
+        format: AvailableFormat | None = None,
+        method: AvailableMethod | None = None,
+    ) -> str | dict[str, Any]:
         if self._url_params.get("q", False) and not method:
             method = "post"
         else:
@@ -85,7 +85,7 @@ class RequestEntrepriseServiceLiensSuccession(RequestEntrepriseService):
 
     def get(  # type: ignore[override]
         self,
-        format: Optional[AvailableFormat] = None,
-        method: Optional[AvailableMethod] = "get",
-    ) -> Union[str, dict[str, Any]]:
+        format: AvailableFormat | None = None,
+        method: AvailableMethod | None = "get",
+    ) -> str | dict[str, Any]:
         return super().get(format=format, method=method)

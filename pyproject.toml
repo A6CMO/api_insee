@@ -10,10 +10,14 @@ license = {text = "mit"}
 classifiers = [
     "Development Status :: 4 - Beta",
     "Programming Language :: Python",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
 ]
 urls = {Homepage = "https://github.com/sne3ks/api_insee"}
 version = "3.1.0"
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 
 [project.readme]
 file = "README.rst"
@@ -65,14 +69,16 @@ no-vcs = "1"
 formats = "bdist_wheel"
 
 [tool.black]
-target-version = ["py39", "py310", "py311", "py312", "py313", "py314"]
+target-version = ["py310", "py311", "py312", "py313", "py314"]
 
 [tool.mypy]
 strict = true
+python_version = "3.10"
 mypy_path = ['$MYPY_CONFIG_FILE_DIR', '$MYPY_CONFIG_FILE_DIR/src']
 explicit_package_bases = true
 
 [tool.ruff]
+target-version = "py310"
 fix = true
 
 [tool.ruff.lint]
